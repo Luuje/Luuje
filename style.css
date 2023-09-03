@@ -1,0 +1,633 @@
+html,
+body,
+#main {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: rgb(66, 14, 109);
+}
+
+#main {
+    min-width: 300px;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+:root {
+    -webkit-font-smoothing: antialiased
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-font-smoothing: inherit
+}
+
+h1,
+h2,
+p,
+figure {
+    margin: 0
+}
+
+#main-background-container {
+    position: absolute;
+    height: auto;
+    width: 100%;
+}
+
+#main-background {
+    width: 100%;
+}
+
+#menu-bar {
+    position: sticky;
+    top: 0;
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: min-content;
+    justify-content: flex-start;
+    min-height: 30px;
+    overflow: visible;
+    padding: 4vh 0vw 0.5vh 0vw;
+    width: 100%;
+    will-change: transform;
+    z-index: 3
+}
+
+#menu {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 3vw;
+    height: 4vh;
+    justify-content: center;
+    min-height: 30px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    font-family: Gilgan, sans-serif;
+    font-size: 1em;
+    color: #fff;
+    z-index: 1
+}
+
+#menu-logo {
+    height: 100%;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border-radius: inherit;
+    object-position: center;
+    object-fit: contain;
+    image-rendering: auto;
+}
+
+#menu-logo img {
+    height: 100%;
+    border-radius: inherit;
+    object-position: center;
+    object-fit: contain;
+    image-rendering: auto;
+}
+
+#menu-title {
+    opacity: 0;
+    flex: 1 0 0px;
+    height: auto;
+    position: relative;
+    white-space: pre-wrap;
+    word-break: break-word;
+    word-wrap: break-word
+}
+
+#hero-section {
+    position: sticky;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 0px 30px;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+    overflow: visible;
+    width: 93vw;
+    max-width: 1200px;
+    height: 70vh;
+    z-index: 1;
+}
+
+#hero-content {
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    height: 90%;
+    position: relative;
+    width: 100%;
+    z-index: 5;
+    align-content: center;
+    align-items: center;
+}
+
+#hero-headline {
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    align-items: start;
+}
+
+#hero-headline h2 {
+    font-family: 'Gilgan', sans-serif;
+    font-size: 4vw;
+    letter-spacing: 0.0em;
+    line-height: 1.5em;
+    text-align: right;
+    color: rgb(255, 255, 255);
+}
+
+#hero-headline h2 span{
+    border-right: 2px solid #ffffffff;
+    animation: caret-blink 1s steps(2, start) infinite;
+}
+
+@keyframes caret-blink {
+
+    to{
+        border-right: 2px solid rgba(255, 255, 255, 0);
+    }
+}
+
+#hero-gameboy {
+    width: 40%;
+    height: 100%;
+    display: flex;
+    padding: 2% 0;
+    flex-direction: column;
+    justify-content: right;
+    align-items: center;
+}
+
+#work-section {
+    position: relative;
+    display: flex;
+    height: 4000px;
+    width: 93vw;
+    padding: 5em 0;
+    align-content: start;
+    align-items: center;
+    background-color: #0a0a0a;
+    filter: drop-shadow(0px 1px 20px #000000af);
+    border-radius: 30px;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 200px;
+    max-width: 1200px;
+    overflow: hidden;
+    will-change: transform;
+    z-index: 2
+}
+
+.framer-eLCNF .framer-sms1sx {
+    aspect-ratio: .8762886597938144 / 1;
+    flex: none;
+    height: 100%;
+    overflow: visible;
+    position: relative;
+    width: var(--framer-aspect-ratio-supported, 28px)
+}
+
+.framer-eLCNF .framer-1816yvj {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: 100%;
+    justify-content: flex-start;
+    left: calc(50.00000000000002% - 100% / 2);
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1
+}
+
+.framer-eLCNF .framer-hhh4hs-container {
+    flex: 1 0 0px;
+    height: 1px;
+    position: relative;
+    width: 100%;
+    z-index: 0
+}
+
+.framer-eLCNF .framer-lp1zb1-container {
+    flex: none;
+    height: 400px;
+    position: relative;
+    width: 600px;
+    z-index: 10
+}
+
+.framer-eLCNF .framer-14znhf3 {
+    align-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: 100%;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 100%;
+    z-index: 1
+}
+
+.framer-eLCNF .framer-1r0zx4i {
+    align-content: center;
+    align-items: center;
+    background-color: #fff0;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: 100%;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0 0 0 70px;
+    position: relative;
+    width: 100%;
+    z-index: 1
+}
+
+.framer-eLCNF .framer-1k2er8o {
+    --framer-link-text-color: #0099ff;
+    --framer-link-text-decoration: underline;
+    --framer-paragraph-spacing: 0px;
+    flex: 1 0 0px;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    white-space: pre;
+    width: 1px;
+    z-index: 0
+}
+
+.framer-eLCNF .framer-1hupo1q {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+    height: 100vh;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 100%
+}
+
+.framer-eLCNF #work-section {}
+
+.framer-eLCNF .framer-1gz7mvx {
+    --framer-link-text-color: #0099ff;
+    --framer-link-text-decoration: underline;
+    --framer-paragraph-spacing: 0px;
+    flex: none;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    white-space: pre-wrap;
+    width: 100%;
+    word-break: break-word;
+    word-wrap: break-word
+}
+
+.framer-eLCNF .framer-5i2bkr {
+    display: grid;
+    flex: none;
+    gap: 16px;
+    grid-auto-rows: min-content;
+    grid-template-columns: repeat(3, minmax(200px, 1fr));
+    grid-template-rows: repeat(6, min-content);
+    height: min-content;
+    justify-content: center;
+    max-width: 1000px;
+    overflow: visible;
+    padding: 0;
+    position: relative;
+    width: 60%
+}
+
+.framer-eLCNF .framer-2rtvz-container,
+.framer-eLCNF .framer-1ctpwmo-container,
+.framer-eLCNF .framer-des9k3-container,
+.framer-eLCNF .framer-1a1a75y-container,
+.framer-eLCNF .framer-l3vipf-container,
+.framer-eLCNF .framer-13cvn89-container,
+.framer-eLCNF .framer-i10usc-container,
+.framer-eLCNF .framer-1yzql3c-container,
+.framer-eLCNF .framer-15olpek-container {
+    align-self: start;
+    flex: none;
+    height: 45vh;
+    justify-self: start;
+    min-height: 400px;
+    position: relative;
+    width: 100%;
+    z-index: 1
+}
+
+.framer-eLCNF #about-section,
+.framer-eLCNF #contact-section {
+    align-content: center;
+    align-items: center;
+    background-color: #fff;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 60px;
+    height: min-content;
+    justify-content: center;
+    overflow: hidden;
+    padding: 100px 40px;
+    position: relative;
+    width: 100%
+}
+
+.framer-eLCNF .framer-j640sp,
+.framer-eLCNF .framer-dhlde8,
+.framer-eLCNF .framer-1e1qhn3,
+.framer-eLCNF .framer-1d06uic {
+    --framer-link-text-color: #0099ff;
+    --framer-link-text-decoration: underline;
+    --framer-paragraph-spacing: 0px;
+    flex: none;
+    height: auto;
+    overflow: visible;
+    position: relative;
+    white-space: pre;
+    width: auto
+}
+
+.framer-eLCNF .framer-j4c1dt {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 40px;
+    height: min-content;
+    justify-content: center;
+    max-width: 100%;
+    overflow: visible;
+    padding: 0;
+    position: relative;
+    width: 1000px
+}
+
+.framer-eLCNF .framer-190qa3a {
+    --framer-paragraph-spacing: 0px;
+    flex: none;
+    height: auto;
+    max-width: 500px;
+    overflow: visible;
+    position: relative;
+    white-space: pre-wrap;
+    width: 100%;
+    word-break: break-word;
+    word-wrap: break-word
+}
+
+.framer-eLCNF .framer-1wjvu06 {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 15px;
+    height: min-content;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: min-content
+}
+
+.framer-eLCNF .framer-zo7uxn {
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    flex: none;
+    height: var(--framer-aspect-ratio-supported, 50px);
+    overflow: hidden;
+    position: relative;
+    width: 50px;
+    will-change: transform
+}
+
+.framer-eLCNF .framer-77sq53 {
+    align-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: min-content;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: min-content
+}
+
+.framer-eLCNF .framer-18piqc0 {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 10px;
+    height: min-content;
+    justify-content: center;
+    max-width: 540px;
+    overflow: visible;
+    padding: 0;
+    position: relative;
+    width: 100%
+}
+
+.framer-eLCNF .framer-1uszlm7-container {
+    flex: 1 0 0px;
+    height: 290px;
+    position: relative;
+    width: 1px
+}
+
+
+
+.framer-MUXyR [data-border=true]:after {
+    content: "";
+    border-width: var(--border-top-width, 0) var(--border-right-width, 0) var(--border-bottom-width, 0) var(--border-left-width, 0);
+    border-color: var(--border-color, none);
+    border-style: var(--border-style, none);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    border-radius: inherit;
+    pointer-events: none
+}
+
+
+.framer-MUXyR .framer-1k90b9u {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: 403px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 1200px
+}
+
+
+.framer-DeFxA [data-border=true]:after {
+    content: "";
+    border-width: var(--border-top-width, 0) var(--border-right-width, 0) var(--border-bottom-width, 0) var(--border-left-width, 0);
+    border-color: var(--border-color, none);
+    border-style: var(--border-style, none);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    box-sizing: border-box;
+    left: 0;
+    top: 0;
+    border-radius: inherit;
+    pointer-events: none
+}
+
+
+.framer-DeFxA .framer-1kiun88 {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    gap: 0px;
+    height: 532px;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 349px;
+    will-change: transform
+}
+
+.framer-DeFxA .framer-1avqati {
+    align-content: center;
+    align-items: center;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    gap: 10px;
+    height: 100%;
+    justify-content: center;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 113%
+}
+
+.svgContainer svg {
+    display: block
+}
+
+@font-face {
+    src: url(assets/switzer.woff2);
+    font-display: block;
+    font-family: Switzer;
+    font-style: normal;
+    font-weight: 400;
+}
+
+@font-face {
+    src: url(assets/gilgan.otf);
+    font-display: block;
+    font-family: Gilgan;
+    font-style: normal;
+    font-weight: 400;
+}
+
+
+
+/* ******************************** */
+/* ********** RESPONSIVE ********** */
+/* ******************************** */
+@media screen and (min-width: 1200px) {
+    #hero-headline h2 {
+        font-size: 3em;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #hero-section {
+        height: 90vh;
+    }
+    #hero-content {
+        flex-direction: column;
+        padding: 5vh 0;
+    }
+    #hero-headline {
+        height: 25%;
+        width: 100%;
+    }
+    #hero-headline h2 {
+        text-align: left;
+        font-size: 2em;
+    }
+    #hero-gameboy {
+        height: 75%;
+        width: 100%;
+        padding: 0% 30%
+    }
+    #work-section {
+        width: 100vw;
+        padding: 5em 0;
+    }
+}
