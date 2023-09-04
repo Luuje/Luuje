@@ -13,12 +13,12 @@ uniform vec2 uMouse;
 uniform float uMorph;
 uniform vec2 uGrid;
 
-const int complexity = 15;   // complexity of curls/computation
+const int complexity = 6;   // complexity of curls/computation
 const float mouseSpeed = 0.3;  // control the color changing
-const float fixedOffset = 0.7;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
-const float fluidSpeed = 0.02; // Drives speed, smaller number will make it slower.
+const float fixedOffset = 0.9;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
+const float fluidSpeed = 0.01; // Drives speed, smaller number will make it slower.
 const float baseColor = 0.1;
-const float BLUR = 0.47;
+const float BLUR = 0.97;
 const float brightness = 0.7;
 
 // more about noise: 
@@ -91,9 +91,9 @@ void main() {
     vec2 grid = uGrid * 2.0; // set complexity to 0 to debug the grid
 
     // Modified color computation
-    float r = pow(0.5 * (1.0 + sin(grid.x * p.x + 2.0 * noiseSTime)), 1.5)*brightness + baseColor;
-    float g = pow(0.5 * (1.0 + sin(grid.y * p.y + 3.0 * noiseSTime1)), 1.5)*brightness + baseColor;
-    float b = pow(0.5 * (1.0 + sin(p.x + p.y + noiseSTime)), 1.5)*brightness + baseColor;
+    float r = pow(0.5 * (1.0 + baseColor + sin(grid.x * p.x + 2.0 * noiseSTime)), 1.5)*brightness;
+    float g = pow(0.5 * (1.0 + baseColor + sin(grid.y * p.y + 3.0 * noiseSTime1)), 1.5)*brightness;
+    float b = pow(0.5 * (1.0 + baseColor + sin(p.x + p.y + noiseSTime)), 1.5)*brightness;
 
     // Color filter
     // Product between matrix filter and pixel color to get new color
@@ -101,7 +101,7 @@ void main() {
 
     // Grain filter
     vec2 st = gl_FragCoord.xy / uResolution.xy;
-    vec2 pos = vec2(st * uResolution.xy);
+    //vec2 pos = vec2(st * uResolution.xy);
     float grain = grain(st, noiseSTime);
 
     //blend the noise over the background

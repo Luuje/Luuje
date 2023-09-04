@@ -25,196 +25,76 @@
 <body>
   <div id="main">
     <div id="main-background-container"><canvas id="main-background"></canvas></div>
-    <div id="hero-section">
-      <div id="menu-bar">
-        <div id="menu">
-          <div id="menu-logo"><img src="images/logo.png" alt=""></div>
-          <div id="menu-title">
-            <p id="menu-title-text">Julien Catala</p>
-          </div>
-          <div id="menu-work">
-            <p>Work</p>
-          </div>
-          <div id="menu-about">
-            <p>About</p>
-          </div>
-          <div id="menu-contact">
-            <p>Contact</p>
-          </div>
+    <div id="menu-bar">
+      <div id="menu">
+        <div id="menu-logo" class="menu-item"><img src="images/logo.png" alt="logo"></div>
+        <div id="menu-title" class="menu-item">
+          <p id="menu-title-text">Julien Catala</p>
+        </div>
+        <div id="menu-language" class="menu-item" style="opacity: 0.5;">
+          <p>En</p>
+          <p>/</p>
+          <p>Fr</p>
+        </div>
+        <div id="menu-social" class="menu-item" style="opacity: 0.5;">
+          <img id="menu-social-linkedin" src="images/social_linkedin.png" alt="social-linkedin">
+          <img id="menu-social-x" src="images/social_x.png" alt="social-x">
+          <img id="menu-social-discord" src="images/social_discord.png" alt="social-discord">
         </div>
       </div>
+    </div>
+    <div id="hero-section">
       <div id="hero-content">
         <div id="hero-headline">
           <h2>Hi, I'm Julien!</h2>
           <div>
             <h2>I craft <span class="txt-rotate" data-period="5000"
-                data-rotate='[ "beautiful pixels.", "cool 3D objects.", "video games." ]'></span></h2>
+                data-rotate='[ "pretty pixels.", "cool 3D objects.", "video games." ]'></span></h2>
           </div>
         </div>
         <div id="hero-gameboy">
           <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.436/build/spline-viewer.js"></script>
-          <spline-viewer hint url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer>
+          <spline-viewer hint loading-anim
+            url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer>
         </div>
       </div>
     </div>
 
-    <div id="work-section">
-      <div class="framer-1gz7mvx"
-        style="outline:none;display:flex;flex-direction:column;justify-content:flex-start;flex-shrink:0;transform:none"
-        data-framer-component-type="RichTextContainer">
-        <h2
-          style="--font-selector:RlM7U3lub255bS1yZWd1bGFy;--framer-font-family:'Synonym', sans-serif;--framer-font-size:25px;--framer-letter-spacing:1.1em;--framer-text-alignment:center;--framer-text-color:rgb(255, 255, 255)"
-          class="framer-text">WORK</h2>
-      </div>
-      <div class="framer-5i2bkr" data-framer-name="Projects grid" name="Projects grid">
-        <div class="framer-2rtvz-container">
-          <div class="framer-DeFxA framer-v-1kiun88" style="display:contents" tabindex="0">
-            <div class="framer-1kiun88" data-framer-name="Variant 1"
-              style="border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;height:100%;width:100%">
-              <div class="framer-1avqati" data-framer-name="Thumbnail">
-                <div style="position:absolute;border-radius:inherit;top:0;right:0;bottom:0;left:0"
-                  data-framer-background-image-wrapper="true"><img src="images/5pWN0EaZvuql3VPRRnbtHalXFW0.jpg" alt=""
-                    srcset="images/5pWN0EaZvuql3VPRRnbtHalXFW0-1.jpg 427w?scale-down-to=512 427w, images/5pWN0EaZvuql3VPRRnbtHalXFW0.jpg 591w"
-                    sizes="(min-width: 1200px) calc(min(349px, 100vw) * 1.13), (min-width: 810px) and (max-width: 1199px) calc(min(349px, 100vw) * 1.13), (max-width: 809px) calc(min(349px, 100vw) * 1.13)"
-                    style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto"
-                    data-framer-original-sizes="calc(min(349px, 100vw) * 1.13)"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="framer-1ctpwmo-container">
-          <div class="framer-DeFxA framer-v-1kiun88" style="display:contents" tabindex="0">
-            <div class="framer-1kiun88" data-framer-name="Variant 1"
-              style="border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;height:100%;width:100%">
-              <div class="framer-1avqati" data-framer-name="Thumbnail">
-                <div style="position:absolute;border-radius:inherit;top:0;right:0;bottom:0;left:0"
-                  data-framer-background-image-wrapper="true"><img src="images/9QgFzCU2qFVVFY0YlNNAfQ1570.jpg" alt=""
-                    srcset="images/9QgFzCU2qFVVFY0YlNNAfQ1570-1.jpg 509w?scale-down-to=512 509w, images/9QgFzCU2qFVVFY0YlNNAfQ1570.jpg 600w"
-                    sizes="(min-width: 1200px) calc(min(349px, 100vw) * 1.13), (min-width: 810px) and (max-width: 1199px) calc(min(349px, 100vw) * 1.13), (max-width: 809px) calc(min(349px, 100vw) * 1.13)"
-                    style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto"
-                    data-framer-original-sizes="calc(min(349px, 100vw) * 1.13)"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="framer-des9k3-container">
-          <div class="framer-DeFxA framer-v-1kiun88" style="display:contents" tabindex="0">
-            <div class="framer-1kiun88" data-framer-name="Variant 1"
-              style="border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;height:100%;width:100%">
-              <div class="framer-1avqati" data-framer-name="Thumbnail">
-                <div style="position:absolute;border-radius:inherit;top:0;right:0;bottom:0;left:0"
-                  data-framer-background-image-wrapper="true"><img src="images/6PeStFVSeeBCbwoWndF9tEW7NO0.jpg" alt=""
-                    srcset="images/6PeStFVSeeBCbwoWndF9tEW7NO0-1.jpg 512w?scale-down-to=512 512w, images/6PeStFVSeeBCbwoWndF9tEW7NO0-2.jpg 1024wg?scale-down-to=1024 1024w, images/6PeStFVSeeBCbwoWndF9tEW7NO0-3.jpg 2048wg?scale-down-to=2048 2048w, images/6PeStFVSeeBCbwoWndF9tEW7NO0.jpg 3840w"
-                    sizes="(min-width: 1200px) calc(min(349px, 100vw) * 1.13), (min-width: 810px) and (max-width: 1199px) calc(min(349px, 100vw) * 1.13), (max-width: 809px) calc(min(349px, 100vw) * 1.13)"
-                    style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto"
-                    data-framer-original-sizes="calc(min(349px, 100vw) * 1.13)"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="framer-1a1a75y-container">
-          <div class="framer-DeFxA framer-v-1kiun88" style="display:contents" tabindex="0">
-            <div class="framer-1kiun88" data-framer-name="Variant 1"
-              style="border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;height:100%;width:100%">
-              <div class="framer-1avqati" data-framer-name="Thumbnail">
-                <div style="position:absolute;border-radius:inherit;top:0;right:0;bottom:0;left:0"
-                  data-framer-background-image-wrapper="true"><img src="images/iSBoe27W7GUi8KJn4EzGmZajueg.jpg" alt=""
-                    srcset="images/iSBoe27W7GUi8KJn4EzGmZajueg-1.jpg 512w?scale-down-to=512 512w, images/iSBoe27W7GUi8KJn4EzGmZajueg.jpg 833w"
-                    sizes="(min-width: 1200px) calc(min(349px, 100vw) * 1.13), (min-width: 810px) and (max-width: 1199px) calc(min(349px, 100vw) * 1.13), (max-width: 809px) calc(min(349px, 100vw) * 1.13)"
-                    style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto"
-                    data-framer-original-sizes="calc(min(349px, 100vw) * 1.13)"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="framer-l3vipf-container">
-          <div class="framer-DeFxA framer-v-1kiun88" style="display:contents" tabindex="0">
-            <div class="framer-1kiun88" data-framer-name="Variant 1"
-              style="border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;height:100%;width:100%">
-              <div class="framer-1avqati" data-framer-name="Thumbnail">
-                <div style="position:absolute;border-radius:inherit;top:0;right:0;bottom:0;left:0"
-                  data-framer-background-image-wrapper="true"><img src="images/yiQDHzL0gaj3dyPpQXD6m9NCsWA.jpg" alt=""
-                    srcset="images/yiQDHzL0gaj3dyPpQXD6m9NCsWA-1.jpg 512w?scale-down-to=512 512w, images/yiQDHzL0gaj3dyPpQXD6m9NCsWA-2.jpg 1024wg?scale-down-to=1024 1024w, images/yiQDHzL0gaj3dyPpQXD6m9NCsWA.jpg 1482w"
-                    sizes="(min-width: 1200px) calc(min(349px, 100vw) * 1.13), (min-width: 810px) and (max-width: 1199px) calc(min(349px, 100vw) * 1.13), (max-width: 809px) calc(min(349px, 100vw) * 1.13)"
-                    style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto"
-                    data-framer-original-sizes="calc(min(349px, 100vw) * 1.13)"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="framer-13cvn89-container">
-          <div class="framer-DeFxA framer-v-1kiun88" style="display:contents" tabindex="0">
-            <div class="framer-1kiun88" data-framer-name="Variant 1"
-              style="border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;height:100%;width:100%">
-              <div class="framer-1avqati" data-framer-name="Thumbnail">
-                <div style="position:absolute;border-radius:inherit;top:0;right:0;bottom:0;left:0"
-                  data-framer-background-image-wrapper="true"><img src="images/SBkNzS6apMYOFZiDlBOMEWqDI.jpg" alt=""
-                    sizes="calc(min(349px, 100vw) * 1.13)"
-                    style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="framer-i10usc-container">
-          <div class="framer-DeFxA framer-v-1kiun88" style="display:contents" tabindex="0">
-            <div class="framer-1kiun88" data-framer-name="Variant 1"
-              style="border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;height:100%;width:100%">
-              <div class="framer-1avqati" data-framer-name="Thumbnail">
-                <div style="position:absolute;border-radius:inherit;top:0;right:0;bottom:0;left:0"
-                  data-framer-background-image-wrapper="true"><img src="images/4uC9yF3qIFnYdcyugS9mHoOKybY.jpg" alt=""
-                    srcset="images/4uC9yF3qIFnYdcyugS9mHoOKybY-1.jpg 438w?scale-down-to=512 438w, images/4uC9yF3qIFnYdcyugS9mHoOKybY-2.jpg 876wg?scale-down-to=1024 876w, images/4uC9yF3qIFnYdcyugS9mHoOKybY.jpg 1240w"
-                    sizes="(min-width: 1200px) calc(min(349px, 100vw) * 1.13), (min-width: 810px) and (max-width: 1199px) calc(min(349px, 100vw) * 1.13), (max-width: 809px) calc(min(349px, 100vw) * 1.13)"
-                    style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto"
-                    data-framer-original-sizes="calc(min(349px, 100vw) * 1.13)"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="framer-1yzql3c-container">
-          <div class="framer-DeFxA framer-v-1kiun88" style="display:contents" tabindex="0">
-            <div class="framer-1kiun88" data-framer-name="Variant 1"
-              style="border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;height:100%;width:100%">
-              <div class="framer-1avqati" data-framer-name="Thumbnail">
-                <div style="position:absolute;border-radius:inherit;top:0;right:0;bottom:0;left:0"
-                  data-framer-background-image-wrapper="true"><img src="images/1BIKCBBtSyoR7YQuTMATsVPjr50.jpg" alt=""
-                    sizes="calc(min(349px, 100vw) * 1.13)"
-                    style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto">
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="framer-15olpek-container">
-          <div class="framer-DeFxA framer-v-1kiun88" style="display:contents" tabindex="0">
-            <div class="framer-1kiun88" data-framer-name="Variant 1"
-              style="border-bottom-left-radius:23px;border-bottom-right-radius:23px;border-top-left-radius:23px;border-top-right-radius:23px;height:100%;width:100%">
-              <div class="framer-1avqati" data-framer-name="Thumbnail">
-                <div style="position:absolute;border-radius:inherit;top:0;right:0;bottom:0;left:0"
-                  data-framer-background-image-wrapper="true"><img src="images/0sDM8K7YsMfbxfwk7ZHT5J7g.jpg" alt=""
-                    srcset="images/0sDM8K7YsMfbxfwk7ZHT5J7g-1.jpg 512w?scale-down-to=512 512w, images/0sDM8K7YsMfbxfwk7ZHT5J7g.jpg 599w"
-                    sizes="(min-width: 1200px) calc(min(349px, 100vw) * 1.13), (min-width: 810px) and (max-width: 1199px) calc(min(349px, 100vw) * 1.13), (max-width: 809px) calc(min(349px, 100vw) * 1.13)"
-                    style="display:block;width:100%;height:100%;border-radius:inherit;object-position:center;object-fit:cover;image-rendering:auto"
-                    data-framer-original-sizes="calc(min(349px, 100vw) * 1.13)"></div>
-              </div>
-            </div>
-          </div>
+    <div id="tabs-container">
+      <ul id="tabs-menu">
+        <li id="tabs-menu-work" class="tabs-menu-item">
+          <a href="#tabs-container" class="tabs-menu-title">WORK</a>
+        </li>
+        <li id="tabs-menu-about" class="tabs-menu-item">
+          <a class="tabs-menu-title">ABOUT</a>
+        </li>
+        <li id="tabs-menu-contact" class="tabs-menu-item">
+          <a class="tabs-menu-title">CONTACT</a>
+        </li>
+      </ul>
+      <div id="tabs-work">
+        <div class="work-grid">
         </div>
       </div>
+      <div id="tabs-about">
+      </div>
+      <div id="tabs-contact">
+      </div>
     </div>
+  </div>
 
 
-    <div class="about-section">
+  <div class="about-section">
 
-    </div>
-
-
-    <div class="contact-section">
-
-    </div>
+  </div>
 
 
-    <div id="overlay"></div>
+  <div class="contact-section">
+
+  </div>
+
+
+  <div id="overlay"></div>
   </div>
 
   <script language="javascript" src="https://cdn.jsdelivr.net/npm/regl@1.3.1/dist/regl.min.js"></script>
