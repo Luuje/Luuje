@@ -1,6 +1,6 @@
 // Fork from http://glslsandbox.com/e#8143.0
 #define PI 3.14159
-#define color_filter mat3(0.5, 0.2, 0.2, 0.0, 0.0, 0.2, 0.8, 0.2, 0.6)
+#define color_filter mat3(0.5, 0.2, 0.2, 0.0, 0.0, 0.2, 0.8, 0.4, 0.6)
 
 precision mediump float;
 
@@ -11,12 +11,12 @@ uniform vec2 uMouse;
 uniform float uMorph;
 uniform vec2 uGrid;
 
-const int complexity = 6;   // complexity of curls/computation
+const int complexity = 12;   // complexity of curls/computation
 const float mouseSpeed = 0.3;  // control the color changing
-const float fixedOffset = 2.9;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
-const float fluidSpeed = 0.01; // Drives speed, smaller number will make it slower.
+const float fixedOffset = 0.9;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
+const float fluidSpeed = 0.02; // Drives speed, smaller number will make it slower.
 const float baseColor = 0.2;
-const float BLUR = 0.97;
+const float BLUR = 0.67;
 const float brightness = 0.7;
 
 // more about noise: 

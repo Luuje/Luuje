@@ -443,7 +443,7 @@ class Pointer {
     } else if (e.deltaY < 0) {
       this.zoomIn();
     }
-    e.preventDefault(); // prevent page scroll down
+    //e.preventDefault(); // prevent page scroll down
   }
   onZoom(e) {
     if (e.touches) {
@@ -470,13 +470,23 @@ class Pointer {
   }
 }
 
-
 Pointer.instance = null;
 Pointer.BUTTON = {
   MOUSE_LEFT: 0,
   MOUSE_MIDDLE: 1,
   MOUSE_RIGHT: 2
 };
+
+// Dispatch mouseMove to the canvas from overlaying elements 
+document.addEventListener('mousemove', function(e) {
+  const newEvent = new MouseEvent('mousemove', {
+    clientX: e.clientX,
+    clientY: e.clientY,
+    // other properties here
+  });
+  
+  document.getElementById('main-background').dispatchEvent(newEvent);
+});
 
 
 // CREATE REGL
@@ -558,8 +568,21 @@ const draw = regl({
   count: 6
 });
 // regl.frame() wraps requestAnimationFrame and also handles viewport changes
+let lastTime = 0;
+const fps = 30;
+const interval = 1000 / fps;
+
 regl.frame(() => {
-  draw();
+  const currentTime = Date.now();
+  const elapsed = currentTime - lastTime;
+
+  if (elapsed > interval) {
+    // Save the last time we drew
+    lastTime = currentTime - (elapsed % interval);
+
+    // Your drawing code here
+    draw();
+  }
 });
 
 /* // Wait for the canvas to be generated
