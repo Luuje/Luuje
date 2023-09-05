@@ -1,8 +1,6 @@
 // Fork from http://glslsandbox.com/e#8143.0
 #define PI 3.14159
-#define color_filter mat3(0.4, 0.2, 0.2, 0.0, 0.0, 0.2, 0.7, 0.2, 0.6)
-//#define color_filter mat3(0.5, 0.2, 0.2, 0.0, 0.0, 0.2, 0.9, 0.2, 0.6) blue purple pink
-//#define color_filter mat3(0.5, 0.2, 0.2, 0.0, 0.0, 0.6, 0.9, 0.2, 0.6) blue purple green
+#define color_filter mat3(0.5, 0.2, 0.2, 0.0, 0.0, 0.2, 0.8, 0.2, 0.6)
 
 precision mediump float;
 
@@ -15,9 +13,9 @@ uniform vec2 uGrid;
 
 const int complexity = 6;   // complexity of curls/computation
 const float mouseSpeed = 0.3;  // control the color changing
-const float fixedOffset = 0.9;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
+const float fixedOffset = 2.9;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
 const float fluidSpeed = 0.01; // Drives speed, smaller number will make it slower.
-const float baseColor = 0.1;
+const float baseColor = 0.2;
 const float BLUR = 0.97;
 const float brightness = 0.7;
 
@@ -28,7 +26,7 @@ float random(float x) {
 }
 
 float random(vec2 st) {
-    return fract(sin(dot(st.xy, vec2(12.9898, 78.233))) * uRandomSeed);
+    return fract(sin(dot(st.xy, vec2(0.48764, 0.68567))) * uRandomSeed);
 }
 
 float noise(float x) {
@@ -59,7 +57,7 @@ float grain(in vec2 st, float noiseTime) {
 
       // Mix 4 coorners percentages
     //return 0.0 + ((mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y) / 10.0) * 10.0;
-    return pow((random(st) + (mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y))/1.5, 0.4); //pow 0.5 to make grain more gray
+    return pow(random(st) + mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y, 0.5); //pow 0.5 to make grain more gray
 }
 
 vec3 blend(vec3 base, vec3 blend, float blendFactor) {
@@ -69,6 +67,9 @@ vec3 blend(vec3 base, vec3 blend, float blendFactor) {
     } else {
         blendedColor = (sqrt(base) * (2.0 * blend - 1.0) + 2.0 * base * (1.0 - blend));
     }
+
+    blendedColor += 0.1 * blend;
+
     return mix(base, blendedColor, blendFactor);
 }
 
@@ -91,9 +92,9 @@ void main() {
     vec2 grid = uGrid * 2.0; // set complexity to 0 to debug the grid
 
     // Modified color computation
-    float r = pow(0.5 * (1.0 + baseColor + sin(grid.x * p.x + 2.0 * noiseSTime)), 1.5)*brightness;
-    float g = pow(0.5 * (1.0 + baseColor + sin(grid.y * p.y + 3.0 * noiseSTime1)), 1.5)*brightness;
-    float b = pow(0.5 * (1.0 + baseColor + sin(p.x + p.y + noiseSTime)), 1.5)*brightness;
+    float r = pow(0.5 * (1.0 + baseColor + sin(grid.x * p.x + 2.0 * noiseSTime)), 1.5) * brightness;
+    float g = pow(0.5 * (1.0 + baseColor + sin(grid.y * p.y + 3.0 * noiseSTime1)), 1.5) * brightness;
+    float b = pow(0.5 * (1.0 + baseColor + sin(p.x + p.y + noiseSTime)), 1.5) * brightness;
 
     // Color filter
     // Product between matrix filter and pixel color to get new color
@@ -102,10 +103,9 @@ void main() {
     // Grain filter
     vec2 st = gl_FragCoord.xy / uResolution.xy;
     //vec2 pos = vec2(st * uResolution.xy);
-    float grain = grain(st, noiseSTime);
 
     //blend the noise over the background
-    vec3 blendColor = blend(color, vec3(grain), 0.6);
+    vec3 blendColor = blend(color, vec3(grain(gl_FragCoord.xy, noiseSTime)), 0.4);
 
     //get the luminance of the background
     //float luminance = (color[0] + color[1] + color[2])/3.0;
@@ -117,5 +117,6 @@ void main() {
 
     // Output to screen
     gl_FragColor = vec4(blendColor, 1.0);
+    //gl_FragColor = vec4(vec3(grain(st.xy, noiseSTime)), 1.0);
 
 }
