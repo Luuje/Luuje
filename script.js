@@ -3,7 +3,7 @@
  * @author philogb / http://blog.thejit.org/
  * @author egraether / http://egraether.com/
  * @author zz85 / http://www.lab4games.net/zz85/blog
- * @author luje / http://jctech.art
+ * @author Luje_fr / http://jcatala.art
  */
 function Vector2(x, y) {
   this.x = x || 0;
@@ -600,8 +600,7 @@ window.addEventListener('load', () => {
 }); */
 
 
-
-// Typewriter effect
+// HERO HEADLINE TYPEWRITER EFFECT
 var TxtRotate = function(el, toRotate, period) {
   this.toRotate = toRotate;
   this.el = el;
@@ -657,6 +656,42 @@ window.onload = function() {
   css.type = "text/css";
   css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #fff }";
   document.body.appendChild(css); */
+
+  // CARET BLINK ANIMATION
+  let caret = document.querySelector("#hero-headline h2>span");
+  let showCaret = true;
+  setInterval(() => {
+    if (showCaret) {
+      caret.style.borderRight = "0.1em solid #fff";
+    } else {
+      caret.style.borderRight = "0em solid transparent";
+    }
+    showCaret = !showCaret;
+  }, 500);
 };
+
+// TABS SYSTEM
+document.addEventListener("DOMContentLoaded", function() {
+  const tabsMenu = document.querySelectorAll('.tabs-menu-title');
+  const tabsContent = document.querySelectorAll('.tabs-content');
+
+  // Initialize by showing the first tab
+  tabsMenu[0].classList.add('active');
+  tabsContent[0].classList.add('active');
+
+  tabsMenu.forEach(tab => {
+    tab.addEventListener('click', function() {
+      // Remove active class from all tabs and contents
+      tabsMenu.forEach(t => t.classList.remove('active'));
+      tabsContent.forEach(c => c.classList.remove('active'));
+
+      // Add active class to clicked tab and its content
+      this.classList.add('active');
+      const activeTabContent = document.getElementById(this.getAttribute('data-tab'));
+      activeTabContent.classList.add('active');
+    });
+  });
+});
+
 
 
