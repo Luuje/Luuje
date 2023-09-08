@@ -90,7 +90,7 @@ h2 {
     padding-right: 8px;
     position: relative;
     width: 100%;
-    max-width: 1900px;
+    max-width: 1300px;
     font-family: Gilgan, sans-serif;
     font-size: 1em;
     color: #fff;
@@ -158,7 +158,7 @@ h2 {
     flex-wrap: nowrap;
     gap: 10px;
     overflow: visible;
-    max-width: 1900px;
+    max-width: 1300px;
     height: 70vh;
     z-index: 1;
 }
@@ -230,7 +230,7 @@ h2 {
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 1em;
-    max-width: 1900px;
+    max-width: 1300px;
     overflow: hidden;
     z-index: 2;
 }
@@ -255,7 +255,7 @@ h2 {
     font-family: Gilgan;
     color: #a1a1a1;
     border-bottom: solid 0px rgb(34, 33, 33);
-    padding: 8em;
+    padding: 4em;
 }
 
 .tabs-menu-item {
@@ -268,7 +268,7 @@ h2 {
 .tabs-menu-title {
     display: inline;
     cursor: pointer;
-    font-size: 2.1em;
+    font-size: 1.2em;
     font-family: Gilgan;
     color: #a1a1a1;
     height: 100%;
@@ -280,7 +280,7 @@ h2 {
 }
 
 .tabs-menu-title.active {
-    font-size: 6em;
+    font-size: 3em;
     color: #ffffff;
 }
 
@@ -339,9 +339,9 @@ h2 {
 .project-featured {
     display: flex;
     overflow: hidden;
-    width: 100%;
+    width: 60%;
     height: 30em;
-    border-radius: 0px;
+    border-radius: 10px;
     position: absolute;
 }
 
