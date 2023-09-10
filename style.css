@@ -30,14 +30,14 @@ body {
 
 h1,
 h2,
+h3, 
+h4,
 p,
 figure {
     margin: 0;
     color: rgb(255, 255, 255);
-}
-
-h2 {
-    font-family: Gilgan, sans-serif;
+    font-family: Gilgan, Arial, sans-serif;
+    font-weight: 400;
 }
 
 /* MAIN BACKGROUND */
@@ -260,7 +260,7 @@ h2 {
 
 .tabs-menu-item {
     flex-grow: 0;
-    padding: 0 0.5em;
+    padding: 0 1em;
     position: relative;
     bottom: 0px;
 }
@@ -276,6 +276,7 @@ h2 {
     bottom: 0px;
     text-decoration: none;
     overflow: hidden;
+    will-change: color, font-size;
     transition: color 300ms, font-size 300ms;
 }
 
@@ -285,6 +286,7 @@ h2 {
 }
 
 .tabs-menu-title:hover {
+    transform: scale(1.1);
     color: rgb(200, 167, 255);
 }
 
@@ -323,6 +325,7 @@ h2 {
     min-height: 1500px;
     opacity: 0;
     transition: opacity 600ms;
+    color: white;
 }
 
 .tabs-content.active {
@@ -330,19 +333,19 @@ h2 {
     opacity: 1;
 }
 
-#project-grid {
+#project-list {
     display: flex;
     width: 100%;
     justify-content: center;
+    padding: 0em 4em;
 }
 
 .project-featured {
     display: flex;
     overflow: hidden;
-    width: 60%;
-    height: 30em;
-    border-radius: 10px;
-    position: absolute;
+    width: 100%;
+    height: fit-content;
+    gap:1em;
 }
 
 .project-featured img {
@@ -350,7 +353,28 @@ h2 {
     object-fit:cover;
 }
 
+.project-featured video {
+    display: flex;
+    height: fit-content;
+    width: 75%;
+    border-radius: 10px;
+}
 
+.project-featured-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 25%;
+    gap: 0.5em;
+}
+
+.project-featured-info h3 {
+    font-size: 1.2em;
+}
+
+.project-featured-info h4 {
+    font-size: 0.8em;
+}
 
 .project img {
 
