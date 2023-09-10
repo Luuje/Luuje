@@ -33,6 +33,7 @@ h2,
 h3, 
 h4,
 p,
+button,
 figure {
     margin: 0;
     color: rgb(255, 255, 255);
@@ -248,14 +249,14 @@ figure {
     flex-direction: row;
     flex-shrink: 0;
     width: 100%;
-    height: 6em;
     align-items: center;
     justify-content: center;
-    font-size: 0.9em;
+    font-size: 1.1em;
     font-family: Gilgan;
     color: #a1a1a1;
-    border-bottom: solid 0px rgb(34, 33, 33);
-    padding: 4em;
+    border-bottom: solid 1px rgb(34, 33, 33);
+    padding: 1.2em;
+    margin: 0;
 }
 
 .tabs-menu-item {
@@ -266,27 +267,26 @@ figure {
 }
 
 .tabs-menu-title {
-    display: inline;
+    display: flex;
+    position: relative;
     cursor: pointer;
     font-size: 1.2em;
     font-family: Gilgan;
     color: #a1a1a1;
     height: 100%;
-    position: relative;
     bottom: 0px;
     text-decoration: none;
     overflow: hidden;
-    will-change: color, font-size;
-    transition: color 300ms, font-size 300ms;
+    /* transition: color 300ms, font-size 300ms; */
 }
 
 .tabs-menu-title.active {
-    font-size: 3em;
+    /* font-size: 3em; */
     color: #ffffff;
 }
 
 .tabs-menu-title:hover {
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
     color: rgb(200, 167, 255);
 }
 
@@ -296,13 +296,13 @@ figure {
 
 /* TABS UNDERLINE */
 
-/* .tabs-menu-title::after {
+.tabs-menu-title::after {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
     height: 0.1em;
+    width: 100%;
     background-color: rgb(99, 6, 248);
     transition: transform 600ms, background-color 600ms;
     transform: translate3d(-100%, 0, 0);
@@ -315,7 +315,7 @@ figure {
 
 .tabs-menu-title.active:hover::after {
     background-color: rgb(255, 255, 255);
-} */
+}
 
 /* TABS CONTENT */
 
@@ -335,9 +335,11 @@ figure {
 
 #project-list {
     display: flex;
+    flex-direction: column;
     width: 100%;
-    justify-content: center;
-    padding: 0em 4em;
+    justify-content: start;
+    padding: 1em 4em;
+    gap: 4em;
 }
 
 .project-featured {
@@ -348,16 +350,31 @@ figure {
     gap:1em;
 }
 
+
 .project-featured img {
     width: 100%;
     object-fit:cover;
 }
 
-.project-featured video {
+.project-featured .cover {
+    box-sizing: border-box;
     display: flex;
     height: fit-content;
     width: 75%;
     border-radius: 10px;
+    aspect-ratio: 16 / 9;
+    border-left: solid 1px rgb(26, 18, 36);
+    border-right: solid 1px rgb(26, 18, 36);
+    border-bottom: solid 2px rgb(39, 27, 54);
+}
+
+#the-garden .cover {
+    border-left: solid 1px rgb(18, 36, 22);
+    border-right: solid 1px rgb(18, 36, 20);
+    border-bottom: solid 2px rgb(37, 75, 45);
+}
+
+#karmazoo .cover {
 }
 
 .project-featured-info {
@@ -368,6 +385,11 @@ figure {
     gap: 0.5em;
 }
 
+.align-right .project-featured-info {
+    justify-content: start;
+    align-items: end;
+}
+
 .project-featured-info h3 {
     font-size: 1.2em;
 }
@@ -376,16 +398,61 @@ figure {
     font-size: 0.8em;
 }
 
+.align-right h4 {
+    text-align: end;
+}
+
 .project img {
 
 }
 
+/* CONTACT */
 
 #contact-section {
     height:1000px; 
     width:100%; 
     background-color: rgb(53, 0, 151);
     margin-top: 5em;
+}
+
+
+/* BUTTONS */
+
+.button {
+  background-image: linear-gradient(20deg, #272727 50%,  #673FD7 100%);
+  border-radius: 10px;
+  border-style: none;
+  box-sizing: border-box;
+  color: #FFFFFF;
+  cursor: pointer;
+  flex-shrink: 0;
+  padding: 1rem 1.6rem;
+  text-align: center;
+  text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+  transition: all .5s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  text-decoration: none;
+}
+
+.button-36:hover {
+  box-shadow: rgba(80, 63, 205, 0.5) 0 1px 30px;
+  transition-duration: .1s;
+}
+
+@media (min-width: 768px) {
+  .button-36 {
+    padding: 0 2.6rem;
+  }
+}
+
+.button-22:active {
+  background-color: #006AE8;
+}
+
+.button-22:hover {
+  background-color: #1C84FF;
 }
 
 /* FONT */
