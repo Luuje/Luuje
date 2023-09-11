@@ -560,7 +560,7 @@ const draw = regl({
      {
       /* console.log("viewport " + viewportWidth + " " + viewportHeight);
       console.log(document.getElementById("main-background").width + " " + document.getElementById("main-background").height); */
-      const ratio = 0.32;
+      const ratio = 1.0;
       return viewportHeight >= viewportWidth ? [1, (viewportHeight / viewportWidth) * ratio] : [(viewportWidth / viewportHeight) * ratio, 1];
     },
   },
