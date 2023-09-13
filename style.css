@@ -31,7 +31,6 @@ body {
 h1,
 h2,
 h3,
-h4,
 p,
 a,
 button,
@@ -40,6 +39,13 @@ figure {
     color: rgb(255, 255, 255);
     font-family: Gilgan, Arial, sans-serif;
     font-weight: 400;
+}
+
+h4 {
+    margin: 0;
+    font-family: Roboto, sans-serif;
+    font-weight: 200;
+    text-align: justify;
 }
 
 /* MAIN BACKGROUND */
@@ -88,8 +94,6 @@ figure {
     overflow: hidden;
     padding-top: 6px;
     padding-bottom: 4px;
-    padding-left: 8px;
-    padding-right: 8px;
     position: relative;
     width: 100%;
     max-width: 1300px;
@@ -150,11 +154,12 @@ figure {
 /* HERO SECTION */
 
 #hero-section {
+    position: relative;
     pointer-events: all;
     justify-content: center;
     align-items: center;
     display: flex;
-    padding: 0px 30px;
+    padding: 0px 0px;
     flex: none;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -205,15 +210,34 @@ figure {
 /* GAMEBOY */
 
 #hero-gameboy {
-    position: relative;
     width: 40%;
     height: 100%;
     right: -3vw;
     display: flex;
-    padding: 2% 0;
+    padding: 0 0;
     flex-direction: column;
     justify-content: right;
     align-items: center;
+}
+
+#gameboy-fullscreen-toggle {
+    position: absolute;
+    top: 12px;
+    right: 8px;
+}
+
+#gameboy-fullscreen-toggle img{
+    width: 16px;
+    opacity: 0.15;
+    transition: opacity 300ms;
+}
+
+#hero-gameboy:hover #gameboy-fullscreen-toggle img {
+    opacity: 0.5;
+}
+
+#hero-gameboy:hover #gameboy-fullscreen-toggle img:hover{
+    opacity: 1.0;
 }
 
 /* TABS */
@@ -226,7 +250,7 @@ figure {
     align-content: start;
     align-items: center;
     background-color: #0a0a0a;
-    filter: drop-shadow(0px 1px 20px #00000071);
+    filter: drop-shadow(0px 1px 20px #0000008e);
     border-radius: 20px;
     border-top: 2px solid rgb(51, 36, 70);
     flex: none;
@@ -367,9 +391,9 @@ figure {
     width: 75%;
     border-radius: 10px;
     aspect-ratio: 16 / 9;
-    border-top: solid 2px rgb(39, 27, 54);
-    border-left: solid 1px rgb(26, 18, 36);
-    border-right: solid 1px rgb(26, 18, 36);
+    border-top: solid 2px rgb(49, 49, 49);
+    border-left: solid 1px rgb(32, 32, 32);
+    border-right: solid 1px rgb(29, 29, 29);
 }
 
 #the-garden .cover {
@@ -383,7 +407,7 @@ figure {
 .project-featured-info {
     display: flex;
     flex-direction: column;
-    justify-content: end;
+    justify-content: start;
     width: 25%;
     gap: 1rem;
 }
@@ -399,15 +423,24 @@ figure {
 }
 
 .project-featured-info h3 {
+    text-justify: auto;
     font-size: 1.2rem;
 }
 
 .project-featured-info h4 {
+    text-justify: auto;
+    text-align: justify;
     font-size: 0.8rem;
+    line-height: 1rem;
+}
+
+.align-right h3 {
+    text-align: end;
 }
 
 .align-right h4 {
-    text-align: end;
+    text-align-last: right;
+    text-align: justify;
 }
 
 .project img {}
