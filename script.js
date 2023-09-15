@@ -478,13 +478,13 @@ Pointer.BUTTON = {
 };
 
 // Dispatch mouseMove to the canvas from overlaying elements 
-document.addEventListener('mousemove', function(e) {
+document.addEventListener('mousemove', function (e) {
   const newEvent = new MouseEvent('mousemove', {
     clientX: e.clientX,
     clientY: e.clientY,
     // other properties here
   });
-  
+
   document.getElementById('main-background').dispatchEvent(newEvent);
 });
 
@@ -556,8 +556,7 @@ const draw = regl({
     uGrid: ({
       viewportWidth,
       viewportHeight
-    }) =>
-     {
+    }) => {
       /* console.log("viewport " + viewportWidth + " " + viewportHeight);
       console.log(document.getElementById("main-background").width + " " + document.getElementById("main-background").height); */
       const ratio = 1.0;
@@ -601,7 +600,7 @@ window.addEventListener('load', () => {
 
 
 // HERO HEADLINE TYPEWRITER EFFECT
-var TxtRotate = function(el, toRotate, period) {
+var TxtRotate = function (el, toRotate, period) {
   this.toRotate = toRotate;
   this.el = el;
   this.loopNum = 0;
@@ -611,7 +610,7 @@ var TxtRotate = function(el, toRotate, period) {
   this.isDeleting = false;
 };
 
-TxtRotate.prototype.tick = function() {
+TxtRotate.prototype.tick = function () {
   var i = this.loopNum % this.toRotate.length;
   var fullTxt = this.toRotate[i];
 
@@ -621,7 +620,7 @@ TxtRotate.prototype.tick = function() {
     this.txt = fullTxt.substring(0, this.txt.length + 1);
   }
 
-  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+  this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
 
   var that = this;
   var delta = 150 - Math.random() * 100;
@@ -637,14 +636,14 @@ TxtRotate.prototype.tick = function() {
     delta = 400;
   }
 
-  setTimeout(function() {
+  setTimeout(function () {
     that.tick();
   }, delta);
 };
 
-window.onload = function() {
+window.onload = function () {
   var elements = document.getElementsByClassName('txt-rotate');
-  for (var i=0; i<elements.length; i++) {
+  for (var i = 0; i < elements.length; i++) {
     var toRotate = elements[i].getAttribute('data-rotate');
     var period = elements[i].getAttribute('data-period');
     if (toRotate) {
@@ -671,7 +670,7 @@ window.onload = function() {
 };
 
 // TABS SYSTEM
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   const tabsMenu = document.querySelectorAll('.tabs-menu-title');
   const tabsContent = document.querySelectorAll('.tabs-content');
 
@@ -680,7 +679,7 @@ document.addEventListener("DOMContentLoaded", function() {
   tabsContent[0].classList.add('active');
 
   tabsMenu.forEach(tab => {
-    tab.addEventListener('click', function() {
+    tab.addEventListener('click', function () {
       // Remove active class from all tabs and contents
       tabsMenu.forEach(t => t.classList.remove('active'));
       tabsContent.forEach(c => c.classList.remove('active'));
@@ -694,12 +693,12 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // LAZY LOAD VIDEO
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
 
   if ("IntersectionObserver" in window) {
-    var lazyVideoObserver = new IntersectionObserver(function(entries, observer) {
-      entries.forEach(function(video) {
+    var lazyVideoObserver = new IntersectionObserver(function (entries, observer) {
+      entries.forEach(function (video) {
         if (video.isIntersecting) {
           for (var source in video.target.children) {
             var videoSource = video.target.children[source];
@@ -715,14 +714,14 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
 
-    lazyVideos.forEach(function(lazyVideo) {
+    lazyVideos.forEach(function (lazyVideo) {
       lazyVideoObserver.observe(lazyVideo);
     });
   }
 });
 
 // FULLSCREEN TOGGLE
-document.querySelector('#gameboy-fullscreen-toggle').addEventListener('click', function(){
+document.querySelector('#gameboy-fullscreen-toggle').addEventListener('click', function () {
   if (document.fullscreenElement) { // if already full screen exit
     document.exitFullscreen();
   } else { // else go fullscreen
@@ -730,3 +729,42 @@ document.querySelector('#gameboy-fullscreen-toggle').addEventListener('click', f
     document.querySelector('#hero-gameboy').requestFullscreen();
   }
 });
+
+
+//YOUTUBE API
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an <iframe> (and YouTube player) after the API code downloads.
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('the-garden-video', {
+    height: '360',
+    width: '640',
+    videoId: 'Bmx6MDRxeGo',
+    events: {
+      'onReady': onPlayerReady,
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+  event.target.playVideo();
+}
+
+// 5. The API calls this function when the player's state changes. The function indicates that when playing a video (state=1), the player should play for six seconds and then stop.
+var done = false;
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.PLAYING && !done) {
+    setTimeout(stopVideo, 6000);
+    done = true;
+  }
+}
+function stopVideo() {
+  player.stopVideo();
+}
