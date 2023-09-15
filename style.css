@@ -391,9 +391,17 @@ h4 {
     width: 75%;
     border-radius: 10px;
     aspect-ratio: 16 / 9;
-    border-top: solid 2px rgb(49, 49, 49);
+    overflow: hidden;
+    /* border-top: solid 2px rgb(49, 49, 49);
     border-left: solid 1px rgb(32, 32, 32);
-    border-right: solid 1px rgb(29, 29, 29);
+    border-right: solid 1px rgb(29, 29, 29); */
+    color: #00000000;
+}
+
+.project-featured .cover *{
+    overflow: hidden;
+    border-radius: 10px;
+    border: solid 0px black;
 }
 
 #the-garden .cover {
