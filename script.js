@@ -669,57 +669,6 @@ window.onload = function () {
   }, 500);
 };
 
-// TABS SYSTEM
-document.addEventListener("DOMContentLoaded", function () {
-  const tabsMenu = document.querySelectorAll('.tabs-menu-title');
-  const tabsContent = document.querySelectorAll('.tabs-content');
-
-  // Initialize by showing the first tab
-  tabsMenu[0].classList.add('active');
-  tabsContent[0].classList.add('active');
-
-  tabsMenu.forEach(tab => {
-    tab.addEventListener('click', function () {
-      // Remove active class from all tabs and contents
-      tabsMenu.forEach(t => t.classList.remove('active'));
-      tabsContent.forEach(c => c.classList.remove('active'));
-
-      // Add active class to clicked tab and its content
-      this.classList.add('active');
-      const activeTabContent = document.getElementById(this.getAttribute('data-tab'));
-      activeTabContent.classList.add('active');
-    });
-  });
-});
-
-// LAZY LOAD VIDEO
-document.addEventListener("DOMContentLoaded", function () {
-  var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    var lazyVideoObserver = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (video) {
-        if (video.isIntersecting) {
-          for (var source in video.target.children) {
-            var videoSource = video.target.children[source];
-            if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-              videoSource.src = videoSource.dataset.src;
-            }
-          }
-
-          video.target.load();
-          video.target.classList.remove("lazy");
-          lazyVideoObserver.unobserve(video.target);
-        }
-      });
-    });
-
-    lazyVideos.forEach(function (lazyVideo) {
-      lazyVideoObserver.observe(lazyVideo);
-    });
-  }
-});
-
 // FULLSCREEN TOGGLE
 document.querySelector('#gameboy-fullscreen-toggle').addEventListener('click', function () {
   if (document.fullscreenElement) { // if already full screen exit
