@@ -682,57 +682,6 @@ window.onload = function () {
   }, 500);
 };
 
-// TABS SYSTEM
-document.addEventListener("DOMContentLoaded", function () {
-  const tabsMenu = document.querySelectorAll('.tabs-menu-title');
-  const tabsContent = document.querySelectorAll('.tabs-content');
-
-  // Initialize by showing the first tab
-  tabsMenu[0].classList.add('active');
-  tabsContent[0].classList.add('active');
-
-  tabsMenu.forEach(tab => {
-    tab.addEventListener('click', function () {
-      // Remove active class from all tabs and contents
-      tabsMenu.forEach(t => t.classList.remove('active'));
-      tabsContent.forEach(c => c.classList.remove('active'));
-
-      // Add active class to clicked tab and its content
-      this.classList.add('active');
-      const activeTabContent = document.getElementById(this.getAttribute('data-tab'));
-      activeTabContent.classList.add('active');
-    });
-  });
-});
-
-// LAZY LOAD VIDEO
-document.addEventListener("DOMContentLoaded", function () {
-  var lazyVideos = [].slice.call(document.querySelectorAll("video.lazy"));
-
-  if ("IntersectionObserver" in window) {
-    var lazyVideoObserver = new IntersectionObserver(function (entries, observer) {
-      entries.forEach(function (video) {
-        if (video.isIntersecting) {
-          for (var source in video.target.children) {
-            var videoSource = video.target.children[source];
-            if (typeof videoSource.tagName === "string" && videoSource.tagName === "SOURCE") {
-              videoSource.src = videoSource.dataset.src;
-            }
-          }
-
-          video.target.load();
-          video.target.classList.remove("lazy");
-          lazyVideoObserver.unobserve(video.target);
-        }
-      });
-    });
-
-    lazyVideos.forEach(function (lazyVideo) {
-      lazyVideoObserver.observe(lazyVideo);
-    });
-  }
-});
-
 // FULLSCREEN TOGGLE
 document.querySelector('#gameboy-fullscreen-toggle').addEventListener('click', function () {
   if (document.fullscreenElement) { // if already full screen exit
@@ -741,6 +690,74 @@ document.querySelector('#gameboy-fullscreen-toggle').addEventListener('click', f
     /* document.querySelector('#hero-gameboy').style.backgroundColor = "rgb(53, 0, 151)"; */
     document.querySelector('#hero-gameboy').requestFullscreen();
   }
+});
+
+// 3D CARD EFFECT
+const cards = document.querySelectorAll('.card');
+
+function createRotateToMouseHandler(card) {
+  let bounds;
+
+  return (e) => {
+    if (!bounds) {
+      bounds = card.getBoundingClientRect();
+    }
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    const leftX = mouseX - bounds.x;
+    const topY = mouseY - bounds.y;
+    const center = {
+      x: leftX - bounds.width / 2,
+      y: topY - bounds.height / 2
+    };
+    const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+
+    card.style.transform = `
+      perspective(1500px) 
+      scale3d(1.07, 1.07, 1.07)
+      rotate3d(
+        ${center.y / 100},
+        ${-center.x / 100},
+        0,
+        ${Math.log(distance) * 2}deg
+      )
+    `;
+
+    card.querySelector('.glow').style.backgroundImage = `
+      radial-gradient(
+        circle at
+        ${center.x * 2 + bounds.width / 2}px
+        ${center.y * 2 + bounds.height / 2}px,
+        #ffffff55,
+        #0000000f
+      )
+    `;
+
+    // Bring the currently hovered card to the front
+    cards.forEach((otherCard) => {
+      if (otherCard !== card) {
+        otherCard.style.zIndex = 0;
+      }
+    });
+    card.style.zIndex = 10;
+  };
+}
+
+cards.forEach((card) => {
+  const rotateToMouse = createRotateToMouseHandler(card);
+
+  card.addEventListener('mouseenter', () => {
+    document.addEventListener('mousemove', rotateToMouse);
+  });
+
+  card.addEventListener('mouseleave', () => {
+    document.removeEventListener('mousemove', rotateToMouse);
+    card.style.transform = '';
+    card.style.background = '';
+
+    // Reset the z-index when the mouse leaves
+    card.style.zIndex = 0;
+  });
 });
 
 

@@ -9,10 +9,11 @@ body,
 
 body {
     background: rgb(53, 0, 151);
+    perspective: 2500px;
+    min-width: 300px;
 }
 
 #main {
-    min-width: 300px;
     align-content: center;
     align-items: center;
     display: flex;
@@ -161,7 +162,7 @@ figure {
     gap: 10px;
     overflow: visible;
     max-width: 1300px;
-    height: 70vh;
+    height: 60vh;
     z-index: 1;
 }
 
@@ -213,6 +214,12 @@ figure {
     flex-direction: column;
     justify-content: right;
     align-items: center;
+    border-radius: 10px;
+    border: solid 1px rgba(255, 255, 255, 0);
+}
+
+#hero-gameboy:hover {
+    border: solid 1px rgba(255, 255, 255, 0);
 }
 
 #gameboy-fullscreen-toggle {
@@ -221,7 +228,7 @@ figure {
     right: 8px;
 }
 
-#gameboy-fullscreen-toggle img{
+#gameboy-fullscreen-toggle img {
     width: 16px;
     opacity: 0.15;
     transition: opacity 300ms;
@@ -231,7 +238,7 @@ figure {
     opacity: 0.5;
 }
 
-#hero-gameboy:hover #gameboy-fullscreen-toggle img:hover{
+#hero-gameboy:hover #gameboy-fullscreen-toggle img:hover {
     opacity: 1.0;
 }
 
@@ -251,32 +258,28 @@ figure {
     z-index: 2;
 }
 
-#tabs-anchor {
-    position: absolute;
-    top: -10px;
+#work h2 {
+    display: none;
+    font-size: 3rem;
+    letter-spacing: 1rem;
+    margin: 1rem 0;
 }
-
-
-/* WORK */
 
 #project-list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     width: 100%;
     max-width: 1300px;
-    justify-content: start;
+    justify-content: center;
     padding: 2em 0rem;
-    gap: 10rem;
+    gap: 1rem;
 }
 
 .project-featured {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: fit-content;
-    gap: 2rem;
+    flex-basis: calc(50% - 10px);
+    height: 400px;
 }
-
 
 .project-featured img {
     width: 100%;
@@ -286,7 +289,7 @@ figure {
 .project-featured .cover {
     box-sizing: border-box;
     display: flex;
-    height: fit-content;
+    height: 100%;
     width: 100%;
     border-radius: 10px;
     aspect-ratio: 16 / 9;
@@ -298,7 +301,7 @@ figure {
     filter: drop-shadow(0px 0px 10px #0000008e);
 }
 
-.project-featured .cover *{
+.project-featured .cover * {
     overflow: hidden;
     border-radius: 10px;
     border: solid 0px black;
@@ -351,21 +354,16 @@ figure {
     text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.171);
 }
 
-.align-right * {
-    text-align: end;
-    align-items: end;
+.project {
+    display: flex;
+    flex-basis: calc(33% - 10px);
 }
 
-.align-right h3 {
-    text-align: end;
+.project img{
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
 }
-
-.align-right h4 {
-    text-align-last: right;
-    text-align: justify;
-}
-
-.project img {}
 
 /* CONTACT */
 
@@ -374,7 +372,43 @@ figure {
     width: 100%;
     background-color: rgb(53, 0, 151);
     margin-top: 5rem;
-    ;
+}
+
+/* 3D CARD EFFECT */
+
+.card {
+    font-weight: bold;
+    text-align: right;
+    color: #181a1a;
+
+    box-shadow: 0 1px 5px #00000099;
+
+    border-radius: 10px;
+    background-size: cover;
+
+    position: relative;
+    overflow: hidden;
+
+    transition-duration: 300ms;
+    transition-property: transform, box-shadow;
+    transition-timing-function: ease-out;
+    transform-origin: center; /* Center the transform origin */
+    transform: none;
+}
+
+.card:hover {
+    transition-duration: 150ms;
+    box-shadow: 0 5px 20px 5px #00000044;
+}
+
+.card .glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+
+    background-image: radial-gradient(circle at 50% -20%, #ffffff22, #0000000f);
 }
 
 
@@ -435,34 +469,66 @@ figure {
 }
 
 @media screen and (max-width: 768px) {
+    #menu-language {
+        display: none;
+    }
+
+    #menu-social {
+        display: none;
+    }
+
     #hero-section {
         height: 70vh;
     }
 
     #hero-content {
         flex-direction: column;
-        padding: 5vh 0;
-        gap: 20px;
+        height: 100%;
+        padding: 1rem 0 0rem 0;
+        gap: 0;
     }
 
     #hero-headline {
-        height: 25%;
         width: 100%;
+        padding: 1rem 0;
     }
 
     #hero-headline h2 {
         text-align: left;
-        font-size: 2rem;
+        font-size: calc(1rem + 3vw);
+        line-height: calc(2rem + 3vw);
     }
 
     #hero-gameboy {
         height: 75%;
-        width: 100%;
+        width: 60%;
         padding: 0% 0%;
         right: auto;
     }
 
+    #hero-gameboy:hover {
+        border: solid 1px rgba(255, 255, 255, 0.199);
+    }
+
+    #gameboy-fullscreen-toggle {
+        display: none;
+    }
+
+    #work h2 {
+        display: inline-block;
+    }
+
     #project-list {
-        width: 99vw;
+        width: 100vw;
+        padding: 0rem 1rem;
+        gap: 1rem;
+    }
+
+    .project-featured {
+        flex-basis: calc(100%);
+    }
+    
+    .project {
+        flex-basis: calc(50% - 0.5rem);
     }
 }

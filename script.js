@@ -679,3 +679,71 @@ document.querySelector('#gameboy-fullscreen-toggle').addEventListener('click', f
   }
 });
 
+// 3D CARD EFFECT
+const cards = document.querySelectorAll('.card');
+
+function createRotateToMouseHandler(card) {
+  let bounds;
+
+  return (e) => {
+    if (!bounds) {
+      bounds = card.getBoundingClientRect();
+    }
+    const mouseX = e.clientX;
+    const mouseY = e.clientY;
+    const leftX = mouseX - bounds.x;
+    const topY = mouseY - bounds.y;
+    const center = {
+      x: leftX - bounds.width / 2,
+      y: topY - bounds.height / 2
+    };
+    const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+
+    card.style.transform = `
+      perspective(1500px) 
+      scale3d(1.07, 1.07, 1.07)
+      rotate3d(
+        ${center.y / 100},
+        ${-center.x / 100},
+        0,
+        ${Math.log(distance) * 2}deg
+      )
+    `;
+
+    card.querySelector('.glow').style.backgroundImage = `
+      radial-gradient(
+        circle at
+        ${center.x * 2 + bounds.width / 2}px
+        ${center.y * 2 + bounds.height / 2}px,
+        #ffffff55,
+        #0000000f
+      )
+    `;
+
+    // Bring the currently hovered card to the front
+    cards.forEach((otherCard) => {
+      if (otherCard !== card) {
+        otherCard.style.zIndex = 0;
+      }
+    });
+    card.style.zIndex = 10;
+  };
+}
+
+cards.forEach((card) => {
+  const rotateToMouse = createRotateToMouseHandler(card);
+
+  card.addEventListener('mouseenter', () => {
+    document.addEventListener('mousemove', rotateToMouse);
+  });
+
+  card.addEventListener('mouseleave', () => {
+    document.removeEventListener('mousemove', rotateToMouse);
+    card.style.transform = '';
+    card.style.background = '';
+
+    // Reset the z-index when the mouse leaves
+    card.style.zIndex = 0;
+  });
+});
+
