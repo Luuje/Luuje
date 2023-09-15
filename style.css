@@ -162,7 +162,7 @@ figure {
     gap: 10px;
     overflow: visible;
     max-width: 1300px;
-    height: 60vh;
+    height: 70vh;
     z-index: 1;
 }
 
@@ -489,8 +489,9 @@ figure {
     }
 
     #hero-headline {
+        height: 20%;
         width: 100%;
-        padding: 1rem 0;
+        padding: 0 0 1rem 0;
     }
 
     #hero-headline h2 {
@@ -500,8 +501,8 @@ figure {
     }
 
     #hero-gameboy {
-        height: 100%;
-        width: 60%;
+        height: 80%;
+        width: 70%;
         padding: 0% 0%;
         right: auto;
     }
