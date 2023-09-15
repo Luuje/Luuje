@@ -155,7 +155,7 @@ figure {
     justify-content: center;
     align-items: center;
     display: flex;
-    padding: 0px 0px;
+    padding: 1rem 0 0 0;
     flex: none;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -167,12 +167,12 @@ figure {
 }
 
 #hero-content {
+    position: relative;
     display: flex;
     flex: none;
     flex-direction: row;
-    height: 90%;
-    position: relative;
     width: 100%;
+    height: 100%;
     z-index: 5;
     align-content: center;
     align-items: center;
@@ -218,7 +218,7 @@ figure {
     border: solid 1px rgba(255, 255, 255, 0);
 }
 
-#hero-gameboy:hover {
+#hero-gameboy:hover #hero-gameboy:active {
     border: solid 1px rgba(255, 255, 255, 0);
 }
 
@@ -478,7 +478,7 @@ figure {
     }
 
     #hero-section {
-        height: 70vh;
+        height: 75vh;
     }
 
     #hero-content {
@@ -500,7 +500,7 @@ figure {
     }
 
     #hero-gameboy {
-        height: 75%;
+        height: 100%;
         width: 60%;
         padding: 0% 0%;
         right: auto;
