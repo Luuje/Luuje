@@ -11,13 +11,17 @@ uniform vec2 uMouse;
 uniform float uMorph;
 uniform vec2 uGrid;
 
-const int complexity = 15; // complexity of curls/computation
+const int maxComplexity = 35; // complexity of curls/computation
 const float mouseSpeed = 0.1;  // control the color changing
 const float fixedOffset = 0.7;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
-const float fluidSpeed = 0.02; // Drives speed, smaller number will make it slower.
+const float fluidSpeed = 0.01; // Drives speed, smaller number will make it slower.
 const float baseColor = 0.0;
 const float BLUR = 0.57;
 const float brightness = 0.8;
+
+float map(float value, float min1, float max1, float min2, float max2) {
+  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
+}
 
 // more about noise: 
 // http://thebookofshaders.com/11/
@@ -79,13 +83,14 @@ void main() {
     float noiseTime = noise(t);
     float noiseSTime = noiseS(t);
     float noiseSTime1 = noiseS(t + 1.0);
+    float ratio = uGrid.x;
 
+    // adjust complexity according to viewport width
+    int complexity = int(map(ratio, 0.85, 1.5, 10.0, 35.0));
     float blur = (BLUR + 0.14 * noiseSTime);
-    for(int i = 1; i <= complexity; i++) {
+    for(int i = 1; i <= maxComplexity; i++) {
         p += blur / float(i) * sin(float(i) * p.yx + t + PI * vec2(noiseSTime, noiseSTime1)) + fixedOffset;
-    }
-    for(int i = 1; i <= complexity; i++) {
-        p += blur / float(i) * cos(float(i) * p.yx + t + PI * vec2(noiseSTime, noiseSTime1)) + fixedOffset;
+        if (i >= complexity) break;
     }
     p += uMouse * mouseSpeed;
 

@@ -557,10 +557,8 @@ const draw = regl({
       viewportWidth,
       viewportHeight
     }) => {
-      /* console.log("viewport " + viewportWidth + " " + viewportHeight);
-      console.log(document.getElementById("main-background").width + " " + document.getElementById("main-background").height); */
-      const ratio = 1.0;
-      return viewportHeight >= viewportWidth ? [1, (viewportHeight / viewportWidth) * ratio] : [(viewportWidth / viewportHeight) * ratio, 1];
+      const ratio = (1.5 + (viewportWidth/1300))/2; // ratio between current width and average width 1300px
+      return [ratio, ratio];
     },
   },
   // This tells regl the number of vertices to draw in this command
@@ -583,21 +581,6 @@ regl.frame(() => {
     draw();
   }
 });
-
-/* // Wait for the canvas to be generated
-window.addEventListener('load', () => {
-  const canvas = document.querySelector('canvas');
-  const container = document.getElementById('main-background');
-
-  // Move the canvas into the container
-  if (canvas && container) {
-    container.appendChild(canvas);
-    canvas.style.position = "relative";
-    canvas.style.height = "100%";
-    canvas.style.width = "100%";
-  }
-}); */
-
 
 // HERO HEADLINE TYPEWRITER EFFECT
 var TxtRotate = function (el, toRotate, period) {
@@ -726,7 +709,7 @@ function createRotateToMouseHandler(card) {
         otherCard.style.zIndex = 0;
       }
     });
-    card.style.zIndex = 10;
+    card.style.zIndex = 5;
   };
 }
 
@@ -747,3 +730,92 @@ cards.forEach((card) => {
   });
 });
 
+// OVERLAY 
+const overlay = document.getElementById('overlay');
+const overlayContent = document.getElementById('overlay-content');
+const closeOverlayButton = document.getElementById('overlay-close');
+const projectElements = document.querySelectorAll('.card');
+const mainContent = document.getElementById('main-content');
+
+function openOverlay(projectInfo) {
+  const projectInfoContainer = document.getElementById(projectInfo + '-info');
+  if (projectInfoContainer) {
+    // Display the overlay and show the specific project info container
+    overlay.style.display = 'flex';
+    projectInfoContainer.style.display = 'flex';
+    // Add the 'fade-element' class to elements to be faded
+    mainContent.classList.add('fade');
+    // disable scrolling
+    document.body.style.overflow = 'hidden';
+    overlay.scrollTop = 0;
+    overlay.style.opacity = 1;
+    overlay.style.transform = 'translateY(0px)';
+  }
+}
+
+function closeOverlay() {
+  // Add a class to start the fade out transition
+  overlay.style.opacity = '0';
+  overlay.style.transform = 'translateY(20px)';
+
+  // Remove the 'fade-element' class from faded elements
+  mainContent.classList.remove('fade');
+
+  // Get all the YouTube iframes in your overlay content
+  const youtubeIframes = overlayContent.querySelectorAll('iframe');
+
+  // Loop through each iframe and stop the video
+  youtubeIframes.forEach((iframe) => {
+    const iframeSrc = iframe.getAttribute('src');
+    // Check if it's a YouTube iframe
+    if (iframeSrc && iframeSrc.includes('youtube.com')) {
+      // Replace the src with the same URL to stop the video
+      iframe.setAttribute('src', iframeSrc);
+    }
+  });
+
+  // Listen for the 'transitionend' event on the overlay
+  overlay.addEventListener('transitionend', function onTransitionEnd() {
+    // Remove the event listener to prevent multiple calls
+    overlay.removeEventListener('transitionend', onTransitionEnd);
+
+    // Hide the overlay once the transition is complete
+    overlay.style.display = 'none';
+
+    // Re-enable scrolling of the underlying content
+    document.body.style.overflow = 'auto';
+
+    // Hide the specific project info container
+    const projectInfoContainers = document.querySelectorAll('.project-info');
+    projectInfoContainers.forEach((container) => {
+      container.style.display = 'none';
+    });
+  });
+}
+
+// Add click event listeners to project elements
+projectElements.forEach((projectElement) => {
+  projectElement.addEventListener('click', (event) => {
+    const projectInfo = projectElement.getAttribute('data-project-info');
+    openOverlay(projectInfo);
+  });
+});
+
+// Add a click event listener to the close button
+closeOverlayButton.addEventListener('click', closeOverlay);
+
+// On click outside of the content bounds
+overlay.addEventListener('click', (e) => {
+  // Get the bounds of the content within the overlay
+  const contentBounds = overlayContent.getBoundingClientRect();
+
+  // Check if the clicked position is outside the content bounds
+  if (
+    e.clientX < contentBounds.left ||
+    e.clientX > contentBounds.right ||
+    e.clientY < contentBounds.top ||
+    e.clientY > contentBounds.bottom
+  ) {
+    closeOverlay();
+  }
+});

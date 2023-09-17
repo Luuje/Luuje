@@ -504,7 +504,7 @@ document.addEventListener('mousemove', function (e) {
 
 // CREATE REGL
 const glsl = require('glslify');
-const fragShader = glsl(["// Fork from http://glslsandbox.com/e#8143.0\n#define PI 3.14159\n#define color_filter mat3(0.5, 0.2, 0.2, 0.0, 0.0, 0.2, 0.9, 0.4, 0.6)\n\nprecision mediump float;\n#define GLSLIFY 1\n\nuniform float uRandomSeed;\nuniform vec2 uResolution;\nuniform float uTime;\nuniform vec2 uMouse;\nuniform float uMorph;\nuniform vec2 uGrid;\n\nconst int complexity = 15; // complexity of curls/computation\nconst float mouseSpeed = 0.1;  // control the color changing\nconst float fixedOffset = 0.7;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.\nconst float fluidSpeed = 0.02; // Drives speed, smaller number will make it slower.\nconst float baseColor = 0.0;\nconst float BLUR = 0.57;\nconst float brightness = 0.8;\n\n// more about noise: \n// http://thebookofshaders.com/11/\nfloat random(float x) {\n    return fract(sin(x) * uRandomSeed);\n}\n\nfloat random(vec2 st) {\n    return fract(sin(dot(st.xy, vec2(0.48764, 0.68567))) * uRandomSeed);\n}\n\nfloat noise(float x) {\n    float i = floor(x);\n    float f = fract(x);\n    return mix(random(i), random(i + 1.0), smoothstep(0.0, 1.0, f));\n}\n\nfloat noiseS(float x) {\n    return noise(x) * 2.0 - 1.0;\n}\n\nfloat grain(in vec2 st, float noiseTime) {\n    vec2 i = floor(st);\n    vec2 f = fract(st);\n\n      // Four corners in 2D of a tile\n    float a = random(i);\n    float b = random(i + vec2(1.0, 0.0));\n    float c = random(i + vec2(0.0, 1.0));\n    float d = random(i + vec2(1.0, 1.0));\n\n      // Smooth Interpolation\n\n      // Cubic Hermine Curve.  Same as SmoothStep()\n    vec2 u = f * f * (3.0 - 2.0 * f);\n      // u = smoothstep(0.,1.,f);\n\n      // Mix 4 coorners percentages\n    //return 0.0 + ((mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y) / 10.0) * 10.0;\n    return pow(random(st) + mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y, 0.5); //pow 0.5 to make grain more gray\n}\n\nvec3 blend(vec3 base, vec3 blend, float blendFactor) {\n    vec3 blendedColor;\n    if(base[0] + base[1] + base[2] < 1.5) { //1.5?\n        blendedColor = (2.0 * base * blend + base * base * (1.0 - 2.0 * blend));\n    } else {\n        blendedColor = (sqrt(base) * (2.0 * blend - 1.0) + 2.0 * base * (1.0 - blend));\n    }\n\n    blendedColor += 0.1 * blend;\n\n    return mix(base, blendedColor, blendFactor);\n}\n\nvoid main() {\n    vec2 p = (2.0 * gl_FragCoord.xy - uResolution) / min(uResolution.x, uResolution.y);\n    float t = uTime * fluidSpeed + uMorph;\n    float noiseTime = noise(t);\n    float noiseSTime = noiseS(t);\n    float noiseSTime1 = noiseS(t + 1.0);\n\n    float blur = (BLUR + 0.14 * noiseSTime);\n    for(int i = 1; i <= complexity; i++) {\n        p += blur / float(i) * sin(float(i) * p.yx + t + PI * vec2(noiseSTime, noiseSTime1)) + fixedOffset;\n    }\n    for(int i = 1; i <= complexity; i++) {\n        p += blur / float(i) * cos(float(i) * p.yx + t + PI * vec2(noiseSTime, noiseSTime1)) + fixedOffset;\n    }\n    p += uMouse * mouseSpeed;\n\n    vec2 grid = uGrid * 2.0; // set complexity to 0 to debug the grid\n\n    // Modified color computation\n    float r = pow(0.5 * (1.0 + baseColor + sin(grid.x * p.x + 2.0 * noiseSTime)), 1.5) * brightness;\n    float g = pow(0.5 * (1.0 + baseColor + sin(grid.y * p.y + 3.0 * noiseSTime1)), 1.5) * brightness;\n    float b = pow(0.5 * (1.0 + baseColor + sin(p.x + p.y + noiseSTime)), 1.5) * brightness;\n\n    // Color filter\n    // Product between matrix filter and pixel color to get new color\n    vec3 color = vec3(r, g, b) * color_filter;\n\n    // Grain filter\n    vec2 st = gl_FragCoord.xy / uResolution.xy;\n    //vec2 pos = vec2(st * uResolution.xy);\n\n    //blend the noise over the background\n    vec3 blendColor = blend(color, vec3(grain(gl_FragCoord.xy, noiseSTime)), 0.4);\n\n    //get the luminance of the background\n    //float luminance = (color[0] + color[1] + color[2])/3.0;\n\n    //reduce the noise based on some \n    //threshold of the background luminance\n    //float response = smoothstep(0.05, 0.4, luminance);\n    //blendColor = mix(blendColor, color, pow(response, 0.5));\n\n    // Output to screen\n    gl_FragColor = vec4(blendColor, 1.0);\n    //gl_FragColor = vec4(vec3(grain(st.xy, noiseSTime)), 1.0);\n\n}"]);
+const fragShader = glsl(["// Fork from http://glslsandbox.com/e#8143.0\n#define PI 3.14159\n#define color_filter mat3(0.5, 0.2, 0.2, 0.0, 0.0, 0.2, 0.9, 0.4, 0.6)\n\nprecision mediump float;\n#define GLSLIFY 1\n\nuniform float uRandomSeed;\nuniform vec2 uResolution;\nuniform float uTime;\nuniform vec2 uMouse;\nuniform float uMorph;\nuniform vec2 uGrid;\n\nconst int maxComplexity = 35; // complexity of curls/computation\nconst float mouseSpeed = 0.1;  // control the color changing\nconst float fixedOffset = 0.7;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.\nconst float fluidSpeed = 0.01; // Drives speed, smaller number will make it slower.\nconst float baseColor = 0.0;\nconst float BLUR = 0.57;\nconst float brightness = 0.8;\n\nfloat map(float value, float min1, float max1, float min2, float max2) {\n  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);\n}\n\n// more about noise: \n// http://thebookofshaders.com/11/\nfloat random(float x) {\n    return fract(sin(x) * uRandomSeed);\n}\n\nfloat random(vec2 st) {\n    return fract(sin(dot(st.xy, vec2(0.48764, 0.68567))) * uRandomSeed);\n}\n\nfloat noise(float x) {\n    float i = floor(x);\n    float f = fract(x);\n    return mix(random(i), random(i + 1.0), smoothstep(0.0, 1.0, f));\n}\n\nfloat noiseS(float x) {\n    return noise(x) * 2.0 - 1.0;\n}\n\nfloat grain(in vec2 st, float noiseTime) {\n    vec2 i = floor(st);\n    vec2 f = fract(st);\n\n      // Four corners in 2D of a tile\n    float a = random(i);\n    float b = random(i + vec2(1.0, 0.0));\n    float c = random(i + vec2(0.0, 1.0));\n    float d = random(i + vec2(1.0, 1.0));\n\n      // Smooth Interpolation\n\n      // Cubic Hermine Curve.  Same as SmoothStep()\n    vec2 u = f * f * (3.0 - 2.0 * f);\n      // u = smoothstep(0.,1.,f);\n\n      // Mix 4 coorners percentages\n    //return 0.0 + ((mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y) / 10.0) * 10.0;\n    return pow(random(st) + mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y, 0.5); //pow 0.5 to make grain more gray\n}\n\nvec3 blend(vec3 base, vec3 blend, float blendFactor) {\n    vec3 blendedColor;\n    if(base[0] + base[1] + base[2] < 1.5) { //1.5?\n        blendedColor = (2.0 * base * blend + base * base * (1.0 - 2.0 * blend));\n    } else {\n        blendedColor = (sqrt(base) * (2.0 * blend - 1.0) + 2.0 * base * (1.0 - blend));\n    }\n\n    blendedColor += 0.1 * blend;\n\n    return mix(base, blendedColor, blendFactor);\n}\n\nvoid main() {\n    vec2 p = (2.0 * gl_FragCoord.xy - uResolution) / min(uResolution.x, uResolution.y);\n    float t = uTime * fluidSpeed + uMorph;\n    float noiseTime = noise(t);\n    float noiseSTime = noiseS(t);\n    float noiseSTime1 = noiseS(t + 1.0);\n    float ratio = uGrid.x;\n\n    // adjust complexity according to viewport width\n    int complexity = int(map(ratio, 0.85, 1.5, 10.0, 35.0));\n    float blur = (BLUR + 0.14 * noiseSTime);\n    for(int i = 1; i <= maxComplexity; i++) {\n        p += blur / float(i) * sin(float(i) * p.yx + t + PI * vec2(noiseSTime, noiseSTime1)) + fixedOffset;\n        if (i >= complexity) break;\n    }\n    p += uMouse * mouseSpeed;\n\n    vec2 grid = uGrid * 2.0; // set complexity to 0 to debug the grid\n\n    // Modified color computation\n    float r = pow(0.5 * (1.0 + baseColor + sin(grid.x * p.x + 2.0 * noiseSTime)), 1.5) * brightness;\n    float g = pow(0.5 * (1.0 + baseColor + sin(grid.y * p.y + 3.0 * noiseSTime1)), 1.5) * brightness;\n    float b = pow(0.5 * (1.0 + baseColor + sin(p.x + p.y + noiseSTime)), 1.5) * brightness;\n\n    // Color filter\n    // Product between matrix filter and pixel color to get new color\n    vec3 color = vec3(r, g, b) * color_filter;\n\n    // Grain filter\n    vec2 st = gl_FragCoord.xy / uResolution.xy;\n    //vec2 pos = vec2(st * uResolution.xy);\n\n    //blend the noise over the background\n    vec3 blendColor = blend(color, vec3(grain(gl_FragCoord.xy, noiseSTime)), 0.4);\n\n    //get the luminance of the background\n    //float luminance = (color[0] + color[1] + color[2])/3.0;\n\n    //reduce the noise based on some \n    //threshold of the background luminance\n    //float response = smoothstep(0.05, 0.4, luminance);\n    //blendColor = mix(blendColor, color, pow(response, 0.5));\n\n    // Output to screen\n    gl_FragColor = vec4(blendColor, 1.0);\n    //gl_FragColor = vec4(vec3(grain(st.xy, noiseSTime)), 1.0);\n\n}"]);
 const vertShader = glsl(["#define GLSLIFY 1\nattribute vec2 position;\nvoid main() {\n    gl_Position = vec4(position, 0, 1);\n}"]);
 const regl = createREGL("#main-background");
 
@@ -570,10 +570,8 @@ const draw = regl({
       viewportWidth,
       viewportHeight
     }) => {
-      /* console.log("viewport " + viewportWidth + " " + viewportHeight);
-      console.log(document.getElementById("main-background").width + " " + document.getElementById("main-background").height); */
-      const ratio = 1.0;
-      return viewportHeight >= viewportWidth ? [1, (viewportHeight / viewportWidth) * ratio] : [(viewportWidth / viewportHeight) * ratio, 1];
+      const ratio = (1.5 + (viewportWidth/1300))/2; // ratio between current width and average width 1300px
+      return [ratio, ratio];
     },
   },
   // This tells regl the number of vertices to draw in this command
@@ -596,21 +594,6 @@ regl.frame(() => {
     draw();
   }
 });
-
-/* // Wait for the canvas to be generated
-window.addEventListener('load', () => {
-  const canvas = document.querySelector('canvas');
-  const container = document.getElementById('main-background');
-
-  // Move the canvas into the container
-  if (canvas && container) {
-    container.appendChild(canvas);
-    canvas.style.position = "relative";
-    canvas.style.height = "100%";
-    canvas.style.width = "100%";
-  }
-}); */
-
 
 // HERO HEADLINE TYPEWRITER EFFECT
 var TxtRotate = function (el, toRotate, period) {
@@ -739,7 +722,7 @@ function createRotateToMouseHandler(card) {
         otherCard.style.zIndex = 0;
       }
     });
-    card.style.zIndex = 10;
+    card.style.zIndex = 5;
   };
 }
 
@@ -760,5 +743,93 @@ cards.forEach((card) => {
   });
 });
 
+// OVERLAY 
+const overlay = document.getElementById('overlay');
+const overlayContent = document.getElementById('overlay-content');
+const closeOverlayButton = document.getElementById('overlay-close');
+const projectElements = document.querySelectorAll('.card');
+const mainContent = document.getElementById('main-content');
 
+function openOverlay(projectInfo) {
+  const projectInfoContainer = document.getElementById(projectInfo + '-info');
+  if (projectInfoContainer) {
+    // Display the overlay and show the specific project info container
+    overlay.style.display = 'flex';
+    projectInfoContainer.style.display = 'flex';
+    // Add the 'fade-element' class to elements to be faded
+    mainContent.classList.add('fade');
+    // disable scrolling
+    document.body.style.overflow = 'hidden';
+    overlay.scrollTop = 0;
+    overlay.style.opacity = 1;
+    overlay.style.transform = 'translateY(0px)';
+  }
+}
+
+function closeOverlay() {
+  // Add a class to start the fade out transition
+  overlay.style.opacity = '0';
+  overlay.style.transform = 'translateY(20px)';
+
+  // Remove the 'fade-element' class from faded elements
+  mainContent.classList.remove('fade');
+
+  // Get all the YouTube iframes in your overlay content
+  const youtubeIframes = overlayContent.querySelectorAll('iframe');
+
+  // Loop through each iframe and stop the video
+  youtubeIframes.forEach((iframe) => {
+    const iframeSrc = iframe.getAttribute('src');
+    // Check if it's a YouTube iframe
+    if (iframeSrc && iframeSrc.includes('youtube.com')) {
+      // Replace the src with the same URL to stop the video
+      iframe.setAttribute('src', iframeSrc);
+    }
+  });
+
+  // Listen for the 'transitionend' event on the overlay
+  overlay.addEventListener('transitionend', function onTransitionEnd() {
+    // Remove the event listener to prevent multiple calls
+    overlay.removeEventListener('transitionend', onTransitionEnd);
+
+    // Hide the overlay once the transition is complete
+    overlay.style.display = 'none';
+
+    // Re-enable scrolling of the underlying content
+    document.body.style.overflow = 'auto';
+
+    // Hide the specific project info container
+    const projectInfoContainers = document.querySelectorAll('.project-info');
+    projectInfoContainers.forEach((container) => {
+      container.style.display = 'none';
+    });
+  });
+}
+
+// Add click event listeners to project elements
+projectElements.forEach((projectElement) => {
+  projectElement.addEventListener('click', (event) => {
+    const projectInfo = projectElement.getAttribute('data-project-info');
+    openOverlay(projectInfo);
+  });
+});
+
+// Add a click event listener to the close button
+closeOverlayButton.addEventListener('click', closeOverlay);
+
+// On click outside of the content bounds
+overlay.addEventListener('click', (e) => {
+  // Get the bounds of the content within the overlay
+  const contentBounds = overlayContent.getBoundingClientRect();
+
+  // Check if the clicked position is outside the content bounds
+  if (
+    e.clientX < contentBounds.left ||
+    e.clientX > contentBounds.right ||
+    e.clientY < contentBounds.top ||
+    e.clientY > contentBounds.bottom
+  ) {
+    closeOverlay();
+  }
+});
 },{"glslify":1}]},{},[2]);

@@ -27,92 +27,135 @@
 <body>
   <div id="main">
     <div id="main-background-container"><canvas id="main-background"></canvas></div>
-    <div id="menu-bar">
-      <div id="menu">
-        <div id="menu-title" class="menu-item">
-          <div id="menu-logo" class="menu-item"><img src="images/logo-starbolt2.png" alt="logo"></div>
-          <p id="menu-title-text">Julien Catala</p>
-        </div>
-        <div id="menu-language" class="menu-item" style="opacity: 0.5;">
-          <p>En</p>
-          <p>/</p>
-          <p>Fr</p>
-        </div>
-        <div id="menu-social" class="menu-item" style="opacity: 0.5;">
-          <img id="menu-social-linkedin" src="images/social_linkedin.png" alt="social-linkedin">
-          <img id="menu-social-x" src="images/social_x.png" alt="social-x">
-          <img id="menu-social-discord" src="images/social_discord.png" alt="social-discord">
-        </div>
-      </div>
-    </div>
-    <div id="hero-section">
-      <div id="hero-content">
-        <div id="hero-headline">
-          <h2>Hi, I'm Julien!</h2>
-          <div>
-            <h2>I craft <span class="txt-rotate" data-period="3000"
-                data-rotate='[ "pretty pixels.", "cool 3D objects.", "video games." ]'></span></h2>
+    <div id="main-content">
+      <div id="menu-bar">
+        <div id="menu">
+          <div id="menu-title" class="menu-item">
+            <div id="menu-logo" class="menu-item"><img src="images/logo-starbolt2.png" alt="logo"></div>
+            <h4 id="menu-title-text">Julien Catala</h4>
+          </div>
+          <div id="menu-language" class="menu-item" style="display: none;">
+            <p>En</p>
+            <p>/</p>
+            <p>Fr</p>
+          </div>
+          <div id="menu-social" class="menu-item">
+            <a href="mailto:julien.catala@live.fr"><img id="menu-social-email" src="images/social_email.png" alt="social-linkedin"></a>
+            <a href="https://www.linkedin.com/in/juliencatala/" target="_blank"><img id="menu-social-linkedin" src="images/social_linkedin.png" alt="social-linkedin"></a>
+            <a href="https://twitter.com/Luje_fr" target="_blank"><img id="menu-social-x" src="images/social_x.png" alt="social-x"></a>
+            <a href="https://discord.gg/QsassBSJSQ" target="_blank"><img id="menu-social-discord" src="images/social_discord.png" alt="social-discord"></a>
           </div>
         </div>
-        <div id="hero-gameboy">
-          <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.446/build/spline-viewer.js"></script>
+      </div>
+      <div id="hero-section">
+        <div id="hero-content">
+          <div id="hero-headline">
+            <h2>Hi, I'm Julien!</h2>
+            <div>
+              <h2>I craft <span class="txt-rotate" data-period="3000"
+                  data-rotate='[ "pretty pixels.", "cool 3D objects.", "video games." ]'></span></h2>
+            </div>
+          </div>
+          <div id="hero-gameboy">
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.446/build/spline-viewer.js"></script>
           <spline-viewer hint loading-anim
             url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer>
-          <a href="#" id="gameboy-fullscreen-toggle"><img src="images/fullscreen.png"></a>
+            <a href="#" id="gameboy-fullscreen-toggle"><img src="images/fullscreen.png"></a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div id="work">
-      <h2>WORK</h2>
-      <div id="project-list">
-        <!-- Work content here -->
-        <a href="" id="the-garden" class="project-featured card">
-          <img src="images/TheGardenOfDreams.jpg" class="cover" />
-          <div class="glow"></div>
-        </a>
-        <a href="" id="karmazoo" class="project-featured card">
-          <img src="images/karmazoo.jpg" class="cover" />
-          <div class="glow"></div>
-        </a>
-        <a href="" id="" class="project card">
-          <img src="images/work_bmx_thumbnail.jpg" class="cover" />
-          <div class="glow"></div>
-        </a>
-        <a href="" id="" class="project card">
-          <img src="images/work_nokia3310.jpg" class="cover" />
-          <div class="glow"></div>
-        </a>
-        <a href="" id="" class="project card">
-          <img src="images/work_jaemon_thumbnail.jpg" class="cover" />
-          <div class="glow"></div>
-        </a>
-        <a href="" id="" class="project card">
-          <img src="images/work_ucl_vr.jpg" class="cover" />
-          <div class="glow"></div>
-        </a>
-        <a href="" id="" class="project card">
-          <img src="images/work_billar.jpg" class="cover" />
-          <div class="glow"></div>
-        </a>
-        <a href="" id="" class="project card">
-          <img src="images/work_atos_it_challenge.jpg" class="cover" />
-          <div class="glow"></div>
-        </a>
+      <div id="work">
+        <h2>WORK</h2>
+        <div id="project-list">
+          <!-- Work content here -->
+          <div id="the-garden" class="project-featured card" data-project-info="the-garden">
+            <img src="images/TheGardenOfDreams.jpg" class="cover" />
+            <h4 class="card-label">3D game dev</h4>
+            <div class="glow"></div>
+          </div>
+          <div id="karmazoo" class="project-featured card" data-project-info="karmazoo">
+            <img src="images/karmazoo.jpg" class="cover" />
+            <h4 class="card-label">Tech art</h4>
+            <div class="glow"></div>
+          </div>
+          <div id="bmx" class="project card" data-project-info="bmx">
+            <img src="images/work_bmx_thumbnail.jpg" class="cover" />
+            <div class="glow"></div>
+          </div>
+          <div id="jaemon2D" class="project card" data-project-info="jarmon2D">
+            <img src="images/work_jaemon2d_thumbnail.jpg" class="cover" />
+            <div class="glow"></div>
+          </div>
+          <div id="jaemon" class="project card" data-project-info="jaemon">
+            <img src="images/work_jaemon_thumbnail.jpg" class="cover" />
+            <div class="glow"></div>
+          </div>
+          <div id="ucl-vr" class="project card" data-project-info="ucl-vr">
+            <img src="images/work_ucl_vr.jpg" class="cover" />
+            <div class="glow"></div>
+          </div>
+          <div id="billar" class="project card" data-project-info="billar">
+            <img src="images/work_billar.jpg" class="cover" />
+            <div class="glow"></div>
+          </div>
+          <div id="atos-it-challenge" class="project card" data-project-info="atos-it-challenge">
+            <img src="images/work_atos_it_challenge.jpg" class="cover" />
+            <div class="glow"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="contact-section">
+        <h2 style="margin: 2em; font-size: 2em;">Let's chat</h2>
       </div>
     </div>
+  </div>
 
-    <div id="contact-section">
-      <h2 style="margin: 2em; font-size: 2em;">Let's chat</h2>
+  <div id="overlay">
+    <div id="overlay-content">
+      <!-- Add project information here -->
+      <button id="overlay-close"><img src="images/close.png"/></button>
+
+      <div id="the-garden-info" class="project-info">
+        <div class="project-info-title">
+          <h2>The Garden of Dreams</h2>
+          <div class="project-info-tag-list">
+            <h4 class="project-info-tag">3D GAME</h4>
+            <h4 class="project-info-tag">PERSONAL PROJECT</h4>
+          </div>
+        </div>
+        <p>Play as Hayao Miyazaki, enjoying a sunny walk in his garden, and encounter objects that ignite your
+          imagination.</p>
+          <iframe class="youtube-embed" src="https://www.youtube.com/embed/Bmx6MDRxeGo?si=PbExBnr36y1XSLs3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <a class="download-button" href="https://drive.google.com/file/d/19RlNuzUR1kgNkYv7sVSOJJqXvKWAaFt_/view?usp=sharing" target="_blank">
+            <h3>Download the game!</h3> <p>270 MB</p>
+          </a>
+        <h4>Watch the full playthrough:</h4>
+        <iframe class="youtube-embed" src="https://www.youtube.com/embed/VBgurxnsga8?si=U_mwZVFKYHHsJASr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+      </div>
+
+      <div id="karmazoo-info" class="project-info">
+        <div class="project-info-title">
+          <h2>KarmaZoo</h2>
+          <div class="project-info-tag-list">
+            <h4 class="project-info-tag">2D GAME</h4>
+            <h4 class="project-info-tag">PASTAGAMES</h4>
+            <h4 class="project-info-tag">DEVOLVER </h4>
+          </div>
+        </div>
+        <p>Play as Hayao Miyazaki, enjoying a sunny walk in his garden, and encounter objects that ignite your
+          imagination.</p>
+          <iframe class="youtube-embed" src="https://www.youtube.com/embed/CYrcJtTCaKQ?si=92eq77sHbGPeKhX3" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <p>Description of Project 1.</p>
+      </div>
+
     </div>
-
-    <div id="overlay"></div>
   </div>
 
 
   <script src="https://unpkg.com/regl@2.1.0/dist/regl.min.js"></script>
   <script src="bundle.js"></script>
-  <script src='youtube.js'></script>
 
 </body>
 
