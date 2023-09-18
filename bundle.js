@@ -570,7 +570,7 @@ const draw = regl({
       viewportWidth,
       viewportHeight
     }) => {
-      const ratio = (1.5 + (viewportWidth/1300))/2; // ratio between current width and average width 1300px
+      const ratio = (1.5 + (viewportWidth/1300))/1.9; // ratio between current width and average width 1300px
       return [ratio, ratio];
     },
   },
@@ -711,7 +711,7 @@ function createRotateToMouseHandler(card) {
         circle at
         ${center.x * 2 + bounds.width / 2}px
         ${center.y * 2 + bounds.height / 2}px,
-        #ffffff55,
+        #dd88ff80,
         #0000000f
       )
     `;

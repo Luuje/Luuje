@@ -51,7 +51,7 @@ figure {
 }
 
 p {
-    font-family: Roboto, Arial, sans-serif;
+    font-family: LINESeed, Arial, sans-serif;
 }
 
 /* MAIN BACKGROUND */
@@ -570,16 +570,22 @@ p {
 }
 
 .card-label {
+    text-align: start;
     position: absolute;
-    bottom: 1rem;
+    top: 0;
     align-self: center;
     padding: 0.5rem 1rem 0.4rem 1rem;
 
-    font-size: 0.9rem;
+    font-size: 0.8rem;
 
-    background-color: #8605ff8a;
+    background-color: #00000000;
+    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
     color: white;
-    border-radius: 0 100px 100px 0;
+    border-radius: 0 0 10px 0;
+}
+
+.project-featured .card-label{
+    font-size: 0.9rem;
 }
 
 
@@ -636,6 +642,16 @@ p {
     font-weight: 400;
 }
 
+@font-face {
+    src: url('assets/LINESeedSans_W_Rg.woff') format('woff'),
+    url('assets/LINESeedSans_A_Rg.ttf') format('truetype'),
+    url('assets/LINESeedSans_W_Rg.eot') format('embedded-opentype'),
+    url('assets/LINESeedSans_Rg.otf') format('opentype');
+    font-display: block;
+    font-family: LINESeed;
+    font-style: normal;
+    font-weight: 400;
+}
 
 
 /* ******************************** */
