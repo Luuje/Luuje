@@ -1,4 +1,3 @@
-// Fork from http://glslsandbox.com/e#8143.0
 #define PI 3.14159
 #define color_filter mat3(0.5, 0.2, 0.2, 0.0, 0.0, 0.2, 0.9, 0.4, 0.6)
 
@@ -20,7 +19,7 @@ const float BLUR = 0.57;
 const float brightness = 0.8;
 
 float map(float value, float min1, float max1, float min2, float max2) {
-  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
+    return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
 }
 
 // more about noise: 
@@ -43,30 +42,26 @@ float noiseS(float x) {
     return noise(x) * 2.0 - 1.0;
 }
 
-float grain(in vec2 st, float noiseTime) {
+float grain(vec2 st, float noiseTime) {
     vec2 i = floor(st);
     vec2 f = fract(st);
 
-      // Four corners in 2D of a tile
+    // Four corners in 2D of a tile
     float a = random(i);
     float b = random(i + vec2(1.0, 0.0));
     float c = random(i + vec2(0.0, 1.0));
     float d = random(i + vec2(1.0, 1.0));
 
-      // Smooth Interpolation
-
-      // Cubic Hermine Curve.  Same as SmoothStep()
+    // Smooth Interpolation
     vec2 u = f * f * (3.0 - 2.0 * f);
-      // u = smoothstep(0.,1.,f);
 
-      // Mix 4 coorners percentages
-    //return 0.0 + ((mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y) / 10.0) * 10.0;
+    // Mix 4 corners percentages
     return pow(random(st) + mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y, 0.5); //pow 0.5 to make grain more gray
 }
 
 vec3 blend(vec3 base, vec3 blend, float blendFactor) {
     vec3 blendedColor;
-    if(base[0] + base[1] + base[2] < 1.5) { //1.5?
+    if (base.r + base.g + base.b < 1.5) {
         blendedColor = (2.0 * base * blend + base * base * (1.0 - 2.0 * blend));
     } else {
         blendedColor = (sqrt(base) * (2.0 * blend - 1.0) + 2.0 * base * (1.0 - blend));
@@ -88,13 +83,13 @@ void main() {
     // adjust complexity according to viewport width
     int complexity = int(map(ratio, 0.85, 1.5, 10.0, 35.0));
     float blur = (BLUR + 0.14 * noiseSTime);
-    for(int i = 1; i <= maxComplexity; i++) {
+    for (int i = 1; i <= maxComplexity; i++) {
         p += blur / float(i) * sin(float(i) * p.yx + t + PI * vec2(noiseSTime, noiseSTime1)) + fixedOffset;
         if (i >= complexity) break;
     }
     p += uMouse * mouseSpeed;
 
-    vec2 grid = uGrid * 2.0; // set complexity to 0 to debug the grid
+    vec2 grid = uGrid * 2.0;
 
     // Modified color computation
     float r = pow(0.5 * (1.0 + baseColor + sin(grid.x * p.x + 2.0 * noiseSTime)), 1.5) * brightness;
@@ -102,26 +97,11 @@ void main() {
     float b = pow(0.5 * (1.0 + baseColor + sin(p.x + p.y + noiseSTime)), 1.5) * brightness;
 
     // Color filter
-    // Product between matrix filter and pixel color to get new color
     vec3 color = vec3(r, g, b) * color_filter;
 
     // Grain filter
     vec2 st = gl_FragCoord.xy / uResolution.xy;
-    //vec2 pos = vec2(st * uResolution.xy);
-
-    //blend the noise over the background
     vec3 blendColor = blend(color, vec3(grain(gl_FragCoord.xy, noiseSTime)), 0.4);
 
-    //get the luminance of the background
-    //float luminance = (color[0] + color[1] + color[2])/3.0;
-
-    //reduce the noise based on some 
-    //threshold of the background luminance
-    //float response = smoothstep(0.05, 0.4, luminance);
-    //blendColor = mix(blendColor, color, pow(response, 0.5));
-
-    // Output to screen
     gl_FragColor = vec4(blendColor, 1.0);
-    //gl_FragColor = vec4(vec3(grain(st.xy, noiseSTime)), 1.0);
-
 }
