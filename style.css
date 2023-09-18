@@ -394,7 +394,7 @@ p {
     position: fixed;
     top: 0px;
     display: none;
-    padding: 2rem 3.5vw;
+    padding: 3rem 3.5vw 4rem 3.5vw;
     justify-content: center;
     align-items: start;
     overflow: auto;
@@ -481,6 +481,20 @@ p {
     border: solid 2px #b86bff;
     border-radius: 100px;
     font-size: calc(0.3rem + 0.7vw);
+}
+
+/* GALLERY */
+
+.project-info-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% + 8rem);
+    align-self: center;
+    gap:3px;
+}
+
+.project-info-gallery img {
+    width: 100%;
 }
 
 /* DOWNLOAD BUTTON */
@@ -581,7 +595,7 @@ p {
     font-size: 0.8rem;
 
     background-color: #00000000;
-    text-shadow: rgba(0, 0, 0, 0.25) 0 3px 8px;
+    text-shadow: rgba(0, 0, 0, 0.363) 0 1px 3px;
     color: white;
     border-radius: 0 0 10px 0;
 }
