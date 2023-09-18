@@ -62,8 +62,8 @@
           </div>
           <div id="hero-gameboy">
             <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.446/build/spline-viewer.js"></script>
-          <spline-viewer hint loading-anim
-            url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer>
+            <spline-viewer hint loading-anim
+              url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer>
             <a href="#" id="gameboy-fullscreen-toggle"><img src="images/fullscreen.png"></a>
           </div>
         </div>
@@ -88,7 +88,7 @@
             <h4 class="card-label">3D modeling</h4>
             <div class="glow"></div>
           </div>
-          <div id="jaemon2D" class="project card" data-project-info="jarmon2D">
+          <div id="jaemon2D" class="project card" data-project-info="jaemon2D">
             <img src="images/work_jaemon2d_thumbnail.jpg" class="cover" />
             <h4 class="card-label">2D game prototype</h4>
             <div class="glow"></div>
@@ -110,7 +110,7 @@
           </div>
           <div id="atos-it-challenge" class="project card" data-project-info="atos-it-challenge">
             <img src="images/work_atos_it_challenge.jpg" class="cover" />
-            <h4 class="card-label">Atos IT Challenge</h4>
+            <h4 class="card-label">Dev contest</h4>
             <div class="glow"></div>
           </div>
         </div>
@@ -125,7 +125,8 @@
       </div>
     </div>
   </div>
-
+<!-- --------------------------------------------------------------------------------------------- -->
+<!-- --------------------------------------------------------------------------------------------- -->
   <div id="overlay">
     <div id="overlay-content">
       <!-- Add project information here -->
@@ -166,22 +167,21 @@
             <h4 class="project-info-tag">DEVOLVER </h4>
           </div>
         </div>
-        <p>Play as Hayao Miyazaki, enjoying a sunny walk in his garden, and encounter objects that ignite your
-          imagination.</p>
+        <p>A joyful, altruistic, cooperative platformer in pixel art-style, developed by Pastagames and published by
+          Devolver.</p>
         <iframe class="youtube-embed" src="https://www.youtube.com/embed/CYrcJtTCaKQ?si=92eq77sHbGPeKhX3"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
-        <div style="width: 50%; align-self: center;">
-          <a class="twitter-timeline" data-height="800" data-theme="dark"
+        <div class="twitter-embed">
+          <a class="twitter-timeline" data-height="600" data-theme="dark"
             href="https://twitter.com/KarmaZooGame?ref_src=twsrc%5Etfw">KarmaZooGame</a>
         </div>
-        <p>Description of Project 1.</p>
       </div>
 
       <div id="bmx-info" class="project-info">
         <div class="project-info-title">
-          <h2>High-res 3D modeling</h2>
+          <h2>Realistic 3D modeling</h2>
           <div class="project-info-tag-list">
             <h4 class="project-info-tag">3D MODELING</h4>
             <h4 class="project-info-tag">RENDERING</h4>
@@ -195,9 +195,165 @@
           <img src="images/work_bmx_closeup_01.jpg" onclick="this.requestFullscreen()" style="cursor: pointer;" />
           <img src="images/work_bmx_closeup_02.jpg" onclick="this.requestFullscreen()" style="cursor: pointer;" />
         </div>
+        <h4>Other work</h4>
+        <div class="project-info-gallery">
+          <img src="images/work_stele.jpg" onclick="this.requestFullscreen()" style="cursor: pointer;" />
+          <img src="images/work_rocket_1080p.jpg" onclick="this.requestFullscreen()" style="cursor: pointer;" />
+        </div>
       </div>
-    </div>
 
+      <div id="jaemon2D-info" class="project-info">
+        <div class="project-info-title">
+          <h2>Pixel-art game prototype</h2>
+          <div class="project-info-tag-list">
+            <h4 class="project-info-tag">GAME DEV</h4>
+            <h4 class="project-info-tag">PIXEL ART</h4>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: row; align-items: end;">
+          <img src="images/work_jaemon2D_idle.gif" style="width: 64px; height: 64px" />
+          <p>I started working on a simple prototype of a tile-based pixel-art game in Unity.</p>
+        </div>
+        <div class="project-info-grid">
+          <div class="project-info-grid-item">
+            <img src="images/work_jaemon2D_palette.jpg" />
+            <p class="label">Using Unity's Tile Palette to quickly edit the levels.</p>
+          </div>
+          <div class="project-info-grid-item">
+            <img src="images/work_jaemon2D_pathfinding_02.jpg" />
+            <p class="label">Implementing A* pathfinding algorithm into my custom-built tile system.</p>
+          </div>
+          <div class="project-info-grid-item">
+            <img src="images/work_jaemon2D_pathfinding_01.jpg" />
+            <p class="label">Synchronizing movement system with frame-by-frame animation.</p>
+          </div>
+          <div class="project-info-grid-item">
+            <img src="images/work_jaemon2D_pathfinding_03.jpg" />
+            <p class="label">The pathfinding algorithm detects and avoids obstacles.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="jaemon-info" class="project-info">
+        <div class="project-info-title">
+          <h2>Cel-shading game prototype</h2>
+          <div class="project-info-tag-list">
+            <h4 class="project-info-tag">3D GAME DEV</h4>
+            <h4 class="project-info-tag">CEL-SHADING</h4>
+            <h4 class="project-info-tag">ANIMATION</h4>
+          </div>
+        </div>
+        <p>Prototype of a 3D cel-shading game including modeling, rigging, animating, texturing, shader development,
+          scripting, etc.</p>
+        <iframe class="youtube-embed" src="https://www.youtube.com/embed/gYU98sIhcxY?si=r-tEoQpZXQ1hEZok"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+        <div class="project-info-grid">
+          <div class="project-info-grid-item">
+            <img src="images/work_jaemon_00.jpeg" />
+            <p class="label">Unity asset integration.</p>
+          </div>
+          <div class="project-info-grid-item">
+            <img src="images/work_jaemon_01.jpeg" />
+            <p class="label">Bone weight painting in Blender.</p>
+          </div>
+          <div class="project-info-grid-item">
+            <img src="images/work_jaemon_02.jpeg" />
+            <p class="label">Importing rigs from Blender to Unity.</p>
+          </div>
+          <div class="project-info-grid-item">
+            <img src="images/work_jaemon_03.jpeg" />
+            <p class="label">Setting-up the animation blending system.</p>
+          </div>
+          <div class="project-info-grid-item">
+            <img src="images/work_jaemon_04.jpeg" />
+            <p class="label">Lighting & FX.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="ucl-vr-info" class="project-info">
+        <div class="project-info-title">
+          <h2>VR headset + Haptic device research</h2>
+          <div class="project-info-tag-list">
+            <h4 class="project-info-tag">VR</h4>
+            <h4 class="project-info-tag">GAME DEV</h4>
+            <h4 class="project-info-tag">RESEARCH</h4>
+          </div>
+        </div>
+        <p>During an internship at UCL's VR lab (VECG), I worked on a hybrid prototype using both a VR headset and a
+          haptic device. The goal was to feel through the haptic arm the objects you see and handle in VR as they
+          interact with the environment.</p>
+        <div class="project-info-grid">
+          <div class="project-info-grid-item flex-large">
+            <img src="images/work_ucl_vr_01.webp" />
+            <p class="label">Oculus Rift + Moog HapticMaster setup in UCL's VR lab.</p>
+          </div>
+          <div class="project-info-grid-item flex-large">
+            <img src="images/work_ucl.webp" />
+            <p class="label">University College London.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="billar-info" class="project-info">
+        <div class="project-info-title">
+          <h2>BillAR - Augmented Reality Pool Game</h2>
+          <div class="project-info-tag-list">
+            <h4 class="project-info-tag">AUGMENTED REALITY</h4>
+            <h4 class="project-info-tag">GAME DEV</h4>
+          </div>
+        </div>
+        <p>BillAR is student project combining a Microsoft Kinect for object movement detection and a video-projector
+          used to display the UI of the game on a physical board.</p>
+        <iframe class="youtube-embed" src="https://www.youtube.com/embed/37O-9HdBHZw?si=PF6EkZrecOpj3_IU"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+        <div class="project-info-grid">
+          <div class="project-info-grid-item flex-large">
+            <img class="rounded" src="images/work_billar_concept.jpg" />
+            <p class="label">BillAR concept.</p>
+          </div>
+        </div>
+      </div>
+
+      <div id="atos-it-challenge-info" class="project-info">
+        <div class="project-info-title">
+          <h2>Atos IT Challenge - 1st Prize</h2>
+          <div class="project-info-tag-list">
+            <h4 class="project-info-tag">ENGINEERING</h4>
+            <h4 class="project-info-tag">MOBILE DEV</h4>
+          </div>
+        </div>
+
+        <p>Fellow students from Enseirb-Matmeca and I won the <a href="https://www.atositchallenge.net/edition-2014/"  target="_blank">2014 edition of the international student
+          competition, Atos IT Challenge.</a> The challenge was to develop an original mobile application to enhance the
+          experience of visitors to the 2016 Rio Olympics.</p>
+
+        <iframe class="youtube-embed" src="https://www.youtube.com/embed/w0tVobCipQA?si=-uCzXgDJbnH_Bf9B" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+
+        <h4>The Idea</h4>
+
+        <p>Our application idea, codenamed Olympic Smart Planner, is an intelligent assistant that automatically
+          generates a schedule for the user's stay at the Rio Olympics. To suggest relevant events, the application uses
+          the user's interests in various categories such as Sports, Culture, Restaurants, and Olympic Nations. This
+          schedule is entirely customizable, allowing users to replace suggested events with other options.
+          Additionally, users have access to a map of Rio de Janeiro displaying events from their schedule, providing
+          GPS-guided navigation.</p>
+
+        <h4>Olympic Smart Planner 2.0</h4>
+
+        <p>The application developed during the IT Challenge was a demonstration prototype. During our internship at
+          Atos, we took the opportunity to rethink the application's architecture. We emphasized the security of the
+          network protocols used, the reliability of the server's web services, and the performance of the event and
+          tourist location database. Simultaneously, we conducted a comprehensive redesign of the application to create
+          a compelling product.</p>
+      </div>
+
+
+    </div>
 
 
   </div>
