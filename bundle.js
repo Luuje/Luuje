@@ -570,7 +570,7 @@ const draw = regl({
       viewportWidth,
       viewportHeight
     }) => {
-      const ratio = (1.5 + (viewportWidth/1300))/1.9; // ratio between current width and average width 1300px
+      const ratio = (1.5 + (viewportWidth / 1300)) / 1.9; // ratio between current width and average width 1300px
       return [ratio, ratio];
     },
   },
@@ -675,27 +675,38 @@ document.querySelector('#gameboy-fullscreen-toggle').addEventListener('click', f
   }
 });
 
+// MOBILE 
+let isMobile = false;
+const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+if (mediaQuery.matches) {
+  isMobile = true;
+} else {
+  isMobile = false;
+}
+
 // 3D CARD EFFECT
-const cards = document.querySelectorAll('.card');
+if (!isMobile) {
+  const cards = document.querySelectorAll('.card');
 
-function createRotateToMouseHandler(card) {
-  let bounds;
+  function createRotateToMouseHandler(card) {
+    let bounds;
 
-  return (e) => {
-    if (!bounds) {
-      bounds = card.getBoundingClientRect();
-    }
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    const leftX = mouseX - bounds.x;
-    const topY = mouseY - bounds.y;
-    const center = {
-      x: leftX - bounds.width / 2,
-      y: topY - bounds.height / 2
-    };
-    const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+    return (e) => {
+      if (!bounds) {
+        bounds = card.getBoundingClientRect();
+      }
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      const leftX = mouseX - bounds.x;
+      const topY = mouseY - bounds.y;
+      const center = {
+        x: leftX - bounds.width / 2,
+        y: topY - bounds.height / 2
+      };
+      const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
 
-    card.style.transform = `
+      card.style.transform = `
       perspective(1500px) 
       scale3d(1.07, 1.07, 1.07)
       rotate3d(
@@ -706,7 +717,7 @@ function createRotateToMouseHandler(card) {
       )
     `;
 
-    card.querySelector('.glow').style.backgroundImage = `
+      card.querySelector('.glow').style.backgroundImage = `
       radial-gradient(
         circle at
         ${center.x * 2 + bounds.width / 2}px
@@ -716,32 +727,34 @@ function createRotateToMouseHandler(card) {
       )
     `;
 
-    // Bring the currently hovered card to the front
-    cards.forEach((otherCard) => {
-      if (otherCard !== card) {
-        otherCard.style.zIndex = 0;
-      }
+      // Bring the currently hovered card to the front
+      cards.forEach((otherCard) => {
+        if (otherCard !== card) {
+          otherCard.style.zIndex = 0;
+        }
+      });
+      card.style.zIndex = 5;
+    };
+  }
+
+  cards.forEach((card) => {
+    const rotateToMouse = createRotateToMouseHandler(card);
+
+    card.addEventListener('mouseenter', () => {
+      document.addEventListener('mousemove', rotateToMouse);
     });
-    card.style.zIndex = 5;
-  };
+
+    card.addEventListener('mouseleave', () => {
+      document.removeEventListener('mousemove', rotateToMouse);
+      card.style.transform = '';
+      card.style.background = '';
+
+      // Reset the z-index when the mouse leaves
+      card.style.zIndex = 0;
+    });
+  });
 }
 
-cards.forEach((card) => {
-  const rotateToMouse = createRotateToMouseHandler(card);
-
-  card.addEventListener('mouseenter', () => {
-    document.addEventListener('mousemove', rotateToMouse);
-  });
-
-  card.addEventListener('mouseleave', () => {
-    document.removeEventListener('mousemove', rotateToMouse);
-    card.style.transform = '';
-    card.style.background = '';
-
-    // Reset the z-index when the mouse leaves
-    card.style.zIndex = 0;
-  });
-});
 
 // OVERLAY 
 const overlay = document.getElementById('overlay');
@@ -777,7 +790,7 @@ function closeOverlay() {
   // Add a class to start the fade out transition
   overlay.style.opacity = '0';
   overlay.style.transform = 'translateY(20px)';
-  
+
   overlayIsOpen = false;
   // Remove the state associated with the overlay
   history.replaceState(null, '', '/');
