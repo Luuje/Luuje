@@ -509,9 +509,9 @@ p {
     
     color: #b86bff;
     background-color: transparent;
-    border: solid 2px #b86bff;
+    border: solid 0.1rem #b86bff;
     border-radius: 100px;
-    font-size: calc(0.3rem + 0.7vw);
+    font-size: calc(0.4rem + 0.7vw);
 }
 
 /* GALLERY */
