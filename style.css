@@ -732,8 +732,11 @@ p {
         height: 85%;
         width: 100%;
         bottom: 0;
+        left: 0;
+        right: 0;
 
-        padding: 0% 0%;
+        align-self: center;
+        padding: 0 0;
     }
 
     #hero-gameboy:hover {
@@ -759,6 +762,11 @@ p {
 
     .project {
         flex-basis: calc(50% - 0.5rem);
+    }
+
+    #overlay {
+        padding-left: 0;
+        padding-right: 0;
     }
 
     #overlay-content {
