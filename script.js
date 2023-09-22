@@ -653,12 +653,14 @@ window.onload = function () {
 };
 
 // FULLSCREEN TOGGLE
-document.querySelector('#gameboy-fullscreen-toggle').addEventListener('click', function () {
+let fullscreenToggle = document.querySelector('#gameboy-fullscreen-toggle');
+if (fullscreenToggle) fullscreenToggle.addEventListener('click', function () {
   if (document.fullscreenElement) { // if already full screen exit
     document.exitFullscreen();
   } else { // else go fullscreen
     /* document.querySelector('#hero-gameboy').style.backgroundColor = "rgb(53, 0, 151)"; */
-    document.querySelector('#hero-gameboy').requestFullscreen();
+    let gameboy = document.querySelector('#hero-gameboy');
+    if (gameboy) gameboy.requestFullscreen();
   }
 });
 

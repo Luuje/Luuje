@@ -65,6 +65,18 @@ p {
     border-radius: 10px;
 }
 
+.row {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+
 /* MAIN BACKGROUND */
 
 #main-background-container {
@@ -191,7 +203,7 @@ p {
     gap: 10px;
     overflow: visible;
     max-width: 1300px;
-    height: 70vh;
+    height: 30vh; /* 70vh for gameboy */
     z-index: 1;
 }
 
@@ -403,10 +415,12 @@ p {
 
 .flex-medium {
     flex-basis: calc(33% - 10px);
+    min-width: 250px;
 }
 
 .flex-large {
     flex-basis: calc(50% - 10px);
+    min-width: 350px;
 }
 
 .flex-xlarge {
