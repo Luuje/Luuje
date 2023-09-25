@@ -26,9 +26,9 @@
 
 <body>
   <div id="main">
-    <div id="main-background-container"><canvas id="main-background"></canvas></div>
+    <canvas id="main-background"></canvas>
     <div id="main-content">
-      <div id="menu-bar">
+      <div id="menu-bar" class="section">
         <div id="menu">
           <div id="menu-title" class="menu-item">
             <div id="menu-logo" class="menu-item"><img src="images/logo-starbolt2.png" alt="logo"></div>
@@ -51,7 +51,8 @@
           </div>
         </div>
       </div>
-      <div id="hero-section">
+      
+      <div id="hero-section" class="section">
         <div id="hero-content">
           <div id="hero-headline">
             <h2>Hi, I'm Julien!</h2>
@@ -69,7 +70,7 @@
         </div>
       </div>
 
-      <div id="work">
+      <div id="work-section" class="section">
         <h2>WORK</h2>
         <div id="project-list">
           <!-- Work content here -->
@@ -116,8 +117,13 @@
         </div>
       </div>
 
-      <div id="about" style="z-index: 2;margin-top: 3rem; font-size: 4rem;opacity: 0.2;">
-        <h1>W I P</h1>
+      <div class="white-space-m"></div>
+
+      <h1 id="about-title">About me</h1>
+      <div id="about-section" class="column">
+        <div id="about-profile-container">
+          <div id="about-profile"></div>
+        </div>
       </div>
 
       <div id="contact-section">
@@ -130,7 +136,7 @@
   <div id="overlay">
     <div id="overlay-content">
       <!-- Add project information here -->
-      <button id="overlay-close"><img src="images/close.png" /></button>
+      <button id="overlay-close" class="overlay-close"><img src="images/close.png" /></button>
 
       <div id="the-garden-info" class="project-info">
         <div class="project-info-title">
@@ -142,7 +148,7 @@
         </div>
         <p>Play as Hayao Miyazaki, enjoying a sunny walk in his garden, and encounter objects that ignite your
           imagination.</p>
-        <iframe class="youtube-embed" src="https://www.youtube.com/embed/Bmx6MDRxeGo?si=PbExBnr36y1XSLs3"
+        <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/Bmx6MDRxeGo?si=PbExBnr36y1XSLs3"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
@@ -152,7 +158,7 @@
           <p>270 MB</p>
         </a>
         <h4>Watch the full playthrough:</h4>
-        <iframe class="youtube-embed" src="https://www.youtube.com/embed/VBgurxnsga8?si=U_mwZVFKYHHsJASr"
+        <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/VBgurxnsga8?si=U_mwZVFKYHHsJASr"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
@@ -169,7 +175,7 @@
         </div>
         <p>A joyful, altruistic, cooperative platformer in pixel art-style, developed by Pastagames and published by
           Devolver.</p>
-        <iframe class="youtube-embed" src="https://www.youtube.com/embed/CYrcJtTCaKQ?si=92eq77sHbGPeKhX3"
+        <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/CYrcJtTCaKQ?si=92eq77sHbGPeKhX3"
           title="YouTube video player" frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowfullscreen></iframe>
@@ -317,7 +323,7 @@
         </div>
 
         <div class="row">
-          <img src="images/work_ucl_vr_02.webp" style="max-height: 143px;"/>
+          <img src="images/work_ucl_vr_02.webp" style="max-height: 143px;" />
           <p>The simulation allows the user to move a red cube within a 3D space and interact with the virtual
             environment's walls. A high-gravity zone, represented by a blue square on the floor, exerts a downward
             force
@@ -330,89 +336,87 @@
         </div>
       </div>
 
-    <div id="billar-info" class="project-info">
-      <div class="project-info-title">
-        <h2>BillAR - Augmented Reality Pool Game</h2>
-        <div class="project-info-tag-list">
-          <h4 class="project-info-tag">AUGMENTED REALITY</h4>
-          <h4 class="project-info-tag">GAME DEV</h4>
+      <div id="billar-info" class="project-info">
+        <div class="project-info-title">
+          <h2>BillAR - Augmented Reality Pool Game</h2>
+          <div class="project-info-tag-list">
+            <h4 class="project-info-tag">AUGMENTED REALITY</h4>
+            <h4 class="project-info-tag">GAME DEV</h4>
+          </div>
         </div>
-      </div>
-      <p>BillAR is student project combining a Microsoft Kinect for object movement detection and a video-projector
-        used to display the UI of the game on a physical board.</p>
-      <iframe class="youtube-embed" src="https://www.youtube.com/embed/37O-9HdBHZw?si=PF6EkZrecOpj3_IU"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
-      <p>I completed the BillAR project with a team of students and in collaboration with the INRIA laboratory in
-        Bordeaux during my third year at Enseirb-Matmeca. The system was developed using PapARt ('Paper Augmented
-        Reality Toolkit'), a Processing library created by Jérémy Laviole, a researcher at INRIA.
-      <p>The concept behind BillAR is to create an augmented reality game that combines a pool table, a video
-        projector, and a motion detection system (a Microsoft Kinect in our case). The game interface is projected
-        directly onto the pool table via the video projector. The user can physically interact with it through
-        touch,
-        thanks to the motion detection system.</p>
-      <div class="project-info-grid">
-        <div class="project-info-grid-item flex-xlarge">
-          <img class="rounded" src="images/work_billar_concept.jpg" />
-          <p class="label">BillAR concept.</p>
+        <p>BillAR is student project combining a Microsoft Kinect for object movement detection and a video-projector
+          used to display the UI of the game on a physical board.</p>
+        <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/37O-9HdBHZw?si=PF6EkZrecOpj3_IU"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+        <p>I completed the BillAR project with a team of students and in collaboration with the INRIA laboratory in
+          Bordeaux during my third year at Enseirb-Matmeca. The system was developed using PapARt ('Paper Augmented
+          Reality Toolkit'), a Processing library created by Jérémy Laviole, a researcher at INRIA.
+        <p>The concept behind BillAR is to create an augmented reality game that combines a pool table, a video
+          projector, and a motion detection system (a Microsoft Kinect in our case). The game interface is projected
+          directly onto the pool table via the video projector. The user can physically interact with it through
+          touch,
+          thanks to the motion detection system.</p>
+        <div class="project-info-grid">
+          <div class="project-info-grid-item flex-xlarge">
+            <img class="rounded" src="images/work_billar_concept.jpg" />
+            <p class="label">BillAR concept.</p>
+          </div>
         </div>
+        <p>We invented several mini-games that take advantage of the possibilities offered by Augmented Reality. In
+          Snake mode, the user plays with a countdown timer and aims to place the game ball (red in the diagram) in as
+          many zones as possible within the allotted time. The zones appear one after the other, similar to the
+          classic
+          Snake game. Conversely, in Golf mode, all zones are present on the board from the start, and the player must
+          place the red ball in each zone as quickly as possible.</p>
       </div>
-      <p>We invented several mini-games that take advantage of the possibilities offered by Augmented Reality. In
-        Snake mode, the user plays with a countdown timer and aims to place the game ball (red in the diagram) in as
-        many zones as possible within the allotted time. The zones appear one after the other, similar to the
-        classic
-        Snake game. Conversely, in Golf mode, all zones are present on the board from the start, and the player must
-        place the red ball in each zone as quickly as possible.</p>
+
+      <div id="atos-it-challenge-info" class="project-info">
+        <div class="project-info-title">
+          <h2>Atos IT Challenge - 1st Prize</h2>
+          <div class="project-info-tag-list">
+            <h4 class="project-info-tag">ENGINEERING</h4>
+            <h4 class="project-info-tag">MOBILE DEV</h4>
+          </div>
+        </div>
+
+        <p>Fellow students from Enseirb-Matmeca and I won the <a href="https://www.atositchallenge.net/edition-2014/"
+            target="_blank">2014 edition of the international student
+            competition, Atos IT Challenge.</a> The challenge was to develop an original mobile application to enhance
+          the
+          experience of visitors to the 2016 Rio Olympics.</p>
+
+        <iframe class="youtube-embed" src="https://www.youtube.com/embed/w0tVobCipQA?si=-uCzXgDJbnH_Bf9B"
+          title="YouTube video player" frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+
+        <h4>The Idea</h4>
+
+        <p>Our application idea, codenamed Olympic Smart Planner, is an intelligent assistant that automatically
+          generates a schedule for the user's stay at the Rio Olympics. To suggest relevant events, the application
+          uses
+          the user's interests in various categories such as Sports, Culture, Restaurants, and Olympic Nations. This
+          schedule is entirely customizable, allowing users to replace suggested events with other options.
+          Additionally, users have access to a map of Rio de Janeiro displaying events from their schedule, providing
+          GPS-guided navigation.</p>
+
+        <h4>Olympic Smart Planner 2.0</h4>
+
+        <p>The application developed during the IT Challenge was a demonstration prototype. During our internship at
+          Atos, we took the opportunity to rethink the application's architecture. We emphasized the security of the
+          network protocols used, the reliability of the server's web services, and the performance of the event and
+          tourist location database. Simultaneously, we conducted a comprehensive redesign of the application to
+          create
+          a compelling product.</p>
+      </div>
+
+
     </div>
 
-    <div id="atos-it-challenge-info" class="project-info">
-      <div class="project-info-title">
-        <h2>Atos IT Challenge - 1st Prize</h2>
-        <div class="project-info-tag-list">
-          <h4 class="project-info-tag">ENGINEERING</h4>
-          <h4 class="project-info-tag">MOBILE DEV</h4>
-        </div>
-      </div>
-
-      <p>Fellow students from Enseirb-Matmeca and I won the <a href="https://www.atositchallenge.net/edition-2014/"
-          target="_blank">2014 edition of the international student
-          competition, Atos IT Challenge.</a> The challenge was to develop an original mobile application to enhance
-        the
-        experience of visitors to the 2016 Rio Olympics.</p>
-
-      <iframe class="youtube-embed" src="https://www.youtube.com/embed/w0tVobCipQA?si=-uCzXgDJbnH_Bf9B"
-        title="YouTube video player" frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        allowfullscreen></iframe>
-
-      <h4>The Idea</h4>
-
-      <p>Our application idea, codenamed Olympic Smart Planner, is an intelligent assistant that automatically
-        generates a schedule for the user's stay at the Rio Olympics. To suggest relevant events, the application
-        uses
-        the user's interests in various categories such as Sports, Culture, Restaurants, and Olympic Nations. This
-        schedule is entirely customizable, allowing users to replace suggested events with other options.
-        Additionally, users have access to a map of Rio de Janeiro displaying events from their schedule, providing
-        GPS-guided navigation.</p>
-
-      <h4>Olympic Smart Planner 2.0</h4>
-
-      <p>The application developed during the IT Challenge was a demonstration prototype. During our internship at
-        Atos, we took the opportunity to rethink the application's architecture. We emphasized the security of the
-        network protocols used, the reliability of the server's web services, and the performance of the event and
-        tourist location database. Simultaneously, we conducted a comprehensive redesign of the application to
-        create
-        a compelling product.</p>
-    </div>
-
 
   </div>
-
-
-  </div>
-  </div>
-
 
   <script src="https://unpkg.com/regl@2.1.0/dist/regl.min.js"></script>
   <script src="bundle.js"></script>

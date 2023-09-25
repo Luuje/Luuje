@@ -682,13 +682,11 @@ if (!isMobile) {
     let bounds;
 
     return (e) => {
-      if (!bounds) {
-        bounds = card.getBoundingClientRect();
-      }
+      const bounds = card.getBoundingClientRect();
       const mouseX = e.clientX;
       const mouseY = e.clientY;
-      const leftX = mouseX - bounds.x;
-      const topY = mouseY - bounds.y;
+      const leftX = mouseX - bounds.left;
+      const topY = mouseY - bounds.top;
       const center = {
         x: leftX - bounds.width / 2,
         y: topY - bounds.height / 2
@@ -829,6 +827,26 @@ projectElements.forEach((projectElement) => {
 
 // Add a click event listener to the close button
 closeOverlayButton.addEventListener('click', closeOverlay);
+
+// On mouse move over the overlay
+overlay.addEventListener('mousemove', (e) => {
+  // Get the bounds of the content within the overlay
+  const contentBounds = overlayContent.getBoundingClientRect();
+
+  // Check if the cursor position is outside the content bounds
+  if (
+    e.clientX < contentBounds.left ||
+    e.clientX > contentBounds.right ||
+    e.clientY < contentBounds.top ||
+    e.clientY > contentBounds.bottom
+  ) {
+    overlay.style.cursor = 'pointer';
+    closeOverlayButton.classList.add('overlay-close-hover');
+  } else {
+    overlay.style.cursor = 'default';
+    closeOverlayButton.classList.remove('overlay-close-hover');
+  }
+});
 
 // On click outside of the content bounds
 overlay.addEventListener('click', (e) => {
