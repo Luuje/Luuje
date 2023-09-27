@@ -1,3 +1,358 @@
+// HERO HEADLINE TYPEWRITER EFFECT
+var TxtRotate = function (el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 2000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+};
+
+TxtRotate.prototype.tick = function () {
+  var i = this.loopNum % this.toRotate.length;
+  var fullTxt = this.toRotate[i];
+
+  if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+  } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+  }
+
+  this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
+
+  var that = this;
+  var delta = 150 - Math.random() * 100;
+
+  if (this.isDeleting) { delta /= 2; }
+
+  if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+  } else if (this.isDeleting && this.txt === '') {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 400;
+  }
+
+  setTimeout(function () {
+    that.tick();
+  }, delta);
+};
+
+window.onload = function () {
+  var elements = document.getElementsByClassName('txt-rotate');
+  for (var i = 0; i < elements.length; i++) {
+    var toRotate = elements[i].getAttribute('data-rotate');
+    var period = elements[i].getAttribute('data-period');
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+  // INJECT CSS
+  /* var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #fff }";
+  document.body.appendChild(css); */
+
+  // CARET BLINK ANIMATION
+  let caret = document.querySelector("#hero-headline h2>span");
+  let showCaret = true;
+  setInterval(() => {
+    if (showCaret) {
+      caret.style.borderRight = "0.1em solid #fff";
+    } else {
+      caret.style.borderRight = "0em solid transparent";
+    }
+    showCaret = !showCaret;
+  }, 500);
+};
+
+// FULLSCREEN TOGGLE
+let fullscreenToggle = document.querySelector('#gameboy-fullscreen-toggle');
+if (fullscreenToggle) fullscreenToggle.addEventListener('click', function () {
+  if (document.fullscreenElement) { // if already full screen exit
+    document.exitFullscreen();
+  } else { // else go fullscreen
+    /* document.querySelector('#hero-gameboy').style.backgroundColor = "rgb(53, 0, 151)"; */
+    let gameboy = document.querySelector('#hero-gameboy');
+    if (gameboy) gameboy.requestFullscreen();
+  }
+});
+
+// MOBILE 
+let isMobile = false;
+const mediaQuery = window.matchMedia("(max-width: 768px)");
+
+if (mediaQuery.matches) {
+  isMobile = true;
+} else {
+  isMobile = false;
+}
+
+// 3D CARD EFFECT
+if (!isMobile) {
+  const cards = document.querySelectorAll('.card');
+
+  function createRotateToMouseHandler(card) {
+    let bounds;
+
+    return (e) => {
+      const bounds = card.getBoundingClientRect();
+      const mouseX = e.clientX;
+      const mouseY = e.clientY;
+      const leftX = mouseX - bounds.left;
+      const topY = mouseY - bounds.top;
+      const center = {
+        x: leftX - bounds.width / 2,
+        y: topY - bounds.height / 2
+      };
+      const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+
+      /*       card.style.transform = `
+            perspective(1500px) 
+            scale3d(1.07, 1.07, 1.07)
+            rotate3d(
+              ${center.y / 100},
+              ${-center.x / 100},
+              0,
+              ${Math.log(distance) * 2}deg
+            )
+          `; */
+      card.style.transform = `
+      perspective(1500px) 
+      scale3d(1.07, 1.07, 1.07)
+    `;
+
+      card.querySelector('.glow').style.backgroundImage = `
+      radial-gradient(
+        circle at
+        ${center.x * 2 + bounds.width / 2}px
+        ${center.y * 2 + bounds.height / 2}px,
+        #dd88ff80,
+        #0000000f
+      )
+    `;
+
+      card.style.zIndex = 4;
+      // Add a one-time event listener for the 'transitionend' event
+      card.addEventListener('transitionend', function resetZIndex(event) {
+        // Make sure we are listening for the correct property, e.g., 'transform'
+        if (event.propertyName === 'transform') {
+          card.style.zIndex = 5; // place at scaled up z index
+          // Remove the event listener so it only triggers once
+          card.removeEventListener('transitionend', resetZIndex);
+        }
+      });
+    };
+  }
+
+  cards.forEach((card) => {
+    const rotateToMouse = createRotateToMouseHandler(card);
+
+    card.addEventListener('mouseenter', () => {
+      document.addEventListener('mousemove', rotateToMouse);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      // Remove the mousemove event listener
+      document.removeEventListener('mousemove', rotateToMouse);
+
+      // Reset the transform and background styles immediately
+      card.style.transform = '';
+      card.style.background = '';
+
+      card.style.zIndex = 3; // place below cards transitioning up
+      // Add a one-time event listener for the 'transitionend' event
+      card.addEventListener('transitionend', function resetZIndex(event) {
+        // Make sure we are listening for the correct property, e.g., 'transform'
+        if (event.propertyName === 'transform') {
+          card.style.zIndex = 0; // place at default z index
+          // Remove the event listener so it only triggers once
+          card.removeEventListener('transitionend', resetZIndex);
+        }
+      });
+    });
+  });
+
+}
+
+
+// OVERLAY 
+const overlay = document.getElementById('overlay');
+const overlayContent = document.getElementById('overlay-content');
+const closeOverlayButton = document.getElementById('overlay-close');
+const projectElements = document.querySelectorAll('.card');
+const mainContent = document.getElementById('main-content');
+
+let overlayIsOpen = false;
+
+function openOverlay(projectInfo) {
+  const projectInfoContainer = document.getElementById(projectInfo + '-info');
+  if (projectInfoContainer) {
+    // Display the overlay and show the specific project info container
+    overlay.style.display = 'flex';
+    projectInfoContainer.style.display = 'flex';
+    // Add the 'fade-element' class to elements to be faded
+    mainContent.classList.add('fade');
+    // disable scrolling
+    document.body.style.overflow = 'hidden';
+    overlay.scrollTop = 0;
+    overlay.style.opacity = 1;
+    overlay.style.transform = 'translateY(0px)';
+
+    overlayIsOpen = true;
+
+    // Push a new state to the browser's history representing the overlay URL
+    history.pushState({ overlayIsOpen: true }, '', '/overlay');
+  }
+}
+
+function closeOverlay() {
+  // Add a class to start the fade out transition
+  overlay.style.opacity = '0';
+  overlay.style.transform = 'translateY(20px)';
+
+  overlayIsOpen = false;
+  // Remove the state associated with the overlay
+  history.replaceState(null, '', '/');
+
+  // Remove the 'fade-element' class from faded elements
+  mainContent.classList.remove('fade');
+
+  // Get all the YouTube iframes in your overlay content
+  const youtubeIframes = overlayContent.querySelectorAll('iframe');
+
+  // Loop through each iframe and stop the video
+  youtubeIframes.forEach((iframe) => {
+    const iframeSrc = iframe.getAttribute('src');
+    // Check if it's a YouTube iframe
+    if (iframeSrc && iframeSrc.includes('youtube.com')) {
+      // Replace the src with the same URL to stop the video
+      iframe.setAttribute('src', iframeSrc);
+    }
+  });
+
+  // Listen for the 'transitionend' event on the overlay
+  overlay.addEventListener('transitionend', function onTransitionEnd() {
+    // Remove the event listener to prevent multiple calls
+    overlay.removeEventListener('transitionend', onTransitionEnd);
+
+    // Hide the overlay once the transition is complete
+    overlay.style.display = 'none';
+
+    // Re-enable scrolling of the underlying content
+    document.body.style.overflow = 'auto';
+
+    // Hide the specific project info container
+    const projectInfoContainers = document.querySelectorAll('.project-info');
+    projectInfoContainers.forEach((container) => {
+      container.style.display = 'none';
+    });
+  });
+}
+
+// Add click event listeners to project elements
+projectElements.forEach((projectElement) => {
+  projectElement.addEventListener('click', (event) => {
+    const projectInfo = projectElement.getAttribute('data-project-info');
+    openOverlay(projectInfo);
+  });
+});
+
+// Add a click event listener to the close button
+closeOverlayButton.addEventListener('click', closeOverlay);
+
+// On mouse move over the overlay
+overlay.addEventListener('mousemove', (e) => {
+  // Get the bounds of the content within the overlay
+  const contentBounds = overlayContent.getBoundingClientRect();
+
+  // Check if the cursor position is outside the content bounds
+  if (
+    e.clientX < contentBounds.left ||
+    e.clientX > contentBounds.right ||
+    e.clientY < contentBounds.top ||
+    e.clientY > contentBounds.bottom
+  ) {
+    overlay.style.cursor = 'pointer';
+    closeOverlayButton.classList.add('overlay-close-hover');
+  } else {
+    overlay.style.cursor = 'default';
+    closeOverlayButton.classList.remove('overlay-close-hover');
+  }
+});
+
+// On click outside of the content bounds
+overlay.addEventListener('click', (e) => {
+  // Get the bounds of the content within the overlay
+  const contentBounds = overlayContent.getBoundingClientRect();
+
+  // Check if the clicked position is outside the content bounds
+  if (
+    e.clientX < contentBounds.left ||
+    e.clientX > contentBounds.right ||
+    e.clientY < contentBounds.top ||
+    e.clientY > contentBounds.bottom
+  ) {
+    closeOverlay();
+  }
+});
+
+// Handle user navigation
+window.addEventListener('popstate', function (event) {
+  // Check if the state represents an open overlay
+  (overlayIsOpen) ? closeOverlay() : openOverlay();
+});
+
+
+/* DYNAMICALLY ROUNDED GRID CORNERS */
+
+function updateCornerStyles() {
+  const cards = Array.from(document.querySelectorAll('#project-list .project, #project-list .project-featured'));
+
+  // Reset all border-radius values
+  cards.forEach(card => card.style.borderRadius = '');
+
+  if (cards.length === 0) return;
+
+  let currentTop = cards[0].offsetTop;
+  let firstRow = [];
+  let lastRow = [];
+
+  cards.forEach((card) => {
+    if (card.offsetTop !== currentTop) {
+      lastRow = [card];  // Start a new last row when a new row begins
+      currentTop = card.offsetTop;  // Update currentTop for the new row
+    } else {
+      lastRow.push(card);
+    }
+
+    // Populate the first row
+    if (firstRow.length === 0 || card.offsetTop === firstRow[0].offsetTop) {
+      firstRow.push(card);
+    }
+  });
+
+  // Apply border-radius to corners of the first and last rows
+  const radius = '40px';
+  if (firstRow.length > 0) {
+    firstRow[0].style.borderTopLeftRadius = radius;  // Top-left corner
+    firstRow[firstRow.length - 1].style.borderTopRightRadius = radius;  // Top-right corner
+  }
+
+  if (lastRow.length > 0) {
+    lastRow[0].style.borderBottomLeftRadius = radius;  // Bottom-left corner
+    lastRow[lastRow.length - 1].style.borderBottomRightRadius = radius;  // Bottom-right corner
+  }
+}
+
+// Run the function initially
+updateCornerStyles();
+
+// Update when the window resizes
+window.addEventListener('resize', updateCornerStyles);
+
 /**
  * @author mrdoob / http://mrdoob.com/
  * @author philogb / http://blog.thejit.org/
@@ -580,292 +935,4 @@ regl.frame(() => {
     // Your drawing code here
     draw();
   }
-});
-
-// HERO HEADLINE TYPEWRITER EFFECT
-var TxtRotate = function (el, toRotate, period) {
-  this.toRotate = toRotate;
-  this.el = el;
-  this.loopNum = 0;
-  this.period = parseInt(period, 10) || 2000;
-  this.txt = '';
-  this.tick();
-  this.isDeleting = false;
-};
-
-TxtRotate.prototype.tick = function () {
-  var i = this.loopNum % this.toRotate.length;
-  var fullTxt = this.toRotate[i];
-
-  if (this.isDeleting) {
-    this.txt = fullTxt.substring(0, this.txt.length - 1);
-  } else {
-    this.txt = fullTxt.substring(0, this.txt.length + 1);
-  }
-
-  this.el.innerHTML = '<span class="wrap">' + this.txt + '</span>';
-
-  var that = this;
-  var delta = 150 - Math.random() * 100;
-
-  if (this.isDeleting) { delta /= 2; }
-
-  if (!this.isDeleting && this.txt === fullTxt) {
-    delta = this.period;
-    this.isDeleting = true;
-  } else if (this.isDeleting && this.txt === '') {
-    this.isDeleting = false;
-    this.loopNum++;
-    delta = 400;
-  }
-
-  setTimeout(function () {
-    that.tick();
-  }, delta);
-};
-
-window.onload = function () {
-  var elements = document.getElementsByClassName('txt-rotate');
-  for (var i = 0; i < elements.length; i++) {
-    var toRotate = elements[i].getAttribute('data-rotate');
-    var period = elements[i].getAttribute('data-period');
-    if (toRotate) {
-      new TxtRotate(elements[i], JSON.parse(toRotate), period);
-    }
-  }
-  // INJECT CSS
-  /* var css = document.createElement("style");
-  css.type = "text/css";
-  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #fff }";
-  document.body.appendChild(css); */
-
-  // CARET BLINK ANIMATION
-  let caret = document.querySelector("#hero-headline h2>span");
-  let showCaret = true;
-  setInterval(() => {
-    if (showCaret) {
-      caret.style.borderRight = "0.1em solid #fff";
-    } else {
-      caret.style.borderRight = "0em solid transparent";
-    }
-    showCaret = !showCaret;
-  }, 500);
-};
-
-// FULLSCREEN TOGGLE
-let fullscreenToggle = document.querySelector('#gameboy-fullscreen-toggle');
-if (fullscreenToggle) fullscreenToggle.addEventListener('click', function () {
-  if (document.fullscreenElement) { // if already full screen exit
-    document.exitFullscreen();
-  } else { // else go fullscreen
-    /* document.querySelector('#hero-gameboy').style.backgroundColor = "rgb(53, 0, 151)"; */
-    let gameboy = document.querySelector('#hero-gameboy');
-    if (gameboy) gameboy.requestFullscreen();
-  }
-});
-
-// MOBILE 
-let isMobile = false;
-const mediaQuery = window.matchMedia("(max-width: 768px)");
-
-if (mediaQuery.matches) {
-  isMobile = true;
-} else {
-  isMobile = false;
-}
-
-// 3D CARD EFFECT
-if (!isMobile) {
-  const cards = document.querySelectorAll('.card');
-
-  function createRotateToMouseHandler(card) {
-    let bounds;
-
-    return (e) => {
-      const bounds = card.getBoundingClientRect();
-      const mouseX = e.clientX;
-      const mouseY = e.clientY;
-      const leftX = mouseX - bounds.left;
-      const topY = mouseY - bounds.top;
-      const center = {
-        x: leftX - bounds.width / 2,
-        y: topY - bounds.height / 2
-      };
-      const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
-
-      card.style.transform = `
-      perspective(1500px) 
-      scale3d(1.07, 1.07, 1.07)
-      rotate3d(
-        ${center.y / 100},
-        ${-center.x / 100},
-        0,
-        ${Math.log(distance) * 2}deg
-      )
-    `;
-
-      card.querySelector('.glow').style.backgroundImage = `
-      radial-gradient(
-        circle at
-        ${center.x * 2 + bounds.width / 2}px
-        ${center.y * 2 + bounds.height / 2}px,
-        #dd88ff80,
-        #0000000f
-      )
-    `;
-
-      // Bring the currently hovered card to the front
-      cards.forEach((otherCard) => {
-        if (otherCard !== card) {
-          otherCard.style.zIndex = 0;
-        }
-      });
-      card.style.zIndex = 5;
-    };
-  }
-
-  cards.forEach((card) => {
-    const rotateToMouse = createRotateToMouseHandler(card);
-
-    card.addEventListener('mouseenter', () => {
-      document.addEventListener('mousemove', rotateToMouse);
-    });
-
-    card.addEventListener('mouseleave', () => {
-      document.removeEventListener('mousemove', rotateToMouse);
-      card.style.transform = '';
-      card.style.background = '';
-
-      // Reset the z-index when the mouse leaves
-      card.style.zIndex = 0;
-    });
-  });
-}
-
-
-// OVERLAY 
-const overlay = document.getElementById('overlay');
-const overlayContent = document.getElementById('overlay-content');
-const closeOverlayButton = document.getElementById('overlay-close');
-const projectElements = document.querySelectorAll('.card');
-const mainContent = document.getElementById('main-content');
-
-let overlayIsOpen = false;
-
-function openOverlay(projectInfo) {
-  const projectInfoContainer = document.getElementById(projectInfo + '-info');
-  if (projectInfoContainer) {
-    // Display the overlay and show the specific project info container
-    overlay.style.display = 'flex';
-    projectInfoContainer.style.display = 'flex';
-    // Add the 'fade-element' class to elements to be faded
-    mainContent.classList.add('fade');
-    // disable scrolling
-    document.body.style.overflow = 'hidden';
-    overlay.scrollTop = 0;
-    overlay.style.opacity = 1;
-    overlay.style.transform = 'translateY(0px)';
-
-    overlayIsOpen = true;
-
-    // Push a new state to the browser's history representing the overlay URL
-    history.pushState({ overlayIsOpen: true }, '', '/overlay');
-  }
-}
-
-function closeOverlay() {
-  // Add a class to start the fade out transition
-  overlay.style.opacity = '0';
-  overlay.style.transform = 'translateY(20px)';
-
-  overlayIsOpen = false;
-  // Remove the state associated with the overlay
-  history.replaceState(null, '', '/');
-
-  // Remove the 'fade-element' class from faded elements
-  mainContent.classList.remove('fade');
-
-  // Get all the YouTube iframes in your overlay content
-  const youtubeIframes = overlayContent.querySelectorAll('iframe');
-
-  // Loop through each iframe and stop the video
-  youtubeIframes.forEach((iframe) => {
-    const iframeSrc = iframe.getAttribute('src');
-    // Check if it's a YouTube iframe
-    if (iframeSrc && iframeSrc.includes('youtube.com')) {
-      // Replace the src with the same URL to stop the video
-      iframe.setAttribute('src', iframeSrc);
-    }
-  });
-
-  // Listen for the 'transitionend' event on the overlay
-  overlay.addEventListener('transitionend', function onTransitionEnd() {
-    // Remove the event listener to prevent multiple calls
-    overlay.removeEventListener('transitionend', onTransitionEnd);
-
-    // Hide the overlay once the transition is complete
-    overlay.style.display = 'none';
-
-    // Re-enable scrolling of the underlying content
-    document.body.style.overflow = 'auto';
-
-    // Hide the specific project info container
-    const projectInfoContainers = document.querySelectorAll('.project-info');
-    projectInfoContainers.forEach((container) => {
-      container.style.display = 'none';
-    });
-  });
-}
-
-// Add click event listeners to project elements
-projectElements.forEach((projectElement) => {
-  projectElement.addEventListener('click', (event) => {
-    const projectInfo = projectElement.getAttribute('data-project-info');
-    openOverlay(projectInfo);
-  });
-});
-
-// Add a click event listener to the close button
-closeOverlayButton.addEventListener('click', closeOverlay);
-
-// On mouse move over the overlay
-overlay.addEventListener('mousemove', (e) => {
-  // Get the bounds of the content within the overlay
-  const contentBounds = overlayContent.getBoundingClientRect();
-
-  // Check if the cursor position is outside the content bounds
-  if (
-    e.clientX < contentBounds.left ||
-    e.clientX > contentBounds.right ||
-    e.clientY < contentBounds.top ||
-    e.clientY > contentBounds.bottom
-  ) {
-    overlay.style.cursor = 'pointer';
-    closeOverlayButton.classList.add('overlay-close-hover');
-  } else {
-    overlay.style.cursor = 'default';
-    closeOverlayButton.classList.remove('overlay-close-hover');
-  }
-});
-
-// On click outside of the content bounds
-overlay.addEventListener('click', (e) => {
-  // Get the bounds of the content within the overlay
-  const contentBounds = overlayContent.getBoundingClientRect();
-
-  // Check if the clicked position is outside the content bounds
-  if (
-    e.clientX < contentBounds.left ||
-    e.clientX > contentBounds.right ||
-    e.clientY < contentBounds.top ||
-    e.clientY > contentBounds.bottom
-  ) {
-    closeOverlay();
-  }
-});
-
-// Handle user navigation
-window.addEventListener('popstate', function (event) {
-  // Check if the state represents an open overlay
-  (overlayIsOpen) ? closeOverlay() : openOverlay();
 });
