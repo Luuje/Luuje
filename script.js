@@ -353,6 +353,91 @@ updateCornerStyles();
 // Update when the window resizes
 window.addEventListener('resize', updateCornerStyles);
 
+
+/* ELASTIC ANIMATION */
+let lastScrollY = 0;
+let lastScrollTime = 0;  // Renamed from lastTime to lastScrollTime
+let isScrolling = false;
+
+// Initialize elastic states
+const elements = Array.from(document.querySelectorAll('.elastic')).map((element) => {
+  const baseMass = element.offsetWidth * element.offsetHeight;  // Base "mass" as width * height
+  const randomFactor = Math.random() * 0.5 + 0.75;  // Random factor between 0.75 and 1.25
+  const adjustedMass = baseMass * randomFactor;  // Adjust the base mass
+
+  return {
+    element: element,
+    initialPosition: element.offsetTop,
+    currentDisplacement: 0,
+    velocity: 0,
+    mass: adjustedMass  // Use the adjusted mass
+  };
+});
+
+// When user scrolls
+window.addEventListener('scroll', function() {
+  const currentTime = new Date().getTime();
+  const deltaTime = currentTime - lastScrollTime;
+  const deltaScroll = window.scrollY - lastScrollY;
+
+  // Calculate velocity (distance over time)
+  const velocity = deltaScroll / deltaTime;
+
+  // Update last values
+  lastScrollTime = currentTime;
+  lastScrollY = window.scrollY;
+  
+  // Flag to indicate scrolling
+  isScrolling = true;
+
+  // Update elements
+  elements.forEach((el) => {
+    const inertiaFactor = 10000;  // You can adjust this to control overall inertia
+    const adjustedVelocity = -(velocity * inertiaFactor) / el.mass;  // Velocity adjusted by "mass"
+    el.velocity = adjustedVelocity;
+  });
+});
+
+
+// Animation loop to handle the effect
+function animate() {
+  elements.forEach((el) => {
+    if (isScrolling) {
+      el.currentDisplacement += el.velocity;
+      el.element.style.transform = `translateY(${el.currentDisplacement}px)`;
+      el.velocity *= 0.9;
+    } else {
+      el.currentDisplacement *= 0.9;
+      el.element.style.transform = `translateY(${el.currentDisplacement}px)`;
+    }
+  });
+
+  // Reset the isScrolling flag
+  isScrolling = false;
+
+  // Continue the animation
+  requestAnimationFrame(animate);
+}
+
+// Start the animation loop
+animate();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /**
  * @author mrdoob / http://mrdoob.com/
  * @author philogb / http://blog.thejit.org/
@@ -936,73 +1021,4 @@ regl.frame(() => {
     draw();
   }
 });
-
-/* ELASTIC ANIMATION */
-let lastScrollY = 0;
-let lastScrollTime = 0;  // Renamed from lastTime to lastScrollTime
-let isScrolling = false;
-
-// Initialize elastic states
-const elements = Array.from(document.querySelectorAll('.elastic')).map((element) => {
-  const baseMass = element.offsetWidth * element.offsetHeight;  // Base "mass" as width * height
-  const randomFactor = Math.random() * 0.5 + 0.75;  // Random factor between 0.75 and 1.25
-  const adjustedMass = baseMass * randomFactor;  // Adjust the base mass
-
-  return {
-    element: element,
-    initialPosition: element.offsetTop,
-    currentDisplacement: 0,
-    velocity: 0,
-    mass: adjustedMass  // Use the adjusted mass
-  };
-});
-
-// When user scrolls
-window.addEventListener('scroll', function() {
-  const currentTime = new Date().getTime();
-  const deltaTime = currentTime - lastScrollTime;
-  const deltaScroll = window.scrollY - lastScrollY;
-
-  // Calculate velocity (distance over time)
-  const velocity = deltaScroll / deltaTime;
-
-  // Update last values
-  lastScrollTime = currentTime;
-  lastScrollY = window.scrollY;
-  
-  // Flag to indicate scrolling
-  isScrolling = true;
-
-  // Update elements
-  elements.forEach((el) => {
-    const inertiaFactor = 10000;  // You can adjust this to control overall inertia
-    const adjustedVelocity = -(velocity * inertiaFactor) / el.mass;  // Velocity adjusted by "mass"
-    el.velocity = adjustedVelocity;
-  });
-});
-
-
-// Animation loop to handle the effect
-function animate() {
-  elements.forEach((el) => {
-    if (isScrolling) {
-      el.currentDisplacement += el.velocity;
-      el.element.style.transform = `translateY(${el.currentDisplacement}px)`;
-      el.velocity *= 0.9;
-    } else {
-      el.currentDisplacement *= 0.9;
-      el.element.style.transform = `translateY(${el.currentDisplacement}px)`;
-    }
-  });
-
-  // Reset the isScrolling flag
-  isScrolling = false;
-
-  // Continue the animation
-  requestAnimationFrame(animate);
-}
-
-// Start the animation loop
-animate();
-
 
