@@ -60,9 +60,9 @@ window.onload = function () {
   let showCaret = true;
   setInterval(() => {
     if (showCaret) {
-      caret.style.borderRight = "0.1em solid #fff";
+      caret.style.borderRight = "0.3rem solid #000";
     } else {
-      caret.style.borderRight = "0em solid transparent";
+      caret.style.borderRight = "0rem solid transparent";
     }
     showCaret = !showCaret;
   }, 500);
@@ -109,19 +109,15 @@ if (!isMobile) {
       };
       const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
 
-      /*       card.style.transform = `
-            perspective(1500px) 
-            scale3d(1.07, 1.07, 1.07)
-            rotate3d(
-              ${center.y / 100},
-              ${-center.x / 100},
-              0,
-              ${Math.log(distance) * 2}deg
-            )
-          `; */
       card.style.transform = `
-      perspective(1500px) 
-      scale3d(1.07, 1.07, 1.07)
+      perspective(3000px) 
+      scale3d(1.05, 1.05, 1.05)
+      rotate3d(
+        ${center.y / 100},
+        ${-center.x / 100},
+        0,
+        ${Math.log(distance) * 2}deg
+      )
     `;
 
       card.querySelector('.glow').style.backgroundImage = `
@@ -347,11 +343,11 @@ function updateCornerStyles() {
   }
 }
 
-// Run the function initially
+/* // Run the function initially
 updateCornerStyles();
 
 // Update when the window resizes
-window.addEventListener('resize', updateCornerStyles);
+window.addEventListener('resize', updateCornerStyles); */
 
 
 /* ELASTIC ANIMATION */
@@ -420,7 +416,7 @@ function animate() {
 }
 
 // Start the animation loop
-animate();
+/* animate(); */
 
 
 
@@ -997,7 +993,7 @@ const draw = regl({
       viewportWidth,
       viewportHeight
     }) => {
-      const ratio = (1.5 + (viewportWidth / 1300)) / 1.9; // ratio between current width and average width 1300px
+      const ratio = (1.5 + (viewportWidth / 1300)) / 1.5; // ratio between current width and average width 1300px
       return [ratio, ratio];
     },
   },

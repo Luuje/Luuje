@@ -28,7 +28,7 @@
   <div id="main">
     <canvas id="main-background"></canvas>
     <div id="main-content">
-      <div id="menu-bar" class="section">
+      <div id="menu-bar" class="section no-background">
         <div id="menu">
           <div id="menu-title" class="menu-item">
             <div id="menu-logo" class="menu-item"><img src="images/logo-starbolt2.png" alt="logo"></div>
@@ -52,72 +52,95 @@
         </div>
       </div>
 
-      <div id="hero-section" class="section">
+      <div id="hero-section" class="section no-background">
         <div id="hero-content">
           <div id="hero-headline">
-            <h2>Hi, I'm Julien!</h2>
+            <h2>Hi, I'm Julien.</h2>
             <div>
               <h2>I craft <span class="txt-rotate" data-period="3000"
                   data-rotate='[ "pretty pixels.", "cool 3D objects.", "video games.", "neat shaders." ]'></span></h2>
             </div>
+            <!-- <div id="hero-divider"></div> -->
           </div>
           <!-- <div id="hero-gameboy">
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.446/build/spline-viewer.js"></script>
-            <spline-viewer hint loading-anim
-              url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer>
+            <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.486/build/spline-viewer.js"></script>
+            <spline-viewer hint loading-anim url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer>
             <a href="#" id="gameboy-fullscreen-toggle"><img src="images/fullscreen.png"></a>
           </div> -->
         </div>
       </div>
 
-      <div id="work-section" class="section">
+      <div id="work-section" class="section no-background">
         <h2>WORK</h2>
         <div id="project-list">
           <!-- Work content here -->
-          <div id="the-garden" class="project-featured card" data-project-info="the-garden">
-            <img src="images/TheGardenOfDreams.jpg" class="cover" />
-            <h4 class="card-label">3D game</h4>
-            <div class="glow"></div>
+          <div class="project-featured">
+            <div id="the-garden" class="card" data-project-info="the-garden" style="height:500px">
+              <img src="images/TheGardenOfDreams.jpg" class="cover" />
+              <div class="glow"></div>
+            </div>
+            <div class="project-featured-info">
+              <h4>The Garden Of Dreams</h4>
+              <div class="project-info-tag-list">
+                <p class="project-info-tag">3D GAME</p>
+                <p class="project-info-tag">PERSONAL PROJECT</p>
+              </div>
+              <p>Play as Hayao Miyazaki, enjoying a sunny walk in his garden, and encounter objects that ignite your
+                imagination.</p>
+            </div>
+
           </div>
-          <div id="karmazoo" class="project-featured card" data-project-info="karmazoo">
-            <img src="images/karmazoo.jpg" class="cover" />
-            <h4 class="card-label">Tech art</h4>
-            <div class="glow"></div>
+          <div class="project-featured">
+            <h4 class="project-featured-info">Tech art</h4>
+            <div id="karmazoo" class="card" data-project-info="karmazoo">
+              <img src="images/karmazoo.jpg" class="cover" />
+              <div class="glow"></div>
+            </div>
           </div>
-          <div id="bmx" class="project card" data-project-info="bmx">
-            <img src="images/work_bmx_thumbnail.jpg" class="cover" />
+          <div class="project">
+            <div id="bmx" class="card" data-project-info="bmx">
+              <img src="images/work_bmx_thumbnail.jpg" class="cover" />
+              <div class="glow"></div>
+            </div>
             <h4 class="card-label">3D modeling</h4>
-            <div class="glow"></div>
           </div>
-          <div id="jaemon2D" class="project card" data-project-info="jaemon2D">
-            <img src="images/work_jaemon2d_thumbnail.jpg" class="cover" />
+          <div class="project">
+            <div id="jaemon2D" class="card" data-project-info="jaemon2D">
+              <img src="images/work_jaemon2d_thumbnail.jpg" class="cover" />
+              <div class="glow"></div>
+            </div>
             <h4 class="card-label">2D game prototype</h4>
-            <div class="glow"></div>
           </div>
-          <div id="jaemon" class="project card" data-project-info="jaemon">
-            <img src="images/work_jaemon_thumbnail.jpg" class="cover" />
+          <div class="project">
+            <div id="jaemon" class="card" data-project-info="jaemon">
+              <img src="images/work_jaemon_thumbnail.jpg" class="cover" />
+              <div class="glow"></div>
+            </div>
             <h4 class="card-label">3D game prototype</h4>
-            <div class="glow"></div>
           </div>
-          <div id="ucl-vr" class="project card" data-project-info="ucl-vr">
-            <img src="images/work_ucl_vr.jpg" class="cover" />
+          <div class="project">
+            <div id="ucl-vr" class="card" data-project-info="ucl-vr">
+              <img src="images/work_ucl_vr.jpg" class="cover" />
+              <div class="glow"></div>
+            </div>
             <h4 class="card-label">VR research</h4>
-            <div class="glow"></div>
           </div>
-          <div id="billar" class="project card" data-project-info="billar">
-            <img src="images/work_billar.jpg" class="cover" />
+          <div class="project">
+            <div id="billar" class="card" data-project-info="billar">
+              <img src="images/work_billar.jpg" class="cover" />
+              <div class="glow"></div>
+            </div>
             <h4 class="card-label">AR game</h4>
-            <div class="glow"></div>
           </div>
-          <div id="atos-it-challenge" class="project card" data-project-info="atos-it-challenge">
-            <img src="images/work_atos_it_challenge_alt.jpg" class="cover" />
+          <div class="project">
+            <div id="atos-it-challenge" class="card" data-project-info="atos-it-challenge">
+              <img src="images/work_atos_it_challenge_alt.jpg" class="cover" />
+              <div class="glow"></div>
+            </div>
             <h4 class="card-label">Dev contest</h4>
-            <div class="glow"></div>
           </div>
         </div>
       </div>
-
-      <div class="white-space-l"></div>
 
       <div id="about-section" class="section">
         <h1 id="about-title">About me</h1>
@@ -126,19 +149,73 @@
           <div id="about-bio" class="row">
             <p id="about-bio-quote-start" class="elastic">“</p>
             <div id="about-bio-messages" class="column">
-              <h4 class="about-bio-message emboss elastic">I'm a software engineer turned technical artist, comfortable coding
+              <h4 class="about-bio-message emboss elastic">I'm a software engineer turned technical artist, comfortable
+                coding
                 and working in 3D. I have a keen eye for modern design and stylized visuals.</h4>
-              <h4 class="about-bio-message emboss elastic">Outside of work, I'm drawn to both the competitive worlds of sports
+              <h4 class="about-bio-message emboss elastic">Outside of work, I'm drawn to both the competitive worlds of
+                sports
                 and esports, as well as the deeper mysteries of psychology and physics.</h4>
             </div>
             <p id="about-bio-quote-end" class="elastic">”</p>
           </div>
         </div>
+
+        <div id="diplomas-list" class="row">
+          <div class="diploma-item column">
+            <div class="diploma row elastic">
+              <div class="diploma-paper emboss column">
+                <h3>SOFTWARE</h3>
+                <h3>ENGINEERING</h3>
+                <h3>DEGREE</h3>
+              </div>
+              <div class="diploma-deco-top diploma-deco-background emboss"></div>
+              <div class="diploma-deco-top emboss"></div>
+              <div class="diploma-deco-bottom diploma-deco-background emboss"></div>
+              <div class="diploma-deco-bottom emboss"></div>
+            </div>
+
+          </div>
+          <h2 id="diploma-plus">+</h2>
+          <div class="diploma-item column">
+            <div class="diploma row elastic">
+              <div class="diploma-paper emboss column">
+                <h3>3D DESIGN</h3>
+                <h3>& ANIMATION</h3>
+                <h3>BACHELOR</h3>
+              </div>
+              <div class="diploma-deco-top diploma-deco-background emboss"></div>
+              <div class="diploma-deco-top emboss"></div>
+              <div class="diploma-deco-bottom diploma-deco-background emboss"></div>
+              <div class="diploma-deco-bottom emboss"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h1></h1>
       </div>
 
       <div id="contact-section">
-        <h1 >Let's chat</h1>
+        <h1>Let's chat</h1>
+        <div id="contact-form">
+          <div class="input-field">
+            <input type="text" id="name" required>
+            <label for="name">Name</label>
+          </div>
+          <div class="input-field">
+            <input type="email" id="email" required>
+            <label for="email">Email</label>
+          </div>
+          <div class="input-field">
+            <textarea id="message" required></textarea>
+            <label for="message">Message</label>
+          </div>
+          <button type="submit">Send</button>
+        </div>
       </div>
+
     </div>
   </div>
   <!-- --------------------------------------------------------------------------------------------- -->
@@ -233,19 +310,19 @@
         </div>
         <div class="project-info-grid">
           <div class="project-info-grid-item">
-            <img src="images/work_jaemon2D_palette.jpg"  class="rounded"/>
+            <img src="images/work_jaemon2D_palette.jpg" class="rounded" />
             <p class="label">Using Unity's Tile Palette to quickly edit the levels.</p>
           </div>
           <div class="project-info-grid-item">
-            <img src="images/work_jaemon2D_pathfinding_02.jpg"  class="rounded"/>
+            <img src="images/work_jaemon2D_pathfinding_02.jpg" class="rounded" />
             <p class="label">Implementing A* pathfinding algorithm into my custom-built tile system.</p>
           </div>
           <div class="project-info-grid-item">
-            <img src="images/work_jaemon2D_pathfinding_01.jpg"  class="rounded"/>
+            <img src="images/work_jaemon2D_pathfinding_01.jpg" class="rounded" />
             <p class="label">Synchronizing movement system with frame-by-frame animation.</p>
           </div>
           <div class="project-info-grid-item">
-            <img src="images/work_jaemon2D_pathfinding_03.jpg"  class="rounded"/>
+            <img src="images/work_jaemon2D_pathfinding_03.jpg" class="rounded" />
             <p class="label">The pathfinding algorithm detects and avoids obstacles.</p>
           </div>
         </div>
@@ -272,23 +349,23 @@
           were scripted using Unity's API, and Cg shaders were implemented for visual effects</p>
         <div class="project-info-grid">
           <div class="project-info-grid-item">
-            <img src="images/work_jaemon_00.jpeg"  class="rounded"/>
+            <img src="images/work_jaemon_00.jpeg" class="rounded" />
             <p class="label">Unity asset integration.</p>
           </div>
           <div class="project-info-grid-item">
-            <img src="images/work_jaemon_01.jpeg"  class="rounded"/>
+            <img src="images/work_jaemon_01.jpeg" class="rounded" />
             <p class="label">Bone weight painting in Blender.</p>
           </div>
           <div class="project-info-grid-item">
-            <img src="images/work_jaemon_02.jpeg"  class="rounded"/>
+            <img src="images/work_jaemon_02.jpeg" class="rounded" />
             <p class="label">Importing rigs from Blender to Unity.</p>
           </div>
           <div class="project-info-grid-item">
-            <img src="images/work_jaemon_03.jpeg"  class="rounded"/>
+            <img src="images/work_jaemon_03.jpeg" class="rounded" />
             <p class="label">Setting-up the animation blending system.</p>
           </div>
           <div class="project-info-grid-item">
-            <img src="images/work_jaemon_04.jpeg"  class="rounded"/>
+            <img src="images/work_jaemon_04.jpeg" class="rounded" />
             <p class="label">Lighting & FX.</p>
           </div>
         </div>
@@ -309,7 +386,7 @@
           device.</p>
         <div class="project-info-grid">
           <div class="project-info-grid-item flex-xlarge">
-            <img src="images/work_ucl_vr_01.webp" class="rounded"/>
+            <img src="images/work_ucl_vr_01.webp" class="rounded" />
             <p class="label">Oculus Rift + Moog HapticMaster setup in UCL's VR lab.</p>
           </div>
         </div>
@@ -323,17 +400,17 @@
           sensation when interacting with the virtual environment.</p>
         <div class="project-info-grid">
           <div class="project-info-grid-item flex-large">
-            <img src="images/work_ucl.webp"  class="rounded"/>
+            <img src="images/work_ucl.webp" class="rounded" />
             <p class="label">University College London.</p>
           </div>
           <div class="project-info-grid-item flex-large">
-            <img src="images/work_ucl_vr_03.jpg"  class="rounded"/>
+            <img src="images/work_ucl_vr_03.jpg" class="rounded" />
             <p class="label">Oculus Rift and Moog HapticMaster.</p>
           </div>
         </div>
 
         <div class="row">
-          <img src="images/work_ucl_vr_02.webp"  class="rounded" style="max-height: 143px;" />
+          <img src="images/work_ucl_vr_02.webp" class="rounded" style="max-height: 143px;" />
           <p>The simulation allows the user to move a red cube within a 3D space and interact with the virtual
             environment's walls. A high-gravity zone, represented by a blue square on the floor, exerts a downward
             force

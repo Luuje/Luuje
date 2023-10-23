@@ -1,6 +1,6 @@
 // Fork from http://glslsandbox.com/e#8143.0
 #define PI 3.14159
-#define color_filter mat3(0.4, 0.4, 0.3, 0.0, 0.0, 0.2, 0.9, 0.6, 0.5)
+#define color_filter mat3(0.4, 0.4, 0.1, 0.0, 0.0, 0.2, 0.9, 0.6, 0.5)
 
 precision mediump float;
 
@@ -79,7 +79,7 @@ vec3 blend(vec3 base, vec3 blend, float blendFactor) {
 
 void main() {
     vec2 p = (2.0 * gl_FragCoord.xy - uResolution) / min(uResolution.x, uResolution.y);
-    float t = uTime * fluidSpeed + uMorph;
+    float t = uTime * fluidSpeed; // + uMorph;
     float noiseTime = noise(t);
     float noiseSTime = noiseS(t);
     float noiseSTime1 = noiseS(t + 1.0);
@@ -92,7 +92,7 @@ void main() {
         p += blur / float(i) * sin(float(i) * p.yx + t + PI * vec2(noiseSTime, noiseSTime1)) + fixedOffset;
         if (i >= complexity) break;
     }
-    p += uMouse * mouseSpeed;
+    // p += uMouse * mouseSpeed; MOUSE INTERACTION
 
     vec2 grid = uGrid * 2.0; // set complexity to 0 to debug the grid
 
@@ -110,7 +110,7 @@ void main() {
     //vec2 pos = vec2(st * uResolution.xy);
 
     //blend the noise over the background
-    vec3 blendColor = blend(color, vec3(grain(gl_FragCoord.xy, noiseSTime)), 0.4);
+    vec3 blendColor = blend(color, vec3(grain(gl_FragCoord.xy, noiseSTime)), 0.3);
 
     //get the luminance of the background
     //float luminance = (color[0] + color[1] + color[2])/3.0;
