@@ -17,7 +17,7 @@ const float fixedOffset = 0.7;  // Drives complexity in the amount of curls/cuve
 const float fluidSpeed = 0.01; // Drives speed, smaller number will make it slower.
 const float baseColor = 0.0;
 const float BLUR = 0.47;
-const float brightness = 0.8;
+const float brightness = 1.0;
 
 float map(float value, float min1, float max1, float min2, float max2) {
   return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
