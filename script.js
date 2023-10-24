@@ -190,12 +190,12 @@ function openOverlay(projectInfo) {
     overlay.style.display = 'flex';
     projectInfoContainer.style.display = 'flex';
     // Add the 'fade-element' class to elements to be faded
-    mainContent.classList.add('fade');
+    //mainContent.classList.add('fade');
     // disable scrolling
     document.body.style.overflow = 'hidden';
     overlay.scrollTop = 0;
     overlay.style.opacity = 1;
-    overlay.style.transform = 'translateY(0px)';
+    /* overlay.style.transform = 'translateY(0px)'; */
 
     overlayIsOpen = true;
 
@@ -207,7 +207,7 @@ function openOverlay(projectInfo) {
 function closeOverlay() {
   // Add a class to start the fade out transition
   overlay.style.opacity = '0';
-  overlay.style.transform = 'translateY(20px)';
+  /* overlay.style.transform = 'translateY(20px)'; */
 
   overlayIsOpen = false;
   // Remove the state associated with the overlay
