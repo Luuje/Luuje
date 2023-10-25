@@ -22,9 +22,15 @@
   <link type="text/css" rel="stylesheet" href="style.css">
 
   <script src="https://www.youtube.com/iframe_api"></script>
+  <link rel="preload" href="./scene.splinecode" as="fetch">
 </head>
 
 <body>
+  <div id="loading-screen">
+    <!-- Your loading animation or text here -->
+    <h3>Loading 3D...</h3>
+    <img src="images/loading_3D.gif" />
+  </div>
   <div id="main">
     <canvas id="main-background"></canvas>
     <div id="menu-bar" class="section no-background">
@@ -72,13 +78,14 @@
             </div>
             <!-- <div id="hero-divider"></div> -->
           </div>
-          <a href="https://my.spline.design/gameboycolorgrapev6-2469c491cdfbaa8a4460a023514bdfae/" id="hero-gameboy-link"  target="_blank">
+          <!-- <a href="https://my.spline.design/gameboycolorgrapev6-2469c491cdfbaa8a4460a023514bdfae/" id="hero-gameboy-link"  target="_blank">
             <img src="images/gameboy.png" id="hero-gameboy-img" >
-          </a>
+          </a> -->
           <div id="hero-gameboy">
-            <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.486/build/spline-viewer.js"></script>
+            <canvas id="splineCanvas"></canvas>
+            <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.486/build/spline-viewer.js"></script>
             <spline-viewer hint loading-anim
-              url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer>
+              url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer> -->
             <a href="#" id="gameboy-fullscreen-toggle"><img src="images/fullscreen.png"></a>
           </div>
         </div>
@@ -332,7 +339,7 @@
           imagination.</p>
         <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/Bmx6MDRxeGo?si=PbExBnr36y1XSLs3"
           title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="web-share"
           allowfullscreen></iframe>
         <a class="download-button"
           href="https://drive.google.com/file/d/19RlNuzUR1kgNkYv7sVSOJJqXvKWAaFt_/view?usp=sharing" target="_blank">
@@ -342,7 +349,7 @@
         <h4>Watch the full playthrough:</h4>
         <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/VBgurxnsga8?si=U_mwZVFKYHHsJASr"
           title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="web-share"
           allowfullscreen></iframe>
       </div>
 
@@ -359,7 +366,7 @@
           Devolver.</p>
         <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/CYrcJtTCaKQ?si=92eq77sHbGPeKhX3"
           title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="web-share"
           allowfullscreen></iframe>
         <div class="twitter-embed">
           <a class="twitter-timeline" data-height="600" data-theme="dark"
@@ -436,7 +443,7 @@
           scripting, etc.</p>
         <iframe class="youtube-embed" src="https://www.youtube.com/embed/gYU98sIhcxY?si=r-tEoQpZXQ1hEZok"
           title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="web-share"
           allowfullscreen></iframe>
         <p>In this demo, Blender was used for 3D modeling and rigging and animation. Assets were imported into Unity,
           where they were arranged with camera and lighting. Animation Blending was employed for smooth character
@@ -530,7 +537,7 @@
           used to display the UI of the game on a physical board.</p>
         <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/37O-9HdBHZw?si=PF6EkZrecOpj3_IU"
           title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="web-share"
           allowfullscreen></iframe>
         <p>I completed the BillAR project with a team of students and in collaboration with the INRIA laboratory in
           Bordeaux during my third year at Enseirb-Matmeca. The system was developed using PapARt ('Paper Augmented
@@ -571,7 +578,7 @@
 
         <iframe class="youtube-embed" src="https://www.youtube.com/embed/w0tVobCipQA?si=-uCzXgDJbnH_Bf9B"
           title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="web-share"
           allowfullscreen></iframe>
 
         <h4>The Idea</h4>
@@ -601,7 +608,7 @@
   </div>
 
   <script src="https://unpkg.com/regl@2.1.0/dist/regl.min.js"></script>
-  <script src="bundle.js"></script>
+  <script  type="module" src="bundle.js"></script>
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
