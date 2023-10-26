@@ -64,7 +64,7 @@ window.onload = function () {
   let showCaret = true;
   setInterval(() => {
     if (showCaret) {
-      caret.style.borderRight = "0.3rem solid #000";
+      caret.style.borderRight = "0.3rem solid #fff";
     } else {
       caret.style.borderRight = "0rem solid transparent";
     }
@@ -449,7 +449,7 @@ function hideLoadingScreen() {
 }
 
 // Initialize the Spline Application
-const splineCanvas = document.getElementById('splineCanvas');
+const splineCanvas = document.getElementById('spline-canvas');
 const spline = new Application(splineCanvas);
 
 // Load the Spline scene
