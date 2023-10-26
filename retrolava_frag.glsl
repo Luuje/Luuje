@@ -1,6 +1,6 @@
 // Fork from http://glslsandbox.com/e#8143.0
 #define PI 3.14159
-#define color_filter mat3(0.4, 0.4, 0.1, 0.0, 0.0, 0.2, 0.9, 0.6, 0.5)
+#define color_filter mat3(0.4, 0.4, 0.1, 0.0, 0.0, 0.2, 1.0, 0.6, 0.5)
 
 precision mediump float;
 
