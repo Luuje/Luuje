@@ -306,122 +306,6 @@ window.addEventListener('popstate', function (event) {
 });
 
 
-/* DYNAMICALLY ROUNDED GRID CORNERS */
-
-function updateCornerStyles() {
-  const cards = Array.from(document.querySelectorAll('#project-list .project, #project-list .project-featured'));
-
-  // Reset all border-radius values
-  cards.forEach(card => card.style.borderRadius = '');
-
-  if (cards.length === 0) return;
-
-  let currentTop = cards[0].offsetTop;
-  let firstRow = [];
-  let lastRow = [];
-
-  cards.forEach((card) => {
-    if (card.offsetTop !== currentTop) {
-      lastRow = [card];  // Start a new last row when a new row begins
-      currentTop = card.offsetTop;  // Update currentTop for the new row
-    } else {
-      lastRow.push(card);
-    }
-
-    // Populate the first row
-    if (firstRow.length === 0 || card.offsetTop === firstRow[0].offsetTop) {
-      firstRow.push(card);
-    }
-  });
-
-  // Apply border-radius to corners of the first and last rows
-  const radius = '40px';
-  if (firstRow.length > 0) {
-    firstRow[0].style.borderTopLeftRadius = radius;  // Top-left corner
-    firstRow[firstRow.length - 1].style.borderTopRightRadius = radius;  // Top-right corner
-  }
-
-  if (lastRow.length > 0) {
-    lastRow[0].style.borderBottomLeftRadius = radius;  // Bottom-left corner
-    lastRow[lastRow.length - 1].style.borderBottomRightRadius = radius;  // Bottom-right corner
-  }
-}
-
-/* // Run the function initially
-updateCornerStyles();
-
-// Update when the window resizes
-window.addEventListener('resize', updateCornerStyles); */
-
-
-/* ELASTIC ANIMATION */
-let lastScrollY = 0;
-let lastScrollTime = 0;  // Renamed from lastTime to lastScrollTime
-let isScrolling = false;
-
-// Initialize elastic states
-const elements = Array.from(document.querySelectorAll('.elastic')).map((element) => {
-  const baseMass = element.offsetWidth * element.offsetHeight;  // Base "mass" as width * height
-  const randomFactor = Math.random() * 0.5 + 0.75;  // Random factor between 0.75 and 1.25
-  const adjustedMass = baseMass * randomFactor;  // Adjust the base mass
-
-  return {
-    element: element,
-    initialPosition: element.offsetTop,
-    currentDisplacement: 0,
-    velocity: 0,
-    mass: adjustedMass  // Use the adjusted mass
-  };
-});
-
-// When user scrolls
-window.addEventListener('scroll', function() {
-  const currentTime = new Date().getTime();
-  const deltaTime = currentTime - lastScrollTime;
-  const deltaScroll = window.scrollY - lastScrollY;
-
-  // Calculate velocity (distance over time)
-  const velocity = deltaScroll / deltaTime;
-
-  // Update last values
-  lastScrollTime = currentTime;
-  lastScrollY = window.scrollY;
-  
-  // Flag to indicate scrolling
-  isScrolling = true;
-
-  // Update elements
-  elements.forEach((el) => {
-    const inertiaFactor = 10000;  // You can adjust this to control overall inertia
-    const adjustedVelocity = -(velocity * inertiaFactor) / el.mass;  // Velocity adjusted by "mass"
-    el.velocity = adjustedVelocity;
-  });
-});
-
-
-// Animation loop to handle the effect
-function animate() {
-  elements.forEach((el) => {
-    if (isScrolling) {
-      el.currentDisplacement += el.velocity;
-      el.element.style.transform = `translateY(${el.currentDisplacement}px)`;
-      el.velocity *= 0.9;
-    } else {
-      el.currentDisplacement *= 0.9;
-      el.element.style.transform = `translateY(${el.currentDisplacement}px)`;
-    }
-  });
-
-  // Reset the isScrolling flag
-  isScrolling = false;
-
-  // Continue the animation
-  requestAnimationFrame(animate);
-}
-
-// Start the animation loop
-/* animate(); */
-
 
 /* SPLINE LOADER */
 
@@ -431,12 +315,18 @@ import { Application } from '@splinetool/runtime';
 const loadingScreen = document.getElementById('loading-screen');
 const menuBar = document.getElementById('menu-bar');
 
+/* disable scrolling while loading */
+document.body.style.overflow = 'hidden';
+
 function hideLoadingScreen() {
 
   mainContent.style.opacity = "1";
   /* mainContent.style.transform = "translate(0, 0)"; */
   menuBar.style.opacity = "1";
   loadingScreen.style.opacity = '0';
+  
+  // resume scrolling
+  document.body.style.overflow = 'auto';
 
   // Listen for the end of the transition
   loadingScreen.addEventListener('transitionend', function transitionEndEvent() {
