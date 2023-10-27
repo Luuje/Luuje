@@ -14,7 +14,7 @@ uniform vec2 uGrid;
 const int maxComplexity = 35; // complexity of curls/computation
 const float mouseSpeed = 0.1;  // control the color changing
 const float fixedOffset = 0.7;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
-const float fluidSpeed = 0.01; // Drives speed, smaller number will make it slower.
+const float fluidSpeed = 0.02; // Drives speed, smaller number will make it slower.
 const float baseColor = 0.0;
 const float BLUR = 0.47;
 const float brightness = 1.0;

@@ -59,10 +59,10 @@ p {
     justify-content: center;
     gap: 1rem;
 
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.959);
     z-index: 9999;
 
-    transition: opacity 300ms ease;
+    transition: opacity 1000ms ease;
 }
 
 #loading-screen h3 {
@@ -96,7 +96,7 @@ p {
     position: absolute;
     width: 100%;
 
-    background: radial-gradient(circle, rgba(144, 63, 251, 0.8) 0%, rgba(209, 70, 252, 0.8) 50%, rgba(108, 56, 204, 0.8) 100%), url(noise.svg);
+    background: radial-gradient(circle, rgba(82, 19, 255, 0.8) 0%, rgba(172, 48, 255, 0.8) 50%, rgba(89, 0, 255, 0.8) 100%), url(noise.svg);
 }
 
 /* MEDIA */
@@ -116,8 +116,6 @@ p {
 /* MAIN */
 
 #main-content {
-    opacity: 0;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -150,9 +148,7 @@ p {
     /* filter: drop-shadow(0px 15px 35px #0000003d); */
 
     /* forces GPU usage for performance */
-    -webkit-perspective: 1000;
-    -webkit-transform: translate3d(0,0,0);
-    -webkit-transform: translateZ(0);
+    /* backface-visibility: hidden; */
     perspective: 1000;
     transform: translate3d(0,0,0);
     transform: translateZ(0);
@@ -436,7 +432,7 @@ h2#hero-headline-hi {
 #gameboy-fullscreen-toggle {
     position: absolute;
     top: 12px;
-    left: 8px;
+    right: 30px;
 }
 
 #gameboy-fullscreen-toggle img {
@@ -1283,9 +1279,8 @@ h2#hero-headline-hi {
         display: none;
     }
 
-    #main-content {
-        width: 96vw;
-        padding: 3rem 1rem;
+    .section {
+        padding: 3rem 1rem 7rem 1%;
     }
 
     #hero-headline {
@@ -1293,10 +1288,11 @@ h2#hero-headline-hi {
     }
 
     #hero-content {
-        flex-direction: column;
+        flex-direction: column-reverse;
         justify-content: center;
         align-items: center;
         gap: 0rem;
+        padding: 0 10%;
     }
 
     #hero-headline {
