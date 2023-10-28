@@ -8581,13 +8581,13 @@ window.onload = function () {
   document.body.appendChild(css); */
 
   // CARET BLINK ANIMATION
-  let caret = document.querySelector("#hero-headline h2>span");
+  let caret = document.querySelector("#hero-headline h1>span");
   let showCaret = true;
   setInterval(() => {
     if (showCaret) {
-      caret.style.borderRight = "0.2rem solid #000";
+      caret.style.borderRight = "0.4rem solid #000";
     } else {
-      caret.style.borderRight = "0rem solid transparent";
+      caret.style.borderRight = "0.4rem solid transparent";
     }
     showCaret = !showCaret;
   }, 500);
@@ -8837,23 +8837,18 @@ const splineCanvas = document.getElementById('spline-canvas');
 const spline = new _runtime.Application(splineCanvas);
 
 // Load the Spline scene
-/* spline.load(
-    './scene.splinecode',
-    undefined,
-    {
-        credentials: 'include',
-        mode: 'no-cors',
-    }
-).then(() => {
-    // Hide loading screen once the Spline scene is loaded
-    console.log("Spline scene loaded");
-    hideLoadingScreen();
+spline.load('./scene.splinecode', undefined, {
+  credentials: 'include',
+  mode: 'no-cors'
+}).then(() => {
+  // Hide loading screen once the Spline scene is loaded
+  console.log("Spline scene loaded");
+  hideLoadingScreen();
 }).catch(error => {
-    // Handle loading error
-    console.error("Spline scene loading failed:", error);
-    hideLoadingScreen();
-}); */
-hideLoadingScreen();
+  // Handle loading error
+  console.error("Spline scene loading failed:", error);
+  hideLoadingScreen();
+});
 
 /**
  * @author mrdoob / http://mrdoob.com/

@@ -36,11 +36,6 @@ figure {
     font-weight: 400;
 }
 
-h1 {
-    font-size: 3rem;
-    margin-bottom: 4rem;
-}
-
 p {
     font-family: LINESeed, Arial, sans-serif;
     font-size: 0.9rem;
@@ -94,7 +89,6 @@ p {
     position: absolute;
     width: 100%;
     height: 100%;
-    padding: 1rem;
     
     border-radius: 40px;
 
@@ -127,7 +121,7 @@ p {
     width: 100%;
     margin-top: 0;
     margin-bottom: 10rem;
-    padding: 0rem 0rem 4rem 0rem;
+    padding: 1rem 2rem 4rem 2rem;
     background-size: cover;
 
     transition: opacity 2000ms ease;
@@ -140,7 +134,7 @@ p {
     justify-content: center;
     align-items: center;
 
-    padding: 5rem 5rem 7rem 5rem;
+    padding: 5rem 0rem 7rem 0rem;
     margin: 1rem 0 5rem 0;
     width: 100%;
     gap: 2rem;
@@ -164,13 +158,17 @@ p {
 }
 
 .section h2 {
-    width: 100%;
-    margin-bottom: 3rem;
-    text-align: center;
-    justify-content: center;
+    margin-right: 1rem;
 
+    text-align: end;
     font-family: LINESeedBold;    
-    font-size: 3.5rem;
+    font-size: 6rem;
+    line-height: 6rem;
+    writing-mode: tb-rl;
+    text-orientation: mixed;
+    transform: rotate(180deg);
+    
+    border-left: solid 4px black;
 }
 
 .no-background {
@@ -212,25 +210,24 @@ p {
     opacity: 1;
 
     position: sticky;
-    align-content: center;
-    align-items: center;
+    align-self: flex-end;
     display: flex;
     flex: none;
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 0px;
-    justify-content: flex-start;
-    min-height: 30px;
+    justify-content: center;
+    min-height: 50px;
     height: fit-content;
     overflow: visible;
-    width: 100%;
-    padding: 4rem;
+    width: 40%;
+    padding: 0 3rem;
     margin: 0;
     will-change: transform;
     z-index: 3;
 
-    background-color: none;
-    border-radius: none;
+    background-color: rgb(155, 154, 182);
+    border-radius: 40px;
     backdrop-filter: none;
     border: none;
     filter: none;
@@ -239,15 +236,13 @@ p {
 }
 
 #menu {
-    align-content: center;
-    align-items: center;
     display: flex;
     flex: none;
     flex-direction: row;
     flex-wrap: nowrap;
-    gap: 3vw;
+    gap: 3rem;
     height: 2rem;
-    justify-content: center;
+    justify-content: end;
     min-height: 30px;
     overflow: hidden;
     padding-top: 6px;
@@ -261,6 +256,7 @@ p {
 .menu-item {
     display: flex;
     flex-direction: row;
+    flex: 1;
     height: 100%;
     gap: 10px;
     align-items: center;
@@ -299,9 +295,11 @@ p {
 }
 
 #menu-navigation {
+    flex: 2;
     display: flex;
-    gap: 2rem;
-
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
 }
 
 #menu-navigation a {
@@ -319,6 +317,10 @@ p {
 
     opacity: 0.2;
     background-color: white;
+}
+
+#menu-social {
+    justify-content: space-around;
 }
 
 #menu-social * {
@@ -363,6 +365,7 @@ p {
     z-index: 5;
     align-content: center;
     align-items: center;
+    gap: 1rem;
 }
 
 #hero-section .section-content {
@@ -375,17 +378,18 @@ p {
     pointer-events: none;
     display: flex;
     flex-direction: column;
-    width: 50%;
+    width: 40%;
     align-items: start;
     align-self: flex-end;
     margin: 3rem 0 3rem 0;
 }
 
-#hero-headline h2 {
+#hero-headline>h1 {
+    text-align: left;
     font-family: 'LINESeedBold', sans-serif;
-    font-size: 2.5rem;
+    font-size: 4.5rem;
     letter-spacing: 0.0rem;
-    line-height: 1.5rem;
+    line-height: 3.5rem;
     color: rgb(0, 0, 0);
     border: none;
     margin: 1rem 0;
@@ -394,14 +398,8 @@ p {
     /* text-shadow: 1px 0px 0 rgb(250, 78, 150), -1px 0px 0 rgb(96, 121, 255); */
 }
 
-h2#hero-headline-hi {
-    text-align: left;
-    font-size: 3rem;
-    line-height: 2rem;
-}
-
-#hero-headline h2>span {
-    border-right: 0.1rem solid #000000;
+#hero-headline h1>span {
+    border-right: 0.4rem solid #000000;
     animation: caret-blink 1s steps(2, jump-both) infinite;
 }
 
@@ -409,7 +407,7 @@ h2#hero-headline-hi {
 
 #hero-gameboy {
     position: relative;
-    width: 70%;
+    width: 60%;
     height: 600px;
     display: flex;
     padding: 0 0;
@@ -418,6 +416,10 @@ h2#hero-headline-hi {
     align-items: center;
     border-radius: 10px;
     border: solid 1px rgba(255, 255, 255, 0);
+}
+
+#spline-canvas {
+    padding: 3rem 2rem 2rem 2rem;
 }
 
 #hero-gameboy-link {
@@ -489,16 +491,20 @@ h2#hero-headline-hi {
 }
 
 #the-garden {
-    height: 400px;
+    height: 440px;
+}
+
+#the-garden .card {
+    flex: 2.5;
 }
 
 #karmazoo {
-    flex-basis: 80%;
-    height: 450px;
+    justify-content: end;
+    height: 500px;
 }
 
 #karmazoo .card {
-    flex: 1.5;
+    flex: 1;
 }
 
 #karmazoo .project-featured-info {
