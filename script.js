@@ -320,9 +320,9 @@ document.body.style.overflow = 'hidden';
 
 function hideLoadingScreen() {
 
-  mainContent.style.opacity = "1";
+  /* mainContent.style.opacity = "1"; */
   /* mainContent.style.transform = "translate(0, 0)"; */
-  menuBar.style.opacity = "1";
+  /* menuBar.style.opacity = "1"; */
   loadingScreen.style.opacity = '0';
   
   // resume scrolling
@@ -881,10 +881,10 @@ const DEV = false;
 const pointer = new Pointer(regl._gl.canvas);
 
 const canvas = document.querySelector("#main-background");
-canvas.width = Math.min(document.body.scrollWidth, 1920);
-canvas.height = document.body.scrollHeight;
-/* canvas.width = Math.min(window.innerWidth, 1920);
-canvas.height = Math.min(window.innerHeight, 1920); */
+/* canvas.width = Math.min(document.body.scrollWidth, 1920);
+canvas.height = document.body.scrollHeight; */
+canvas.width = Math.min(window.innerWidth, 1920);
+canvas.height = Math.min(window.innerHeight, 1080);
 
 console.log(canvas.width + " x " + canvas.height);
 
@@ -926,8 +926,8 @@ const draw = regl({
       viewportHeight
       ], */
     uResolution: () => [
-      document.getElementById("main-background").width,
-      document.getElementById("main-background").height
+      document.getElementById("main-background").width * 2.0,
+      document.getElementById("main-background").height * 2.0
     ],
     uTime: ({
       tick
