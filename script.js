@@ -64,7 +64,7 @@ window.onload = function () {
   let showCaret = true;
   setInterval(() => {
     if (showCaret) {
-      caret.style.borderRight = "0.3rem solid #fff";
+      caret.style.borderRight = "0.2rem solid #000";
     } else {
       caret.style.borderRight = "0rem solid transparent";
     }
@@ -343,7 +343,7 @@ const splineCanvas = document.getElementById('spline-canvas');
 const spline = new Application(splineCanvas);
 
 // Load the Spline scene
-spline.load(
+/* spline.load(
     './scene.splinecode',
     undefined,
     {
@@ -358,7 +358,8 @@ spline.load(
     // Handle loading error
     console.error("Spline scene loading failed:", error);
     hideLoadingScreen();
-});
+}); */
+hideLoadingScreen();
 
 
 

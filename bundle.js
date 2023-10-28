@@ -8585,7 +8585,7 @@ window.onload = function () {
   let showCaret = true;
   setInterval(() => {
     if (showCaret) {
-      caret.style.borderRight = "0.3rem solid #fff";
+      caret.style.borderRight = "0.2rem solid #000";
     } else {
       caret.style.borderRight = "0rem solid transparent";
     }
@@ -8837,18 +8837,23 @@ const splineCanvas = document.getElementById('spline-canvas');
 const spline = new _runtime.Application(splineCanvas);
 
 // Load the Spline scene
-spline.load('./scene.splinecode', undefined, {
-  credentials: 'include',
-  mode: 'no-cors'
-}).then(() => {
-  // Hide loading screen once the Spline scene is loaded
-  console.log("Spline scene loaded");
-  hideLoadingScreen();
+/* spline.load(
+    './scene.splinecode',
+    undefined,
+    {
+        credentials: 'include',
+        mode: 'no-cors',
+    }
+).then(() => {
+    // Hide loading screen once the Spline scene is loaded
+    console.log("Spline scene loaded");
+    hideLoadingScreen();
 }).catch(error => {
-  // Handle loading error
-  console.error("Spline scene loading failed:", error);
-  hideLoadingScreen();
-});
+    // Handle loading error
+    console.error("Spline scene loading failed:", error);
+    hideLoadingScreen();
+}); */
+hideLoadingScreen();
 
 /**
  * @author mrdoob / http://mrdoob.com/
