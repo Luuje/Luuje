@@ -315,18 +315,12 @@ import { Application } from '@splinetool/runtime';
 const loadingScreen = document.getElementById('loading-screen');
 const menuBar = document.getElementById('menu-bar');
 
-/* disable scrolling while loading */
-document.body.style.overflow = 'hidden';
-
 function hideLoadingScreen() {
 
   /* mainContent.style.opacity = "1"; */
   /* mainContent.style.transform = "translate(0, 0)"; */
   /* menuBar.style.opacity = "1"; */
   loadingScreen.style.opacity = '0';
-  
-  // resume scrolling
-  document.body.style.overflow = 'auto';
 
   // Listen for the end of the transition
   loadingScreen.addEventListener('transitionend', function transitionEndEvent() {
@@ -343,7 +337,7 @@ const splineCanvas = document.getElementById('spline-canvas');
 const spline = new Application(splineCanvas);
 
 // Load the Spline scene
-spline.load(
+/* spline.load(
     './scene.splinecode',
     undefined,
     {
@@ -358,8 +352,8 @@ spline.load(
     // Handle loading error
     console.error("Spline scene loading failed:", error);
     hideLoadingScreen();
-});
-
+}); */
+hideLoadingScreen(); //DEBUG
 
 
 
@@ -875,91 +869,73 @@ document.addEventListener('mousemove', function (e) {
 const glsl = require('glslify');
 const fragShader = glsl.file('./retrolava_frag.glsl');
 const vertShader = glsl.file('./retrolava_vert.glsl');
-const regl = createREGL("#main-background");
 
 const DEV = false;
-const pointer = new Pointer(regl._gl.canvas);
 
-const canvas = document.querySelector("#main-background");
-/* canvas.width = Math.min(document.body.scrollWidth, 1920);
-canvas.height = document.body.scrollHeight; */
-canvas.width = Math.min(window.innerWidth, 1920);
-canvas.height = Math.min(window.innerHeight, 1080);
+const regl1 = createREGL("#main-background");
+const regl2 = createREGL("#secondary-background");
 
-console.log(canvas.width + " x " + canvas.height);
+console.log(document.getElementById("main-background").width + " x " + document.getElementById("main-background").height);
+console.log(document.getElementById("secondary-background").width + " x " + document.getElementById("main-background").height);
 
-let lastPressingT,
-  dtSec = 0,
-  morphAmount = 0;
-pointer.addPressingListener((e) => {
-  lastPressingT = lastPressingT || Date.now();
-  const nowInMs = Date.now();
-  dtSec = (nowInMs - lastPressingT) / 1000;
-  lastPressingT = nowInMs;
-  morphAmount += dtSec * pointer.pressure * 0.1;
-});
-// Calling regl() creates a new partially evaluated draw command
-const draw = regl({
-  // Shaders in regl are just strings.  You can use glslify or whatever you want
-  // to define them.  No need to manually create shader objects.
-  frag: fragShader,
-  vert: vertShader,
-  // Here we define the vertex attributes for the above shader
-  attributes: {
-    // regl.buffer creates a new array buffer object
-    position: regl.buffer([
-      [-1, -1],
-      [1, -1],
-      [-1, 1], // no need to flatten nested arrays, regl automatically
-      [-1, 1],
-      [1, 1],
-      [1, -1] // unrolls them into a typedarray (default Float32)
-    ])
-    // regl automatically infers sane defaults for the vertex attribute pointers
-  },
-  uniforms: {
-    /* uResolution: ({
-      viewportWidth,
-      viewportHeight
-    }) => [
-      viewportWidth,
-      viewportHeight
-      ], */
-    uResolution: () => [
-      document.getElementById("main-background").width * 2.0,
-      document.getElementById("main-background").height * 2.0
-    ],
-    uTime: ({
-      tick
-    }) => 0.01 * tick,
-    uMouse: () => [pointer.position.x, pointer.position.y],
-    uMorph: () => morphAmount,
-    uRandomSeed: DEV ? 138975.579831 : new Date().getTime() % 1000000, //
-    uGrid: ({
-      viewportWidth,
-      viewportHeight
-    }) => {
-      const ratio = (1.5 + (viewportWidth / 1300)) / 1.5; // ratio between current width and average width 1300px
-      return [ratio, ratio];
+// Function to create draw command
+function createDrawCommand(regl, canvasId) {
+  return regl({
+    frag: fragShader,
+    vert: vertShader,
+    attributes: {
+      position: regl.buffer([
+        [-1, -1],
+        [1, -1],
+        [-1, 1],
+        [-1, 1],
+        [1, 1],
+        [1, -1]
+      ])
     },
-  },
-  // This tells regl the number of vertices to draw in this command
-  count: 6
-});
+    uniforms: {
+      uResolution: () => [
+        document.getElementById(canvasId).width * 2.0,
+        document.getElementById(canvasId).height * 2.0
+      ],
+      uTime: ({ tick }) => 0.01 * tick,
+      uMorph: () => morphAmount,
+      uRandomSeed: DEV ? 138975.579831 : new Date().getTime() % 1000000,
+      uGrid: ({ viewportWidth, viewportHeight }) => {
+        const ratio = (1.5 + (viewportWidth / 1300)) / 1.5;
+        return [ratio, ratio];
+      },
+    },
+    count: 6
+  });
+}
+
 // regl.frame() wraps requestAnimationFrame and also handles viewport changes
-let lastTime = 0;
+let lastTime1 = 0, lastTime2 = 0;
 const fps = 30;
 const interval = 1000 / fps;
 
-regl.frame(() => {
+// Create draw commands
+const draw1 = createDrawCommand(regl1, "main-background");
+const draw2 = createDrawCommand(regl2, "secondary-background");
+
+// Frame loop
+regl1.frame(() => {
   const currentTime = Date.now();
-  const elapsed = currentTime - lastTime;
+  const elapsed = Date.now() - lastTime1;
 
   if (elapsed > interval) {
-    // Save the last time we drew
-    lastTime = currentTime - (elapsed % interval);
+    lastTime1 = currentTime - (elapsed % interval);
+    draw1();
+  }
+});
 
-    // Your drawing code here
-    draw();
+regl2.frame(() => {
+  const currentTime = Date.now();
+  const elapsed = Date.now() - lastTime2;
+
+  if (elapsed > interval) {
+    lastTime2 = currentTime - (elapsed % interval);
+    draw2();
   }
 });

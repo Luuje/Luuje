@@ -26,57 +26,66 @@
 </head>
 
 <body>
-  <div id="loading-screen">
-    <!-- Your loading animation or text here -->
-    <h3>Loading 3D...</h3>
-    <img src="images/loading_3D.gif" />
-  </div>
   <div id="main">
 
     <div id="main-content">
 
       <div id="hero-section" class="section no-background">
-        <div id="menu-bar" class="section no-background">
-          <div id="menu">
-            <!-- <div id="menu-title" class="menu-item">
-              <a href="https://www.julientech.art/" id="menu-logo" class="menu-item">
-                <img src="images/logo-starbolt2.png" alt="logo">
-              </a>
-              <h4 id="menu-title-text">Julien Catala</h4>
-            </div>
-            <div id="menu-divider-1" class="menu-divider"></div> -->
-            <div id="menu-navigation" class="menu-item">
-              <a id="menu-work" href="#work-section">Work</a>
-              <a id="menu-about" href="#about-section">About</a>
-              <a id="menu-contact" href="#contact-section">Contact</a>
-            </div>
-            <div id="menu-divider-2" class="menu-divider"></div>
-            <div id="menu-language" class="menu-item" style="display: none;">
-              <p>En</p>
-              <p>/</p>
-              <p>Fr</p>
-            </div>
-            <div id="menu-social" class="menu-item">
-              <a href="mailto:julien.catala@live.fr"><img id="menu-social-email" src="images/social_email.png"
-                  alt="social-linkedin"></a>
-              <a href="https://www.linkedin.com/in/juliencatala/" target="_blank"><img id="menu-social-linkedin"
-                  src="images/social_linkedin.png" alt="social-linkedin"></a>
-              <a href="https://twitter.com/Luje_fr" target="_blank"><img id="menu-social-x" src="images/social_x.png"
-                  alt="social-x"></a>
-              <a href="https://discord.gg/QsassBSJSQ" target="_blank"><img id="menu-social-discord"
-                  src="images/social_discord.png" alt="social-discord"></a>
+        <div id="header">
+          <div id="website-title">
+            <a href="https://www.julientech.art/" id="website-logo">
+              <img src="images/logo-starbolt2.png" alt="logo">
+            </a>
+            <h4 id="website-title-text">julien catala</h4>
+          </div>
+          <div id="menu-bar" class="section no-background">
+            <div id="menu">
+              <!-- <div id="menu-title" class="menu-item">
+                <a href="https://www.julientech.art/" id="menu-logo" class="menu-item">
+                  <img src="images/logo-starbolt2.png" alt="logo">
+                </a>
+                <h4 id="menu-title-text">Julien Catala</h4>
+              </div>
+              <div id="menu-divider-1" class="menu-divider"></div> -->
+              <div id="menu-navigation" class="menu-item">
+                <a id="menu-work" href="#work-section">Work</a>
+                <a id="menu-about" href="#about-section">About</a>
+                <a id="menu-contact" href="#contact-section">Contact</a>
+              </div>
+              <div id="menu-divider-2" class="menu-divider"></div>
+              <div id="menu-language" class="menu-item" style="display: none;">
+                <p>En</p>
+                <p>/</p>
+                <p>Fr</p>
+              </div>
+              <div id="menu-social" class="menu-item">
+                <a href="mailto:julien.catala@live.fr"><img id="menu-social-email" src="images/social_email.png"
+                    alt="social-linkedin"></a>
+                <a href="https://www.linkedin.com/in/juliencatala/" target="_blank"><img id="menu-social-linkedin"
+                    src="images/social_linkedin.png" alt="social-linkedin"></a>
+                <a href="https://twitter.com/Luje_fr" target="_blank"><img id="menu-social-x" src="images/social_x.png"
+                    alt="social-x"></a>
+                <a href="https://discord.gg/QsassBSJSQ" target="_blank"><img id="menu-social-discord"
+                    src="images/social_discord.png" alt="social-discord"></a>
+              </div>
             </div>
           </div>
         </div>
+
         <div class="section-content">
           <div id="hero-content">
             <div id="hero-gameboy">
-              <canvas id="main-background"></canvas>
+              <canvas id="main-background" width="1920" height="1080"></canvas>
               <canvas id="spline-canvas"></canvas>
               <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.486/build/spline-viewer.js"></script>
             <spline-viewer hint loading-anim
               url="https://prod.spline.design/BeHZFsrXbaGovZXw/scene.splinecode"></spline-viewer> -->
               <a href="#" id="gameboy-fullscreen-toggle"><img src="images/fullscreen.png"></a>
+              <div id="loading-screen">
+                <!-- Your loading animation or text here -->
+                <h3>LOADING 3D...</h3>
+                <img src="images/loading_3D.gif" />
+              </div>
             </div>
             <div id="hero-headline">
               <h1>Hi, </h1>
@@ -95,63 +104,67 @@
 
       <div id="work-section" class="section">
         <div class="section-content">
-          <div class="row">
+          <div class="section-title">
             <h2>WORK</h2>
-            <div id="project-list">
-              <!-- Work content here -->
-              <div id="the-garden" class="project-featured">
-                <div class="card" data-project-info="the-garden">
-                  <img src="images/TheGardenOfDreams.jpg" class="cover" />
-                  <div class="glow"></div>
+          </div>
+          <div id="project-list">
+            <!-- Work content here -->
+            <div id="the-garden" class="project-featured">
+              <div class="project-featured-info">
+                <h4 class=" align-right">The Garden Of Dreams</h4>
+                <div class="project-info-tag-list align-right">
+                  <p class="project-info-tag align-right">3D GAME</p>
+                  <p class="project-info-tag align-right">PERSONAL PROJECT</p>
                 </div>
-                <div class="project-featured-info">
-                  <h4>The Garden Of Dreams</h4>
-                  <div class="project-info-tag-list">
-                    <p class="project-info-tag">3D GAME</p>
-                    <p class="project-info-tag">PERSONAL PROJECT</p>
-                  </div>
-                  <p>I developed this Ghibli-inspired interactive experience as a student project for ICAN Design. Play
-                    as
-                    Hayao Miyazaki, enjoying a sunny walk in his garden, and encounter objects that ignite your
-                    imagination.
-                  </p>
-                </div>
+                <p class=" align-right">I developed this Ghibli-inspired interactive experience as a student project
+                  for ICAN Design. Play
+                  as
+                  Hayao Miyazaki, enjoying a sunny walk in his garden, and encounter objects that ignite your
+                  imagination.
+                </p>
               </div>
-              <div id="karmazoo" class="project-featured">
-                <div class="project-featured-info">
-                  <h4>KarmaZoo</h4>
-                  <div class="project-info-tag-list">
-                    <p class="project-info-tag">PIXEL ART GAME</p>
-                    <p class="project-info-tag">PASTAGAMES</p>
-                    <p class="project-info-tag">DEVOLVER</p>
-                  </div>
-                  <p>I worked as a Tech Artist on this joyful, altruistic, cooperative platformer in pixel art-style,
-                    developed by Pastagames and published by Devolver.</p>
-                </div>
-                <div class="card" data-project-info="karmazoo">
-                  <img src="images/karmazoo.jpg" class="cover" />
-                  <div class="glow"></div>
-                </div>
+              <div class="card" data-project-info="the-garden">
+                <img src="images/TheGardenOfDreams.jpg" class="cover" />
+                <div class="glow"></div>
               </div>
-              <div id="bmx" class="project-item">
-                <div class="card" data-project-info="bmx">
-                  <img src="images/work_bmx_thumbnail.jpg" class="cover" />
-                  <div class="glow"></div>
-                </div>
-                <div class="project-item-info">
-                  <h4>Realistic BMX modeling</h4>
-                  <div class="project-info-tag-list">
-                    <p class="project-info-tag">3D MODELING</p>
-                    <p class="project-info-tag">RENDERING</p>
-                  </div>
-                </div>
+            </div>
+            <div id="karmazoo" class="project-featured">
+              <div class="card" data-project-info="karmazoo">
+                <img src="images/karmazoo.jpg" class="cover" />
+                <div class="glow"></div>
               </div>
-              <div id="jaemon2D" class="project-item">
+              <div class="project-featured-info">
+                <h4>KarmaZoo</h4>
+                <div class="project-info-tag-list">
+                  <p class="project-info-tag">PIXEL ART GAME</p>
+                  <p class="project-info-tag">PASTAGAMES</p>
+                  <p class="project-info-tag">DEVOLVER</p>
+                </div>
+                <p>I worked as a Tech Artist on this joyful, altruistic, cooperative platformer in pixel art-style,
+                  developed by Pastagames and published by Devolver.</p>
+              </div>
+            </div>
+            <div id="bmx" class="project-featured">
+              <div class="project-featured-info">
+                <h4 class="align-right">Realistic BMX modeling</h4>
+                <div class="project-info-tag-list align-right">
+                  <p class="project-info-tag align-right">3D MODELING</p>
+                  <p class="project-info-tag align-right">RENDERING</p>
+                </div>
+                <p class="align-right">Highly detailed modeling and rendering of a BMX from a blueprint.</p>
+              </div>
+              <div class="card" data-project-info="bmx">
+                <img src="images/work_bmx_thumbnail.jpg" class="cover" />
+                <div class="glow"></div>
+              </div>
+            </div>
+            <div id="jaemon-prototypes" class="row">
+              <div id="jaemon2D" class="project-secondary">
                 <div class="card" data-project-info="jaemon2D">
                   <img src="images/work_jaemon2d_thumbnail.jpg" class="cover" />
                   <div class="glow"></div>
                 </div>
-                <div class="project-item-info">
+                <div class="project-secondary-info">
                   <h4>Pixel-art game prototype</h4>
                   <div class="project-info-tag-list">
                     <p class="project-info-tag">GAME DEV</p>
@@ -159,12 +172,12 @@
                   </div>
                 </div>
               </div>
-              <div id="jaemon" class="project-item">
+              <div id="jaemon" class="project-secondary">
                 <div class="card" data-project-info="jaemon">
                   <img src="images/work_jaemon_thumbnail.jpg" class="cover" />
                   <div class="glow"></div>
                 </div>
-                <div class="project-item-info">
+                <div class="project-secondary-info">
                   <h4>3D game prototype</h4>
                   <div class="project-info-tag-list">
                     <p class="project-info-tag">3D GAME DEV</p>
@@ -173,6 +186,8 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div id="other-projects" class="row">
               <div id="ucl-vr" class="project-item">
                 <div class="card" data-project-info="ucl-vr">
                   <img src="images/work_ucl_vr.jpg" class="cover" />
@@ -218,65 +233,72 @@
         </div>
       </div>
 
+      <canvas id="secondary-background" width="2000" height="1000"></canvas>
+
       <div id="about-section" class="section">
         <div class="section-content">
-          <h2 id="about-title">ABOUT ME</h2>
-          <div id="about-header" class="row">
-            <div id="about-profile" class=""></div>
-            <div id="about-bio" class="row">
-              <!-- <p id="about-bio-quote-start" class="elastic">“</p> -->
-              <div id="about-bio-messages" class="column">
-                <h4 class="about-bio-message">I'm a software engineer turned technical artist, comfortable
-                  coding
-                  and working in 3D. I have a keen eye for modern design and stylized visuals.</h4>
-                <h4 class="about-bio-message">Outside of work, I'm passionate about both the competitive worlds of
-                  sports
-                  and esports, as well as the deeper mysteries of science and philosophy.</h4>
+          <div class="section-column">
+            <div id="about-header" class="row">
+              <div id="about-profile" class=""></div>
+              <div id="about-bio" class="row">
+                <!-- <p id="about-bio-quote-start" class="elastic">“</p> -->
+                <div id="about-bio-messages" class="column">
+                  <h4 class="about-bio-message">I'm a software engineer turned technical artist, comfortable
+                    coding
+                    and working in 3D. I have a keen eye for modern design and stylized visuals.</h4>
+                  <h4 class="about-bio-message">Outside of work, I'm passionate about both the competitive worlds of
+                    sports
+                    and esports, as well as the deeper mysteries of science and philosophy.</h4>
+                </div>
+                <!-- <p id="about-bio-quote-end" class="elastic">”</p> -->
               </div>
-              <!-- <p id="about-bio-quote-end" class="elastic">”</p> -->
             </div>
-          </div>
+            <div id="about-formation-list" class="column">
+              <div class="about-formation row">
+                <a class="about-formation-img"
+                  href="https://www.ican-design.fr/formation/bachelor-design-3d-animation.html" target="_blank">
+                  <img src="images/school-ican.jpg" class="cover" />
+                </a>
+                <div class="about-formation-info column">
+                  <h4>3D Design and Animation</h4>
+                  <h3>ICAN Design, Paris</h3>
+                  <p>2021 - 2022</p>
+                  <p>Institute of Digital Creation and Animation.
+                    15-month Bachelor's in 3D Design and Animation to obtain an additional diploma.</p>
+                </div>
+              </div>
+              <div class="about-formation row">
+                <a class="about-formation-img" href="https://enseirb-matmeca.bordeaux-inp.fr/fr" target="_blank">
+                  <img src="images/school-enseirb.jpg" class="cover" />
+                </a>
+                <div class="about-formation-info column">
+                  <h4>Software Engineering Degree</h4>
+                  <h3>ENSEIRB, Bordeaux</h3>
+                  <p>2012 - 2015</p>
+                  <p>National Graduate School of Electronics, Computer Science, Telecommunications, Mathematics, and
+                    Mechanics of Bordeaux. </p>
+                  <p>Specialization: 3D, Multimedia, Video Games.</p>
+                </div>
+              </div>
+              <div class="about-formation row">
+                <a class="about-formation-img" href="https://www.inp-toulouse.fr/fr/formations/prepa-t.html"
+                  target="_blank">
+                  <img src="images/school-prepainp.jpg" class="cover" />
+                </a>
+                <div class="about-formation-info column">
+                  <h4>Preparatory Class for "Grandes Ecoles"</h4>
+                  <h3>La Prepa des INP, Toulouse</h3>
+                  <p>2010 - 2012</p>
+                  <p>Preparatory class for engineering schools of the National Polytechnic Institute (INP).</p>
+                  <p> Specialization: Mathematics and Computer Science.</p>
+                </div>
+              </div>
+            </div>
 
-          <div id="about-formation-list" class="column">
-            <div class="about-formation row">
-              <a class="about-formation-img"
-                href="https://www.ican-design.fr/formation/bachelor-design-3d-animation.html" target="_blank">
-                <img src="images/school-ican.jpg" class="cover" />
-              </a>
-              <div class="about-formation-info column">
-                <h4>3D Design and Animation</h4>
-                <h3>ICAN Design, Paris</h3>
-                <p>2021 - 2022</p>
-                <p>Institute of Digital Creation and Animation.
-                  15-month Bachelor's in 3D Design and Animation to obtain an additional diploma.</p>
-              </div>
-            </div>
-            <div class="about-formation row">
-              <a class="about-formation-img" href="https://enseirb-matmeca.bordeaux-inp.fr/fr" target="_blank">
-                <img src="images/school-enseirb.jpg" class="cover" />
-              </a>
-              <div class="about-formation-info column">
-                <h4>Software Engineering Degree</h4>
-                <h3>ENSEIRB, Bordeaux</h3>
-                <p>2012 - 2015</p>
-                <p>National Graduate School of Electronics, Computer Science, Telecommunications, Mathematics, and
-                  Mechanics of Bordeaux. </p>
-                <p>Specialization: 3D, Multimedia, Video Games.</p>
-              </div>
-            </div>
-            <div class="about-formation row">
-              <a class="about-formation-img" href="https://www.inp-toulouse.fr/fr/formations/prepa-t.html"
-                target="_blank">
-                <img src="images/school-prepainp.jpg" class="cover" />
-              </a>
-              <div class="about-formation-info column">
-                <h4>Preparatory Class for "Grandes Ecoles"</h4>
-                <h3>La Prepa des INP, Toulouse</h3>
-                <p>2010 - 2012</p>
-                <p>Preparatory class for engineering schools of the National Polytechnic Institute (INP).</p>
-                <p> Specialization: Mathematics and Computer Science.</p>
-              </div>
-            </div>
+
+          </div>
+          <div class="section-title">
+            <h2 id="about-title">ABOUT ME</h2>
           </div>
         </div>
       </div>
@@ -377,204 +399,204 @@
       </div>
 
       <div id="jaemon2D-info" class="project-info">
-        <div class="project-info-title">
+        <di v class="project-info-title">
           <h2>Pixel-art game prototype</h2>
           <div class="project-info-tag-list">
             <h4 class="project-info-tag">GAME DEV</h4>
             <h4 class="project-info-tag">PIXEL ART</h4>
           </div>
+      </div>
+      <div style="display: flex; flex-direction: row; align-items: end;">
+        <img src="images/work_jaemon2D_idle.gif" style="width: 64px; height: 64px" />
+        <p>I started working on a simple prototype of a tile-based pixel-art game in Unity.</p>
+      </div>
+      <div class="project-info-grid">
+        <div class="project-info-grid-item">
+          <img src="images/work_jaemon2D_palette.jpg" class="rounded" />
+          <p class="label">Using Unity's Tile Palette to quickly edit the levels.</p>
         </div>
-        <div style="display: flex; flex-direction: row; align-items: end;">
-          <img src="images/work_jaemon2D_idle.gif" style="width: 64px; height: 64px" />
-          <p>I started working on a simple prototype of a tile-based pixel-art game in Unity.</p>
+        <div class="project-info-grid-item">
+          <img src="images/work_jaemon2D_pathfinding_02.jpg" class="rounded" />
+          <p class="label">Implementing A* pathfinding algorithm into my custom-built tile system.</p>
         </div>
-        <div class="project-info-grid">
-          <div class="project-info-grid-item">
-            <img src="images/work_jaemon2D_palette.jpg" class="rounded" />
-            <p class="label">Using Unity's Tile Palette to quickly edit the levels.</p>
-          </div>
-          <div class="project-info-grid-item">
-            <img src="images/work_jaemon2D_pathfinding_02.jpg" class="rounded" />
-            <p class="label">Implementing A* pathfinding algorithm into my custom-built tile system.</p>
-          </div>
-          <div class="project-info-grid-item">
-            <img src="images/work_jaemon2D_pathfinding_01.jpg" class="rounded" />
-            <p class="label">Synchronizing movement system with frame-by-frame animation.</p>
-          </div>
-          <div class="project-info-grid-item">
-            <img src="images/work_jaemon2D_pathfinding_03.jpg" class="rounded" />
-            <p class="label">The pathfinding algorithm detects and avoids obstacles.</p>
-          </div>
+        <div class="project-info-grid-item">
+          <img src="images/work_jaemon2D_pathfinding_01.jpg" class="rounded" />
+          <p class="label">Synchronizing movement system with frame-by-frame animation.</p>
+        </div>
+        <div class="project-info-grid-item">
+          <img src="images/work_jaemon2D_pathfinding_03.jpg" class="rounded" />
+          <p class="label">The pathfinding algorithm detects and avoids obstacles.</p>
         </div>
       </div>
-
-      <div id="jaemon-info" class="project-info">
-        <div class="project-info-title">
-          <h2>Cel-shading game prototype</h2>
-          <div class="project-info-tag-list">
-            <h4 class="project-info-tag">3D GAME DEV</h4>
-            <h4 class="project-info-tag">CEL-SHADING</h4>
-            <h4 class="project-info-tag">ANIMATION</h4>
-          </div>
-        </div>
-        <p>Prototype of a 3D cel-shading game including modeling, rigging, animating, texturing, shader development,
-          scripting, etc.</p>
-        <iframe class="youtube-embed" src="https://www.youtube.com/embed/gYU98sIhcxY?si=r-tEoQpZXQ1hEZok"
-          title="YouTube video player" frameborder="0" allow="web-share" allowfullscreen></iframe>
-        <p>In this demo, Blender was used for 3D modeling and rigging and animation. Assets were imported into Unity,
-          where they were arranged with camera and lighting. Animation Blending was employed for smooth character
-          transitions. Unity's Nav Mesh was utilized for pathfinding and character movement. Core gameplay mechanics
-          were scripted using Unity's API, and Cg shaders were implemented for visual effects</p>
-        <div class="project-info-grid">
-          <div class="project-info-grid-item">
-            <img src="images/work_jaemon_00.jpeg" class="rounded" />
-            <p class="label">Unity asset integration.</p>
-          </div>
-          <div class="project-info-grid-item">
-            <img src="images/work_jaemon_01.jpeg" class="rounded" />
-            <p class="label">Bone weight painting in Blender.</p>
-          </div>
-          <div class="project-info-grid-item">
-            <img src="images/work_jaemon_02.jpeg" class="rounded" />
-            <p class="label">Importing rigs from Blender to Unity.</p>
-          </div>
-          <div class="project-info-grid-item">
-            <img src="images/work_jaemon_03.jpeg" class="rounded" />
-            <p class="label">Setting-up the animation blending system.</p>
-          </div>
-          <div class="project-info-grid-item">
-            <img src="images/work_jaemon_04.jpeg" class="rounded" />
-            <p class="label">Lighting & FX.</p>
-          </div>
-        </div>
-      </div>
-
-      <div id="ucl-vr-info" class="project-info">
-        <div class="project-info-title">
-          <h2>VR headset + Haptic device research</h2>
-          <div class="project-info-tag-list">
-            <h4 class="project-info-tag">VIRTUAL REALITY</h4>
-            <h4 class="project-info-tag">RESEARCH</h4>
-            <h4 class="project-info-tag">UCL</h4>
-          </div>
-        </div>
-        <p>I completed my second-year internship at Enseirb-Matmeca at UCL (University College London) under the
-          supervision of Professor Anthony Steed, head of the VECG (Virtual Environments and Computer Graphics) research
-          group. My project focused on developing a 3D simulation that integrated a virtual reality headset and a haptic
-          device.</p>
-        <div class="project-info-grid">
-          <div class="project-info-grid-item flex-xlarge">
-            <img src="images/work_ucl_vr_01.webp" class="rounded" />
-            <p class="label">Oculus Rift + Moog HapticMaster setup in UCL's VR lab.</p>
-          </div>
-        </div>
-        <p>Professor Steed's idea was to create a simulation using two VR peripherals: the Oculus Rift headset and the
-          Moog HapticMaster device. The Oculus Rift immerses the user in a 3D virtual environment using dual screens
-          and
-          optical lenses, along with various sensors to naturally translate the user's head movements onto the screen.
-        </p>
-        <p>The haptic device, on the other hand, allows the user to manipulate objects in three dimensions through the
-          sense of touch. The HapticMaster features a force-feedback system that provides the user with a tactile
-          sensation when interacting with the virtual environment.</p>
-        <div class="project-info-grid">
-          <div class="project-info-grid-item flex-large">
-            <img src="images/work_ucl.webp" class="rounded" />
-            <p class="label">University College London.</p>
-          </div>
-          <div class="project-info-grid-item flex-large">
-            <img src="images/work_ucl_vr_03.jpg" class="rounded" />
-            <p class="label">Oculus Rift and Moog HapticMaster.</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <img src="images/work_ucl_vr_02.webp" class="rounded" style="max-height: 143px;" />
-          <p>The simulation allows the user to move a red cube within a 3D space and interact with the virtual
-            environment's walls. A high-gravity zone, represented by a blue square on the floor, exerts a downward
-            force
-            on the user's arm. A green cube serves as a damping zone where the user's movements are slowed. The
-            Oculus
-            Rift's high responsiveness and the HapticMaster's mechanical power (up to 50,000 Newtons of rigidity)
-            make
-            the
-            experience exceptionally immersive.</p>
-        </div>
-      </div>
-
-      <div id="billar-info" class="project-info">
-        <div class="project-info-title">
-          <h2>BillAR - Augmented Reality Pool Game</h2>
-          <div class="project-info-tag-list">
-            <h4 class="project-info-tag">AUGMENTED REALITY</h4>
-            <h4 class="project-info-tag">GAME DEV</h4>
-          </div>
-        </div>
-        <p>BillAR is student project combining a Microsoft Kinect for object movement detection and a video-projector
-          used to display the UI of the game on a physical board.</p>
-        <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/37O-9HdBHZw?si=PF6EkZrecOpj3_IU"
-          title="YouTube video player" frameborder="0" allow="web-share" allowfullscreen></iframe>
-        <p>I completed the BillAR project with a team of students and in collaboration with the INRIA laboratory in
-          Bordeaux during my third year at Enseirb-Matmeca. The system was developed using PapARt ('Paper Augmented
-          Reality Toolkit'), a Processing library created by Jérémy Laviole, a researcher at INRIA.
-        <p>The concept behind BillAR is to create an augmented reality game that combines a pool table, a video
-          projector, and a motion detection system (a Microsoft Kinect in our case). The game interface is projected
-          directly onto the pool table via the video projector. The user can physically interact with it through
-          touch,
-          thanks to the motion detection system.</p>
-        <div class="project-info-grid">
-          <div class="project-info-grid-item flex-xlarge">
-            <img class="rounded" src="images/work_billar_concept.jpg" />
-            <p class="label">BillAR concept.</p>
-          </div>
-        </div>
-        <p>We invented several mini-games that take advantage of the possibilities offered by Augmented Reality. In
-          Snake mode, the user plays with a countdown timer and aims to place the game ball (red in the diagram) in as
-          many zones as possible within the allotted time. The zones appear one after the other, similar to the
-          classic
-          Snake game. Conversely, in Golf mode, all zones are present on the board from the start, and the player must
-          place the red ball in each zone as quickly as possible.</p>
-      </div>
-
-      <div id="atos-it-challenge-info" class="project-info">
-        <div class="project-info-title">
-          <h2>Atos IT Challenge - 1st Prize</h2>
-          <div class="project-info-tag-list">
-            <h4 class="project-info-tag">ENGINEERING</h4>
-            <h4 class="project-info-tag">MOBILE DEV</h4>
-          </div>
-        </div>
-
-        <p>Fellow students from Enseirb-Matmeca and I won the <a href="https://www.atositchallenge.net/edition-2014/"
-            target="_blank">2014 edition of the international student
-            competition, Atos IT Challenge.</a> The challenge was to develop an original mobile application to enhance
-          the
-          experience of visitors to the 2016 Rio Olympics.</p>
-
-        <iframe class="youtube-embed" src="https://www.youtube.com/embed/w0tVobCipQA?si=-uCzXgDJbnH_Bf9B"
-          title="YouTube video player" frameborder="0" allow="web-share" allowfullscreen></iframe>
-
-        <h4>The Idea</h4>
-
-        <p>Our application idea, codenamed Olympic Smart Planner, is an intelligent assistant that automatically
-          generates a schedule for the user's stay at the Rio Olympics. To suggest relevant events, the application
-          uses
-          the user's interests in various categories such as Sports, Culture, Restaurants, and Olympic Nations. This
-          schedule is entirely customizable, allowing users to replace suggested events with other options.
-          Additionally, users have access to a map of Rio de Janeiro displaying events from their schedule, providing
-          GPS-guided navigation.</p>
-
-        <h4>Olympic Smart Planner 2.0</h4>
-
-        <p>The application developed during the IT Challenge was a demonstration prototype. During our internship at
-          Atos, we took the opportunity to rethink the application's architecture. We emphasized the security of the
-          network protocols used, the reliability of the server's web services, and the performance of the event and
-          tourist location database. Simultaneously, we conducted a comprehensive redesign of the application to
-          create
-          a compelling product.</p>
-      </div>
-
-
     </div>
+
+    <div id="jaemon-info" class="project-info">
+      <div class="project-info-title">
+        <h2>Cel-shading game prototype</h2>
+        <div class="project-info-tag-list">
+          <h4 class="project-info-tag">3D GAME DEV</h4>
+          <h4 class="project-info-tag">CEL-SHADING</h4>
+          <h4 class="project-info-tag">ANIMATION</h4>
+        </div>
+      </div>
+      <p>Prototype of a 3D cel-shading game including modeling, rigging, animating, texturing, shader development,
+        scripting, etc.</p>
+      <iframe class="youtube-embed" src="https://www.youtube.com/embed/gYU98sIhcxY?si=r-tEoQpZXQ1hEZok"
+        title="YouTube video player" frameborder="0" allow="web-share" allowfullscreen></iframe>
+      <p>In this demo, Blender was used for 3D modeling and rigging and animation. Assets were imported into Unity,
+        where they were arranged with camera and lighting. Animation Blending was employed for smooth character
+        transitions. Unity's Nav Mesh was utilized for pathfinding and character movement. Core gameplay mechanics
+        were scripted using Unity's API, and Cg shaders were implemented for visual effects</p>
+      <div class="project-info-grid">
+        <div class="project-info-grid-item">
+          <img src="images/work_jaemon_00.jpeg" class="rounded" />
+          <p class="label">Unity asset integration.</p>
+        </div>
+        <div class="project-info-grid-item">
+          <img src="images/work_jaemon_01.jpeg" class="rounded" />
+          <p class="label">Bone weight painting in Blender.</p>
+        </div>
+        <div class="project-info-grid-item">
+          <img src="images/work_jaemon_02.jpeg" class="rounded" />
+          <p class="label">Importing rigs from Blender to Unity.</p>
+        </div>
+        <div class="project-info-grid-item">
+          <img src="images/work_jaemon_03.jpeg" class="rounded" />
+          <p class="label">Setting-up the animation blending system.</p>
+        </div>
+        <div class="project-info-grid-item">
+          <img src="images/work_jaemon_04.jpeg" class="rounded" />
+          <p class="label">Lighting & FX.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="ucl-vr-info" class="project-info">
+      <div class="project-info-title">
+        <h2>VR headset + Haptic device research</h2>
+        <div class="project-info-tag-list">
+          <h4 class="project-info-tag">VIRTUAL REALITY</h4>
+          <h4 class="project-info-tag">RESEARCH</h4>
+          <h4 class="project-info-tag">UCL</h4>
+        </div>
+      </div>
+      <p>I completed my second-year internship at Enseirb-Matmeca at UCL (University College London) under the
+        supervision of Professor Anthony Steed, head of the VECG (Virtual Environments and Computer Graphics) research
+        group. My project focused on developing a 3D simulation that integrated a virtual reality headset and a haptic
+        device.</p>
+      <div class="project-info-grid">
+        <div class="project-info-grid-item flex-xlarge">
+          <img src="images/work_ucl_vr_01.webp" class="rounded" />
+          <p class="label">Oculus Rift + Moog HapticMaster setup in UCL's VR lab.</p>
+        </div>
+      </div>
+      <p>Professor Steed's idea was to create a simulation using two VR peripherals: the Oculus Rift headset and the
+        Moog HapticMaster device. The Oculus Rift immerses the user in a 3D virtual environment using dual screens
+        and
+        optical lenses, along with various sensors to naturally translate the user's head movements onto the screen.
+      </p>
+      <p>The haptic device, on the other hand, allows the user to manipulate objects in three dimensions through the
+        sense of touch. The HapticMaster features a force-feedback system that provides the user with a tactile
+        sensation when interacting with the virtual environment.</p>
+      <div class="project-info-grid">
+        <div class="project-info-grid-item flex-large">
+          <img src="images/work_ucl.webp" class="rounded" />
+          <p class="label">University College London.</p>
+        </div>
+        <div class="project-info-grid-item flex-large">
+          <img src="images/work_ucl_vr_03.jpg" class="rounded" />
+          <p class="label">Oculus Rift and Moog HapticMaster.</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <img src="images/work_ucl_vr_02.webp" class="rounded" style="max-height: 143px;" />
+        <p>The simulation allows the user to move a red cube within a 3D space and interact with the virtual
+          environment's walls. A high-gravity zone, represented by a blue square on the floor, exerts a downward
+          force
+          on the user's arm. A green cube serves as a damping zone where the user's movements are slowed. The
+          Oculus
+          Rift's high responsiveness and the HapticMaster's mechanical power (up to 50,000 Newtons of rigidity)
+          make
+          the
+          experience exceptionally immersive.</p>
+      </div>
+    </div>
+
+    <div id="billar-info" class="project-info">
+      <div class="project-info-title">
+        <h2>BillAR - Augmented Reality Pool Game</h2>
+        <div class="project-info-tag-list">
+          <h4 class="project-info-tag">AUGMENTED REALITY</h4>
+          <h4 class="project-info-tag">GAME DEV</h4>
+        </div>
+      </div>
+      <p>BillAR is student project combining a Microsoft Kinect for object movement detection and a video-projector
+        used to display the UI of the game on a physical board.</p>
+      <iframe class="youtube-embed media-wide" src="https://www.youtube.com/embed/37O-9HdBHZw?si=PF6EkZrecOpj3_IU"
+        title="YouTube video player" frameborder="0" allow="web-share" allowfullscreen></iframe>
+      <p>I completed the BillAR project with a team of students and in collaboration with the INRIA laboratory in
+        Bordeaux during my third year at Enseirb-Matmeca. The system was developed using PapARt ('Paper Augmented
+        Reality Toolkit'), a Processing library created by Jérémy Laviole, a researcher at INRIA.
+      <p>The concept behind BillAR is to create an augmented reality game that combines a pool table, a video
+        projector, and a motion detection system (a Microsoft Kinect in our case). The game interface is projected
+        directly onto the pool table via the video projector. The user can physically interact with it through
+        touch,
+        thanks to the motion detection system.</p>
+      <div class="project-info-grid">
+        <div class="project-info-grid-item flex-xlarge">
+          <img class="rounded" src="images/work_billar_concept.jpg" />
+          <p class="label">BillAR concept.</p>
+        </div>
+      </div>
+      <p>We invented several mini-games that take advantage of the possibilities offered by Augmented Reality. In
+        Snake mode, the user plays with a countdown timer and aims to place the game ball (red in the diagram) in as
+        many zones as possible within the allotted time. The zones appear one after the other, similar to the
+        classic
+        Snake game. Conversely, in Golf mode, all zones are present on the board from the start, and the player must
+        place the red ball in each zone as quickly as possible.</p>
+    </div>
+
+    <div id="atos-it-challenge-info" class="project-info">
+      <div class="project-info-title">
+        <h2>Atos IT Challenge - 1st Prize</h2>
+        <div class="project-info-tag-list">
+          <h4 class="project-info-tag">ENGINEERING</h4>
+          <h4 class="project-info-tag">MOBILE DEV</h4>
+        </div>
+      </div>
+
+      <p>Fellow students from Enseirb-Matmeca and I won the <a href="https://www.atositchallenge.net/edition-2014/"
+          target="_blank">2014 edition of the international student
+          competition, Atos IT Challenge.</a> The challenge was to develop an original mobile application to enhance
+        the
+        experience of visitors to the 2016 Rio Olympics.</p>
+
+      <iframe class="youtube-embed" src="https://www.youtube.com/embed/w0tVobCipQA?si=-uCzXgDJbnH_Bf9B"
+        title="YouTube video player" frameborder="0" allow="web-share" allowfullscreen></iframe>
+
+      <h4>The Idea</h4>
+
+      <p>Our application idea, codenamed Olympic Smart Planner, is an intelligent assistant that automatically
+        generates a schedule for the user's stay at the Rio Olympics. To suggest relevant events, the application
+        uses
+        the user's interests in various categories such as Sports, Culture, Restaurants, and Olympic Nations. This
+        schedule is entirely customizable, allowing users to replace suggested events with other options.
+        Additionally, users have access to a map of Rio de Janeiro displaying events from their schedule, providing
+        GPS-guided navigation.</p>
+
+      <h4>Olympic Smart Planner 2.0</h4>
+
+      <p>The application developed during the IT Challenge was a demonstration prototype. During our internship at
+        Atos, we took the opportunity to rethink the application's architecture. We emphasized the security of the
+        network protocols used, the reliability of the server's web services, and the performance of the event and
+        tourist location database. Simultaneously, we conducted a comprehensive redesign of the application to
+        create
+        a compelling product.</p>
+    </div>
+
+
+  </div>
 
 
   </div>
