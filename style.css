@@ -88,9 +88,11 @@ p {
 }
 
 #canvas2 {
-    top: 0px;
+    position: absolute;
+    top:0px;
+    left: 0px;
     width: 100%;
-    height: 250px;
+    height: 100%;
 
     border-radius: 40px;
 }
@@ -131,7 +133,7 @@ footer h4 {
     gap: 3rem;
 
     border-radius: 40px;
-    background-color: rgb(155, 154, 182);
+    background-color: rgb(152, 152, 179);
 }
 
 #footer-info * {
@@ -362,7 +364,7 @@ footer h4 {
     will-change: transform;
     z-index: 3;
 
-    background-color: rgb(155, 154, 182);
+    background-color: rgb(152, 152, 179);
     border-radius: 40px;
     backdrop-filter: none;
     border: none;
@@ -630,7 +632,6 @@ footer h4 {
 }
 
 #karmazoo .card {
-    max-width: 600px;
 }
 
 #jaemon-prototypes {
@@ -718,8 +719,7 @@ footer h4 {
 .project-item {
     display: flex;
     flex-direction: column;
-    flex-basis: calc(33% - 3rem);
-    max-width: 400px;
+    flex-basis: calc(33% - 1.5rem);
 }
 
 .project-item .card img{
@@ -960,29 +960,19 @@ footer h4 {
     border-bottom-color: #4242421e;
 }
 
-/* ABOUT */
+/* ABOUT ME */
 
-#about-section {}
+#about-me {
+    position: relative;
+    width: 100%;
+    padding: 6rem 4rem;
 
-#about-section .section-column{
-    padding: 0 10%;
-    gap: 2rem;
-}
-
-#about-title {
-    margin-left: 1rem;
-
-    align-self: flex-end;
-    text-align: start;
-    writing-mode: tb-lr;
-    text-orientation: mixed;
-    transform: none;
+    justify-content: center;
 }
 
 #about-header {
     position: relative;
     justify-content: center;
-    align-self: flex-start;
 }
 
 #about-profile {
@@ -992,12 +982,10 @@ footer h4 {
     height: 170px;
     align-self: flex-end;
 
-    /* box-shadow: inset 0 1px 5px #000000cb; */
+    box-shadow: 0 0 30px #00000071;
     background-image: url(images/about_profile.jpg);
     background-size: cover;
-    border-radius: 60px;
-    border-top-right-radius: 4px;
-    mix-blend-mode: hard-light;
+    border-radius: 20px;
 }
 
 #about-bio {
@@ -1015,9 +1003,11 @@ footer h4 {
     height: fit-content;
     max-width: 600px;
 
-    border-radius: 30px;
+    border-radius: 20px;
     border-bottom-left-radius: 3px;
-    background-color: #ffffff52;
+    background-color: #000000;
+    box-shadow: 0 0 30px #00000071;
+
 }
 
 #about-bio-quote-start,
@@ -1054,7 +1044,7 @@ footer h4 {
     margin: 0;
     padding: 2rem;
 
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     font-family: LINESeed, Arial;
     /* text-align: justify; */
     font-size: 1.2rem;
@@ -1066,36 +1056,56 @@ footer h4 {
     gap: 0rem;
 }
 
-#about-formation-list {
+/* EDUCATION */
+
+#education-section {}
+
+#education-section .section-column{
+    gap: 2rem;
+}
+
+#education-section .section-title{
+    border-right: none;
+    border-left: solid 6px black;
+}
+
+#education-title {
+    margin-left: 1rem;
+
+    align-self: flex-end;
+    text-align: start;
+    writing-mode: tb-lr;
+    text-orientation: mixed;
+    transform: none;
+}
+
+
+#education-formation-list {
     margin: 2rem 0;
     gap: 2rem;
 }
 
-.about-formation {
+.education-formation {
     gap: 1rem;
     justify-content: center;
 }
 
-.about-formation-info {
+.education-formation-info {
     gap: 0.5rem;
     padding: 1rem 0;
     flex:1;
 }
 
-.about-formation-img img {
+.education-formation-img img {
     border-radius: 20px;
     height: 250px;
 }
 
-.about-formation-info p {
-    max-width: 400px;
-}
-
-.about-formation-info h3 {
+.education-formation-info h3 {
     font-size: 2rem;
 }
 
-.about-formation .cover {
+.education-formation .cover {
     width: 100%;
     object-fit: cover;
 }
@@ -1216,7 +1226,6 @@ footer h4 {
     text-align: right;
     color: #181a1a;
     max-width: 800px;
-    min-width: 300px;
 
     /* box-shadow: 0 1px 5px #00000099; */
 
