@@ -78,7 +78,7 @@ p {
 
 /* MAIN BACKGROUND */
 
-#main-background {
+#canvas1 {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -87,10 +87,88 @@ p {
 
 }
 
-#secondary-background {
+#canvas2 {
+    top: 0px;
     width: 100%;
-    height: 200px;
+    height: 250px;
+
     border-radius: 40px;
+}
+
+#canvas3 {
+    align-self: flex-end;
+    width: 60%;
+    height: 300px;
+    border-top-left-radius: 40px;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    /* box-shadow: inset rgb(0, 0, 0) 0px 0px 60px -12px; */
+}
+
+footer h4 {
+    opacity: 0.8;
+    font-size: 1.5rem;
+    letter-spacing: 0.22rem;
+}
+
+#footer-info-container {
+    display: flex;
+    justify-content: end;
+    width: 40%;
+}
+
+#footer-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: min-content;
+    padding: 3rem 3rem;
+    gap: 3rem;
+
+    border-radius: 40px;
+    background-color: rgb(155, 154, 182);
+}
+
+#footer-info * {
+    font-family: LINESeedBold;
+    color: white;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#footer-info .column {
+    gap: 1.5rem;
+}
+
+#footer-social {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    gap: 1rem;
+}
+
+#footer-info a {
+    display: flex;
+    gap: 1rem;
+    width: auto;
+    opacity: 0.8;
+    align-items: center;
+    text-decoration: none;
+}
+
+#footer-info a img {
+    width: 30px;
+    height: 30px;
+}
+
+#footer-info a:hover {
+    opacity: 1;
+    text-decoration: underline;
 }
 
 /* MEDIA */
@@ -118,8 +196,7 @@ p {
 
     width: 100%;
     margin-top: 0;
-    margin-bottom: 10rem;
-    padding: 1rem 3rem 4rem 3rem;
+    padding: 1rem 3rem 0rem 3rem;
     background-size: cover;
 
     transition: opacity 2000ms ease;
@@ -127,13 +204,14 @@ p {
 }
 
 .section {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 
     padding: 5rem 0rem 5rem 0rem;
-    margin: 1rem 0 1rem 0;
+    margin: 0;
     width: 100%;
     gap: 2rem;
 
@@ -178,6 +256,7 @@ p {
 
 .section-column {
     display: flex;
+    flex-direction: column;
     width: 100%;
 }
 
@@ -885,6 +964,11 @@ p {
 
 #about-section {}
 
+#about-section .section-column{
+    padding: 0 10%;
+    gap: 2rem;
+}
+
 #about-title {
     margin-left: 1rem;
 
@@ -898,9 +982,7 @@ p {
 #about-header {
     position: relative;
     justify-content: center;
-    width: 90%;
-    align-self: center;
-    padding: 4rem;
+    align-self: flex-start;
 }
 
 #about-profile {
@@ -931,10 +1013,11 @@ p {
 .about-bio-message {
     padding: 0.6rem;
     height: fit-content;
+    max-width: 600px;
 
     border-radius: 30px;
     border-bottom-left-radius: 3px;
-    background-color: #d8a8ff73;
+    background-color: #ffffff52;
 }
 
 #about-bio-quote-start,
@@ -990,11 +1073,13 @@ p {
 
 .about-formation {
     gap: 1rem;
+    justify-content: center;
 }
 
 .about-formation-info {
     gap: 0.5rem;
     padding: 1rem 0;
+    flex:1;
 }
 
 .about-formation-img img {

@@ -861,7 +861,7 @@ document.addEventListener('mousemove', function (e) {
     // other properties here
   });
 
-  document.getElementById('main-background').dispatchEvent(newEvent);
+  document.getElementById('canvas1').dispatchEvent(newEvent);
 });
 
 
@@ -872,11 +872,9 @@ const vertShader = glsl.file('./retrolava_vert.glsl');
 
 const DEV = false;
 
-const regl1 = createREGL("#main-background");
-const regl2 = createREGL("#secondary-background");
-
-console.log(document.getElementById("main-background").width + " x " + document.getElementById("main-background").height);
-console.log(document.getElementById("secondary-background").width + " x " + document.getElementById("main-background").height);
+const regl1 = createREGL("#canvas1");
+const regl2 = createREGL("#canvas2");
+const regl3 = createREGL("#canvas3");
 
 // Function to create draw command
 function createDrawCommand(regl, canvasId) {
@@ -911,13 +909,14 @@ function createDrawCommand(regl, canvasId) {
 }
 
 // regl.frame() wraps requestAnimationFrame and also handles viewport changes
-let lastTime1 = 0, lastTime2 = 0;
-const fps = 30;
+let lastTime1 = 0, lastTime2 = 0, lastTime3 = 0;
+const fps = 25;
 const interval = 1000 / fps;
 
 // Create draw commands
-const draw1 = createDrawCommand(regl1, "main-background");
-const draw2 = createDrawCommand(regl2, "secondary-background");
+const draw1 = createDrawCommand(regl1, "canvas1");
+const draw2 = createDrawCommand(regl2, "canvas2");
+const draw3 = createDrawCommand(regl3, "canvas3");
 
 // Frame loop
 regl1.frame(() => {
@@ -937,5 +936,15 @@ regl2.frame(() => {
   if (elapsed > interval) {
     lastTime2 = currentTime - (elapsed % interval);
     draw2();
+  }
+});
+
+regl3.frame(() => {
+  const currentTime = Date.now();
+  const elapsed = Date.now() - lastTime3;
+
+  if (elapsed > interval) {
+    lastTime3 = currentTime - (elapsed % interval);
+    draw3();
   }
 });

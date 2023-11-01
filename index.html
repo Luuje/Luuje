@@ -75,7 +75,7 @@
         <div class="section-content">
           <div id="hero-content">
             <div id="hero-gameboy">
-              <canvas id="main-background" width="1920" height="1080"></canvas>
+              <canvas id="canvas1" width="1920" height="1080"></canvas>
               <canvas id="spline-canvas"></canvas>
               <!-- <script type="module" src="https://unpkg.com/@splinetool/viewer@0.9.486/build/spline-viewer.js"></script>
             <spline-viewer hint loading-anim
@@ -146,7 +146,7 @@
             </div>
             <div id="bmx" class="project-featured">
               <div class="project-featured-info">
-                <h4 class="align-right">Realistic BMX modeling</h4>
+                <h4 class="align-right">Modeling & rendering</h4>
                 <div class="project-info-tag-list align-right">
                   <p class="project-info-tag align-right">3D MODELING</p>
                   <p class="project-info-tag align-right">RENDERING</p>
@@ -232,8 +232,8 @@
           </div>
         </div>
       </div>
-
-      <canvas id="secondary-background" width="2000" height="1000"></canvas>
+      
+      <canvas id="canvas2" width="2000" height="1000"></canvas>
 
       <div id="about-section" class="section">
         <div class="section-content">
@@ -303,28 +303,9 @@
         </div>
       </div>
 
-      <div id="contact-section">
-        <div class="section-content">
-          <h1>Let's chat</h1>
-          <div id="contact-form">
-            <div class="input-field">
-              <input type="text" id="name" required>
-              <label for="name">Name</label>
-            </div>
-            <div class="input-field">
-              <input type="email" id="email" required>
-              <label for="email">Email</label>
-            </div>
-            <div class="input-field">
-              <textarea id="message" required></textarea>
-              <label for="message">Message</label>
-            </div>
-            <button type="submit">Send</button>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+
   </div>
   <!-- --------------------------------------------------------------------------------------------- -->
   <!-- --------------------------------------------------------------------------------------------- -->
@@ -606,5 +587,35 @@
   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 </body>
+
+<footer>
+  <div id="footer-info-container">
+    <div id="footer-info">
+      <h4>CONTACT</h4>
+      <div class="column">
+        <div id="footer-social">
+          <a href="mailto:julien.catala@live.fr">
+            <img id="footer-social-email" src="images/social_email.png" alt="social-linkedin">
+            <p>julien.catala@live.fr</p>
+          </a>
+          <a href="https://www.linkedin.com/in/juliencatala/" target="_blank">
+            <img id="footer-social-linkedin" src="images/social_linkedin.png" alt="social-linkedin">
+            <p>linkedin.com/in/juliencatala</p>
+          </a>
+          <a href="https://twitter.com/Luje_fr" target="_blank">
+            <img id="footer-social-x" src="images/social_x.png" alt="social-x">
+            <p>twitter.com/Luje_fr</p>
+          </a>
+          <a href="https://discord.gg/QsassBSJSQ" target="_blank">
+            <img id="footer-social-discord" src="images/social_discord.png" alt="social-discord">
+            <p>Discord chat room</p>
+          </a>
+        </div>
+      </div>
+      <p style="align-self: flex-start; opacity: 0.7;">© Julien Catala 2023</p>
+    </div>
+  </div>
+  <canvas id="canvas3" width="2000" height="1000"></canvas>
+</footer>
 
 </html>
