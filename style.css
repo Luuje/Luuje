@@ -356,14 +356,12 @@ footer h4 {
 #menu-bar {
     opacity: 1;
 
-    position: sticky;
+    flex-direction: row;
     align-self: flex-end;
     display: flex;
-    flex: none;
-    flex-direction: column;
     flex-wrap: nowrap;
     gap: 0px;
-    justify-content: center;
+    justify-content: flex-end;
     min-height: 50px;
     height: fit-content;
     width: 40%;
@@ -1417,6 +1415,11 @@ footer h4 {
         padding-left: 1rem;
     }
 
+    #website-title {
+        width: auto;
+        flex: 1;
+    }
+
     #hero-content {
         flex-direction: column-reverse;
     }
@@ -1521,6 +1524,25 @@ footer h4 {
 
 @media screen and (max-width: 800px) {
 
+    
+    .section-content {
+        gap: 1rem;
+    }
+
+    .section-title {
+        min-width: 3.5rem;
+    }
+
+    #education-section .section-title {
+        min-width: 3.5rem;
+    }
+
+    .section h2 {
+        top: 1rem;
+        font-size: 4rem;
+        line-height: 3rem;
+    }
+
     .project-secondary .card {
         max-height: 200px;
     }
@@ -1528,6 +1550,10 @@ footer h4 {
     .project-item .card {
         max-height: 200px;
     }
+
+    .project-item .card img {
+        height: 200px;
+      }
 
     .education-formation {
         flex-direction: column;
@@ -1561,8 +1587,6 @@ footer h4 {
         margin-bottom: 0rem;
     }
 
-
-
     #about-bio .column {
         gap: 1rem;
     }
@@ -1571,4 +1595,40 @@ footer h4 {
         text-align: start;
     }
 
+}
+
+
+@media screen and (max-width: 600px) {
+
+    #menu-navigation, #menu-divider-2 {
+        display: none;
+    }
+
+    #main-content {
+        padding: 0 1rem;
+    }
+
+    #hero-gameboy {
+        height: 500px;
+    }
+}
+
+
+@media screen and (max-width: 400px) {
+
+    #hero-section {
+        margin: 0rem;
+    }
+
+    #header {
+    }
+
+    #menu-bar {
+        padding: 0;
+        background-color: transparent;
+    }
+
+    #menu {
+        padding-right: 0;
+    }
 }
