@@ -866,7 +866,7 @@ document.addEventListener('mousemove', function (e) {
 
 
 // CREATE REGL
-const glsl = require('glslify');
+/* const glsl = require('glslify');
 const fragShader = glsl.file('./retrolava_frag.glsl');
 const vertShader = glsl.file('./retrolava_vert.glsl');
 
@@ -948,3 +948,4 @@ regl3.frame(() => {
     draw3();
   }
 });
+ */
