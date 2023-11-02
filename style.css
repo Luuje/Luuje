@@ -511,7 +511,7 @@ footer h4 {
 #hero-headline>h1 {
     text-align: left;
     font-family: 'LINESeedBold', sans-serif;
-    font-size: calc(2rem + 2vw);
+    font-size: calc(1.9rem + 2vw);
     letter-spacing: -0.1rem;
     line-height: calc(2.5rem + 2vw);
     color: rgb(0, 0, 0);
@@ -579,6 +579,22 @@ footer h4 {
 
 #hero-gameboy:hover #gameboy-fullscreen-toggle img:hover {
     opacity: 1.0;
+}
+
+#mobile-scrollable-left {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 25%;
+    z-index: 10;
+}
+
+#mobile-scrollable-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 25%;
+    z-index: 10;
 }
 
 /* WORK */
@@ -796,7 +812,7 @@ footer h4 {
     height: 100%;
     z-index: 10;
 
-    backdrop-filter: blur(30px);
+    /* backdrop-filter: blur(30px); */
     /* transform: translateY(20px); */
     transition: opacity 300ms ease, transform 300ms ease;
 }
@@ -872,27 +888,27 @@ footer h4 {
 .project-info-title h2 {
     flex-grow: 1;
 
-    font-size: 4vw;
+    font-size: calc(1.5rem + 1.5vw);
 }
 
 .project-info-tag-list {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+    align-self: center;
     gap: 0.7rem;
 }
 
 .project-info-tag {
     flex-grow: 0;
     height: fit-content;
-    padding: 8px 16px 7px 16px;
+    padding: 6px 12px 5px 12px;
 
     font-family: LINESeedBold;
     color: #bc88e9;
-    background-color: transparent;
-    border: solid 0.1rem #b86bff;
+    background-color: #b86bff;
     border-radius: 100px;
-    font-size: calc(0.4rem + 0.7vw);
+    font-size: calc(0.5rem + 0.3vw);
 }
 
 /* GALLERY */
@@ -1524,7 +1540,7 @@ footer h4 {
 
 @media screen and (max-width: 800px) {
 
-    
+
     .section-content {
         gap: 1rem;
     }
@@ -1543,6 +1559,14 @@ footer h4 {
         line-height: 3rem;
     }
 
+    .project-secondary-row {
+        gap: 1rem;
+    }
+
+    .project-item-row {
+        gap: 1rem;
+    }
+
     .project-secondary .card {
         max-height: 200px;
     }
@@ -1553,7 +1577,15 @@ footer h4 {
 
     .project-item .card img {
         height: 200px;
-      }
+    }
+
+    .project-secondary-info h4 {
+        font-size: 1rem;
+    }
+
+    .project-item-info h4 {
+        font-size: 1rem;
+    }
 
     .education-formation {
         flex-direction: column;
@@ -1600,7 +1632,12 @@ footer h4 {
 
 @media screen and (max-width: 600px) {
 
-    #menu-navigation, #menu-divider-2 {
+    #about-me {
+        padding: 2rem 0;
+    }
+
+    #menu-navigation,
+    #menu-divider-2 {
         display: none;
     }
 
@@ -1609,7 +1646,7 @@ footer h4 {
     }
 
     #hero-gameboy {
-        height: 500px;
+        height: 400px;
     }
 }
 
@@ -1620,8 +1657,7 @@ footer h4 {
         margin: 0rem;
     }
 
-    #header {
-    }
+    #header {}
 
     #menu-bar {
         padding: 0;
