@@ -8514,6 +8514,18 @@ onmessage = function(messageEvent) {
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {},require("buffer").Buffer)
 },{"_process":4,"buffer":2}],6:[function(require,module,exports){
+module.exports = function(strings) {
+  if (typeof strings === 'string') strings = [strings]
+  var exprs = [].slice.call(arguments,1)
+  var parts = []
+  for (var i = 0; i < strings.length-1; i++) {
+    parts.push(strings[i], exprs[i] || '')
+  }
+  parts.push(strings[i])
+  return parts.join('')
+}
+
+},{}],7:[function(require,module,exports){
 "use strict";
 
 var _runtime = require("@splinetool/runtime");
@@ -8819,19 +8831,23 @@ const splineCanvas = document.getElementById('spline-canvas');
 const spline = new _runtime.Application(splineCanvas);
 
 // Load the Spline scene
-spline.load('./scene.splinecode', undefined, {
-  credentials: 'include',
-  mode: 'no-cors'
-}).then(() => {
-  // Hide loading screen once the Spline scene is loaded
-  console.log("Spline scene loaded");
-  hideLoadingScreen();
+/* spline.load(
+    './scene.splinecode',
+    undefined,
+    {
+        credentials: 'include',
+        mode: 'no-cors',
+    }
+).then(() => {
+    // Hide loading screen once the Spline scene is loaded
+    console.log("Spline scene loaded");
+    hideLoadingScreen();
 }).catch(error => {
-  // Handle loading error
-  console.error("Spline scene loading failed:", error);
-  hideLoadingScreen();
-});
-/* hideLoadingScreen(); //DEBUG */
+    // Handle loading error
+    console.error("Spline scene loading failed:", error);
+    hideLoadingScreen();
+}); */
+hideLoadingScreen(); //DEBUG
 
 /**
  * @author mrdoob / http://mrdoob.com/
@@ -9311,12 +9327,10 @@ document.addEventListener('mousemove', function (e) {
 });
 
 // CREATE REGL
-/* const glsl = require('glslify');
-const fragShader = glsl.file('./retrolava_frag.glsl');
-const vertShader = glsl.file('./retrolava_vert.glsl');
-
+const glsl = require('glslify');
+const fragShader = glsl(["// Fork from http://glslsandbox.com/e#8143.0\n#define PI 3.14159\n#define color_filter mat3(0.3, 0.3, 0.1, 0.0, 0.0, 0.0, 0.7, 0.4, 0.3)\n\nprecision mediump float;\n#define GLSLIFY 1\n\nuniform float uRandomSeed;\nuniform vec2 uResolution;\nuniform float uTime;\nuniform vec2 uMouse;\nuniform float uMorph;\nuniform vec2 uGrid;\n\nconst int maxComplexity = 10; // complexity of curls/computation\nconst float mouseSpeed = 0.1;  // control the color changing\nconst float fixedOffset = 0.7;  // Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.\nconst float fluidSpeed = 0.01; // Drives speed, smaller number will make it slower.\nconst float baseColor = 0.0;\nconst float BLUR = 0.97;\nconst float brightness = 1.0;\n\nfloat map(float value, float min1, float max1, float min2, float max2) {\n  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);\n}\n\n// more about noise: \n// http://thebookofshaders.com/11/\nfloat random(float x) {\n    return fract(sin(x) * uRandomSeed);\n}\n\nfloat random(vec2 st) {\n    return fract(sin(dot(st.xy, vec2(0.48764, 0.68567))) * uRandomSeed);\n}\n\nfloat noise(float x) {\n    float i = floor(x);\n    float f = fract(x);\n    return mix(random(i), random(i + 1.0), smoothstep(0.0, 1.0, f));\n}\n\nfloat noiseS(float x) {\n    return noise(x) * 2.0 - 1.0;\n}\n\nfloat grain(in vec2 st, float noiseTime) {\n    vec2 i = floor(st);\n    vec2 f = fract(st);\n\n      // Four corners in 2D of a tile\n    float a = random(i);\n    float b = random(i + vec2(1.0, 0.0));\n    float c = random(i + vec2(0.0, 1.0));\n    float d = random(i + vec2(1.0, 1.0));\n\n      // Smooth Interpolation\n\n      // Cubic Hermine Curve.  Same as SmoothStep()\n    vec2 u = f * f * (3.0 - 2.0 * f);\n      // u = smoothstep(0.,1.,f);\n\n      // Mix 4 coorners percentages\n    //return 0.0 + ((mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y) / 10.0) * 10.0;\n    return pow(random(st) + mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y, 0.5); //pow 0.5 to make grain more gray\n}\n\nvec3 blend(vec3 base, vec3 blend, float blendFactor) {\n    vec3 blendedColor;\n    if(base[0] + base[1] + base[2] < 1.5) { //1.5?\n        blendedColor = (2.0 * base * blend + base * base * (1.0 - 2.0 * blend));\n    } else {\n        blendedColor = (sqrt(base) * (2.0 * blend - 1.0) + 2.0 * base * (1.0 - blend));\n    }\n\n    blendedColor += 0.1 * blend;\n\n    return mix(base, blendedColor, blendFactor);\n}\n\nvoid main() {\n    vec2 p = (2.0 * gl_FragCoord.xy - uResolution) / min(uResolution.x, uResolution.y);\n    float t = uTime * fluidSpeed; // + uMorph;\n    float noiseTime = noise(t);\n    float noiseSTime = noiseS(t);\n    float noiseSTime1 = noiseS(t + 1.0);\n    float ratio = uGrid.x;\n\n    // adjust complexity according to viewport width\n    int complexity = int(map(ratio, 0.85, 1.5, 10.0, 35.0));\n    float blur = (BLUR + 0.14 * noiseSTime);\n    for(int i = 1; i <= maxComplexity; i++) {\n        p += blur / float(i) * sin(float(i) * p.yx + t + PI * vec2(noiseSTime, noiseSTime1)) + fixedOffset;\n        if (i >= complexity) break;\n    }\n    // p += uMouse * mouseSpeed; MOUSE INTERACTION\n\n    vec2 grid = uGrid * 2.0; // set complexity to 0 to debug the grid\n\n    // Modified color computation\n    float r = pow(0.5 * (1.0 + baseColor + sin(grid.x * p.x + 2.0 * noiseSTime)), 1.5) * brightness;\n    float g = pow(0.5 * (1.0 + baseColor + sin(grid.y * p.y + 3.0 * noiseSTime1)), 1.5) * brightness;\n    float b = pow(0.5 * (1.0 + baseColor + sin(p.x + p.y + noiseSTime)), 1.5) * brightness;\n\n    // Color filter\n    // Product between matrix filter and pixel color to get new color\n    vec3 color = vec3(r, g, b) * color_filter;\n\n    // Grain filter\n    vec2 st = gl_FragCoord.xy / uResolution.xy;\n    //vec2 pos = vec2(st * uResolution.xy);\n\n    //blend the noise over the background\n    vec3 blendColor = blend(color, vec3(grain(gl_FragCoord.xy, noiseSTime)), 0.3);\n\n    //get the luminance of the background\n    //float luminance = (color[0] + color[1] + color[2])/3.0;\n\n    //reduce the noise based on some \n    //threshold of the background luminance\n    //float response = smoothstep(0.05, 0.4, luminance);\n    //blendColor = mix(blendColor, color, pow(response, 0.5));\n\n    // Output to screen\n    gl_FragColor = vec4(blendColor, 1.0);\n    //gl_FragColor = vec4(vec3(grain(st.xy, noiseSTime)), 1.0);\n\n}"]);
+const vertShader = glsl(["#define GLSLIFY 1\nattribute vec2 position;\nvoid main() {\n    gl_Position = vec4(position, 0, 1);\n}"]);
 const DEV = false;
-
 const regl1 = createREGL("#canvas1");
 const regl2 = createREGL("#canvas2");
 const regl3 = createREGL("#canvas3");
@@ -9327,34 +9341,31 @@ function createDrawCommand(regl, canvasId) {
     frag: fragShader,
     vert: vertShader,
     attributes: {
-      position: regl.buffer([
-        [-1, -1],
-        [1, -1],
-        [-1, 1],
-        [-1, 1],
-        [1, 1],
-        [1, -1]
-      ])
+      position: regl.buffer([[-1, -1], [1, -1], [-1, 1], [-1, 1], [1, 1], [1, -1]])
     },
     uniforms: {
-      uResolution: () => [
-        document.getElementById(canvasId).width * 2.0,
-        document.getElementById(canvasId).height * 2.0
-      ],
-      uTime: ({ tick }) => 0.01 * tick,
+      uResolution: () => [document.getElementById(canvasId).width * 2.0, document.getElementById(canvasId).height * 2.0],
+      uTime: ({
+        tick
+      }) => 0.01 * tick,
       uMorph: () => morphAmount,
       uRandomSeed: DEV ? 138975.579831 : new Date().getTime() % 1000000,
-      uGrid: ({ viewportWidth, viewportHeight }) => {
-        const ratio = (1.5 + (viewportWidth / 1300)) / 1.5;
+      uGrid: ({
+        viewportWidth,
+        viewportHeight
+      }) => {
+        const ratio = (1.5 + viewportWidth / 1300) / 1.5;
         return [ratio, ratio];
-      },
+      }
     },
     count: 6
   });
 }
 
 // regl.frame() wraps requestAnimationFrame and also handles viewport changes
-let lastTime1 = 0, lastTime2 = 0, lastTime3 = 0;
+let lastTime1 = 0,
+  lastTime2 = 0,
+  lastTime3 = 0;
 const fps = 30;
 const interval = 1000 / fps;
 
@@ -9367,32 +9378,26 @@ const draw3 = createDrawCommand(regl3, "canvas3");
 regl1.frame(() => {
   const currentTime = Date.now();
   const elapsed = Date.now() - lastTime1;
-
   if (elapsed > interval) {
-    lastTime1 = currentTime - (elapsed % interval);
+    lastTime1 = currentTime - elapsed % interval;
     draw1();
   }
 });
-
 regl2.frame(() => {
   const currentTime = Date.now();
   const elapsed = Date.now() - lastTime2;
-
   if (elapsed > interval) {
-    lastTime2 = currentTime - (elapsed % interval);
+    lastTime2 = currentTime - elapsed % interval;
     draw2();
   }
 });
-
 regl3.frame(() => {
   const currentTime = Date.now();
   const elapsed = Date.now() - lastTime3;
-
   if (elapsed > interval) {
-    lastTime3 = currentTime - (elapsed % interval);
+    lastTime3 = currentTime - elapsed % interval;
     draw3();
   }
 });
- */
 
-},{"@splinetool/runtime":5}]},{},[6]);
+},{"@splinetool/runtime":5,"glslify":6}]},{},[7]);

@@ -895,8 +895,11 @@ footer h4 {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    align-self: center;
     gap: 0.7rem;
+}
+
+#overlay .project-info-tag-list {
+    align-self: center;
 }
 
 .project-info-tag {
