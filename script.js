@@ -60,7 +60,7 @@ window.onload = function () {
   document.body.appendChild(css); */
 
   // CARET BLINK ANIMATION
-  let caret = document.querySelector("#hero-headline h1>span");
+  let caret = document.querySelector("#hero-headline h1>.txt-rotate");
   let showCaret = true;
   setInterval(() => {
     if (showCaret) {
@@ -337,7 +337,7 @@ const splineCanvas = document.getElementById('spline-canvas');
 const spline = new Application(splineCanvas);
 
 // Load the Spline scene
-/* spline.load(
+spline.load(
     './scene.splinecode',
     undefined,
     {
@@ -352,8 +352,8 @@ const spline = new Application(splineCanvas);
     // Handle loading error
     console.error("Spline scene loading failed:", error);
     hideLoadingScreen();
-}); */
-hideLoadingScreen(); //DEBUG
+});
+/* hideLoadingScreen(); //DEBUG */
 
 
 
@@ -910,7 +910,7 @@ function createDrawCommand(regl, canvasId) {
 
 // regl.frame() wraps requestAnimationFrame and also handles viewport changes
 let lastTime1 = 0, lastTime2 = 0, lastTime3 = 0;
-const fps = 25;
+const fps = 30;
 const interval = 1000 / fps;
 
 // Create draw commands
