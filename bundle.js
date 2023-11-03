@@ -9444,6 +9444,10 @@ spline.load('./scene.splinecode', undefined, {
   if (element) {
     element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
   }
+  setTimeout(() => {
+    // Code to execute after 5-second delay
+    spline.stop();
+  }, 3350);
   hideLoadingScreen();
 }).catch(error => {
   // Handle loading error
