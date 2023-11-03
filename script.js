@@ -1,6 +1,7 @@
 
+// START PERFORMANCE TEST
 
-
+const start = performance.now();
 
 // HERO HEADLINE TYPEWRITER EFFECT
 var TxtRotate = function (el, toRotate, period) {
@@ -304,56 +305,6 @@ window.addEventListener('popstate', function (event) {
   // Check if the state represents an open overlay
   (overlayIsOpen) ? closeOverlay() : openOverlay();
 });
-
-
-
-/* SPLINE LOADER */
-
-import { Application } from '@splinetool/runtime';
-
-// Initialize loading screen
-const loadingScreen = document.getElementById('loading-screen');
-const menuBar = document.getElementById('menu-bar');
-
-function hideLoadingScreen() {
-
-  /* mainContent.style.opacity = "1"; */
-  /* mainContent.style.transform = "translate(0, 0)"; */
-  /* menuBar.style.opacity = "1"; */
-  loadingScreen.style.opacity = '0';
-
-  // Listen for the end of the transition
-  loadingScreen.addEventListener('transitionend', function transitionEndEvent() {
-    // Remove the event listener to ensure this code only runs once
-    loadingScreen.removeEventListener('transitionend', transitionEndEvent);
-
-    // Hide the loading screen
-    loadingScreen.style.display = 'none';
-});
-}
-
-// Initialize the Spline Application
-const splineCanvas = document.getElementById('spline-canvas');
-const spline = new Application(splineCanvas);
-
-// Load the Spline scene
-/* spline.load(
-    './scene.splinecode',
-    undefined,
-    {
-        credentials: 'include',
-        mode: 'no-cors',
-    }
-).then(() => {
-    // Hide loading screen once the Spline scene is loaded
-    console.log("Spline scene loaded");
-    hideLoadingScreen();
-}).catch(error => {
-    // Handle loading error
-    console.error("Spline scene loading failed:", error);
-    hideLoadingScreen();
-}); */
-hideLoadingScreen(); //DEBUG
 
 
 
@@ -948,3 +899,67 @@ regl3.frame(() => {
     draw3();
   }
 });
+
+
+
+// END PERFORMANCE TEST
+const duration = performance.now() - start;
+  
+// Update the text of the element with the duration
+const element = document.getElementById("performance-log");
+if (element) {
+  element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
+}
+
+
+
+
+/* SPLINE LOADER */
+
+import { Application } from '@splinetool/runtime';
+
+// Initialize loading screen
+const loadingScreen = document.getElementById('loading-screen');
+const menuBar = document.getElementById('menu-bar');
+
+function hideLoadingScreen() {
+
+  /* mainContent.style.opacity = "1"; */
+  /* mainContent.style.transform = "translate(0, 0)"; */
+  /* menuBar.style.opacity = "1"; */
+  loadingScreen.style.opacity = '0';
+
+  // Listen for the end of the transition
+  loadingScreen.addEventListener('transitionend', function transitionEndEvent() {
+    // Remove the event listener to ensure this code only runs once
+    loadingScreen.removeEventListener('transitionend', transitionEndEvent);
+
+    // Hide the loading screen
+    loadingScreen.style.display = 'none';
+});
+}
+
+// Initialize the Spline Application
+const splineCanvas = document.getElementById('spline-canvas');
+const spline = new Application(splineCanvas);
+
+// Load the Spline scene
+/* spline.load(
+    './scene.splinecode',
+    undefined,
+    {
+        credentials: 'include',
+        mode: 'no-cors',
+    }
+).then(() => {
+    // Hide loading screen once the Spline scene is loaded
+    console.log("Spline scene loaded");
+    hideLoadingScreen();
+}).catch(error => {
+    // Handle loading error
+    console.error("Spline scene loading failed:", error);
+    hideLoadingScreen();
+}); */
+hideLoadingScreen(); //DEBUG
+
+performance.now

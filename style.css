@@ -22,6 +22,18 @@ body {
     -webkit-font-smoothing: inherit
 }
 
+#performance-log { 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 2px;
+    background-color: rgba(0, 0, 0, 0.658);
+    color: #ffffff;
+    font-family: LINESeed;
+    font-size:x-small;
+    z-index: 9999;
+}
+
 h1,
 h2,
 h3,
