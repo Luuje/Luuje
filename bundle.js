@@ -9369,6 +9369,50 @@ if (element) {
   element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
 }
 
+// FPS
+function getFPS() {
+  let frameTimes = [];
+  let lastFrameTimestamp = performance.now();
+  let lastUpdateTimestamp = performance.now();
+  function update() {
+    // Get the current time
+    const now = performance.now();
+    // Calculate the difference since the last frame
+    const delta = now - lastFrameTimestamp;
+    lastFrameTimestamp = now;
+    // Convert the delta time to FPS (1 second / delta time in seconds)
+    const fps = 1 / (delta / 1000);
+
+    // Save only the last 100 timings
+    frameTimes.push(fps);
+    if (frameTimes.length > 100) {
+      frameTimes.shift();
+    }
+
+    // Check if 2 seconds have passed to update the FPS log
+    if (now - lastUpdateTimestamp >= 500) {
+      // Calculate average FPS from the saved timings
+      const averageFPS = frameTimes.reduce((a, b) => a + b) / frameTimes.length;
+
+      // Update the FPS log element
+      const fpsLogElement = document.getElementById('fps-log');
+      fpsLogElement.textContent = 'FPS: ' + averageFPS.toFixed(2);
+
+      // Reset the update timestamp
+      lastUpdateTimestamp = now;
+    }
+
+    // Request the next frame
+    requestAnimationFrame(update);
+  }
+
+  // Start the loop
+  requestAnimationFrame(update);
+}
+
+// Call this function when you want to start logging FPS
+getFPS();
+
 /* SPLINE LOADER */
 
 // Initialize loading screen
@@ -9395,23 +9439,19 @@ const splineCanvas = document.getElementById('spline-canvas');
 const spline = new _runtime.Application(splineCanvas);
 
 // Load the Spline scene
-/* spline.load(
-    './scene.splinecode',
-    undefined,
-    {
-        credentials: 'include',
-        mode: 'no-cors',
-    }
-).then(() => {
-    // Hide loading screen once the Spline scene is loaded
-    console.log("Spline scene loaded");
-    hideLoadingScreen();
+spline.load('./scene.splinecode', undefined, {
+  credentials: 'include',
+  mode: 'no-cors'
+}).then(() => {
+  // Hide loading screen once the Spline scene is loaded
+  console.log("Spline scene loaded");
+  hideLoadingScreen();
 }).catch(error => {
-    // Handle loading error
-    console.error("Spline scene loading failed:", error);
-    hideLoadingScreen();
-}); */
-hideLoadingScreen(); //DEBUG
+  // Handle loading error
+  console.error("Spline scene loading failed:", error);
+  hideLoadingScreen();
+});
+/* hideLoadingScreen(); //DEBUG */
 
 performance.now;
 
