@@ -902,15 +902,6 @@ regl3.frame(() => {
 
 
 
-// END PERFORMANCE TEST
-const duration = performance.now() - start;
-  
-// Update the text of the element with the duration
-const element = document.getElementById("performance-log");
-if (element) {
-  element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
-}
-
 
 
 // FPS
@@ -999,7 +990,15 @@ spline.load(
     }
 ).then(() => {
     // Hide loading screen once the Spline scene is loaded
-    console.log("Spline scene loaded");
+
+    // END PERFORMANCE TEST
+    const duration = performance.now() - start;
+      
+    // Update the text of the element with the duration
+    const element = document.getElementById("performance-log");
+    if (element) {
+      element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
+    }
     hideLoadingScreen();
 }).catch(error => {
     // Handle loading error
@@ -1008,5 +1007,3 @@ spline.load(
 });
 /* hideLoadingScreen(); //DEBUG */
 
-
-performance.now

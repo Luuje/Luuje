@@ -9360,15 +9360,6 @@ regl3.frame(() => {
   }
 });
 
-// END PERFORMANCE TEST
-const duration = performance.now() - start;
-
-// Update the text of the element with the duration
-const element = document.getElementById("performance-log");
-if (element) {
-  element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
-}
-
 // FPS
 function getFPS() {
   let frameTimes = [];
@@ -9444,7 +9435,15 @@ spline.load('./scene.splinecode', undefined, {
   mode: 'no-cors'
 }).then(() => {
   // Hide loading screen once the Spline scene is loaded
-  console.log("Spline scene loaded");
+
+  // END PERFORMANCE TEST
+  const duration = performance.now() - start;
+
+  // Update the text of the element with the duration
+  const element = document.getElementById("performance-log");
+  if (element) {
+    element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
+  }
   hideLoadingScreen();
 }).catch(error => {
   // Handle loading error
@@ -9452,7 +9451,5 @@ spline.load('./scene.splinecode', undefined, {
   hideLoadingScreen();
 });
 /* hideLoadingScreen(); //DEBUG */
-
-performance.now;
 
 },{"@splinetool/runtime":5,"glslify":6}]},{},[7]);
