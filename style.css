@@ -24,6 +24,7 @@ body {
 
 #performance-log,
 #fps-log {
+    display: none;
     position: fixed;
     bottom: 0;
     left: 0;
@@ -128,6 +129,7 @@ footer {
     width: 100%;
     margin-top: 2rem;
     gap: 2rem;
+    overflow: hidden;
     /* box-shadow: inset rgb(0, 0, 0) 0px 0px 60px -12px; */
 }
 
@@ -1099,7 +1101,7 @@ footer h4 {
 
 
 #education-formation-list {
-    margin: 1rem 0;
+    margin: 0;
     gap: 3rem;
 }
 
@@ -1534,6 +1536,9 @@ footer h4 {
 
 @media screen and (max-width: 800px) {
 
+    #spline-canvas {
+        padding: 1rem 1rem 0.5rem 1rem;
+    }
 
     .section-content {
         gap: 1rem;
@@ -1669,9 +1674,13 @@ footer h4 {
 
 @media screen and (max-width: 400px) {
 
+    #main-content {
+        padding: 0 0.5rem;
+    }
+
     #hero-headline {
         margin: 0.5rem 0;
-      }
+    }
 
     #hero-headline h1 {
         font-size: calc(1rem + 5vw);
@@ -1688,7 +1697,7 @@ footer h4 {
 
     .section h2 {
         font-size: 3rem;
-        line-height: 2rem;
+        line-height: 1.9rem;
     }
 
     #hero-section {
@@ -1704,5 +1713,17 @@ footer h4 {
 
     #menu {
         padding-right: 0;
+    }
+
+    #menu-social * {
+        opacity: 0.6;
+    }
+
+    .menu-item {
+        gap: 4px;
+    }
+
+    #menu-social img {
+        filter: invert();
     }
 }
