@@ -85,18 +85,23 @@ if (fullscreenToggle) fullscreenToggle.addEventListener('click', function () {
   }
 });
 
-// MOBILE 
-let isMobile = false;
+// TOUCH 
+let isTouch = false;
 const mediaQuery = window.matchMedia("(max-width: 768px)");
 
 if (mediaQuery.matches) {
-  isMobile = true;
+  isTouch = true;
 } else {
-  isMobile = false;
+  isTouch = false;
 }
 
+window.addEventListener('touchstart', function onFirstTouch() {
+  isTouch = true;
+  window.removeEventListener('touchstart', onFirstTouch, false);
+}, false);
+
 // 3D CARD EFFECT
-if (!isMobile) {
+if (!isTouch) {
   const cards = document.querySelectorAll('.card');
 
   function createRotateToMouseHandler(card) {
