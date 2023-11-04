@@ -1391,8 +1391,6 @@ footer h4 {
 /* ******************************** */
 /* ********** RESPONSIVE ********** */
 /* ******************************** */
-@media screen and (min-width: 768px) and (max-width: 1200px) {}
-
 @media screen and (max-width: 1000px) {
 
     #main-content {
@@ -1526,6 +1524,10 @@ footer h4 {
     }
 
     .media-wide {
+        width: calc(100% + 2rem);
+    }
+
+    .project-info-gallery {
         width: calc(100% + 2rem);
     }
 
