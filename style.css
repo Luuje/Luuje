@@ -1561,6 +1561,14 @@ footer h4 {
         gap: 1rem;
     }
 
+    .project-secondary {
+        flex-basis: calc(50% - 0.5rem);
+    }
+
+    .project-item {
+        flex-basis: calc(50% - 0.5rem);
+    }
+
     .project-secondary .card {
         max-height: 200px;
     }

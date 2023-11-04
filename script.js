@@ -75,15 +75,27 @@ window.onload = function () {
 
 // FULLSCREEN TOGGLE
 let fullscreenToggle = document.querySelector('#gameboy-fullscreen-toggle');
-if (fullscreenToggle) fullscreenToggle.addEventListener('click', function () {
-  if (document.fullscreenElement) { // if already full screen exit
+
+function toggleFullScreen() {
+  if (document.fullscreenElement) {
     document.exitFullscreen();
-  } else { // else go fullscreen
-    /* document.querySelector('#hero-gameboy').style.backgroundColor = "rgb(53, 0, 151)"; */
+  } else {
     let gameboy = document.querySelector('#hero-gameboy');
-    if (gameboy) gameboy.requestFullscreen();
+    if (gameboy) gameboy.requestFullscreen().catch(err => {
+      // Handle the error for fullscreen request here.
+      console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+    });
   }
-});
+}
+
+// Listen for click and touchend events
+if (fullscreenToggle) {
+  fullscreenToggle.addEventListener('click', toggleFullScreen);
+  fullscreenToggle.addEventListener('touchend', function (e) {
+    e.preventDefault(); // Prevent the mouse event from firing as well
+    toggleFullScreen();
+  });
+}
 
 // TOUCH 
 let isTouch = false;
