@@ -73,29 +73,6 @@ window.onload = function () {
   }, 500);
 };
 
-// FULLSCREEN TOGGLE
-let fullscreenToggle = document.querySelector('#gameboy-fullscreen-toggle');
-
-function toggleFullScreen() {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  } else {
-    let gameboy = document.querySelector('#hero-gameboy');
-    if (gameboy) gameboy.requestFullscreen().catch(err => {
-      // Handle the error for fullscreen request here.
-      console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-    });
-  }
-}
-
-// Listen for click and touchend events
-if (fullscreenToggle) {
-  fullscreenToggle.addEventListener('click', toggleFullScreen);
-  fullscreenToggle.addEventListener('touchend', function (e) {
-    e.preventDefault(); // Prevent the mouse event from firing as well
-    toggleFullScreen();
-  });
-}
 
 // TOUCH 
 let isTouch = false;
@@ -990,7 +967,7 @@ function hideLoadingScreen() {
 
     // Hide the loading screen
     loadingScreen.style.display = 'none';
-});
+  });
 }
 
 // Initialize the Spline Application
@@ -999,32 +976,32 @@ const spline = new Application(splineCanvas);
 
 // Load the Spline scene
 spline.load(
-    './scene.splinecode',
-    undefined,
-    {
-        credentials: 'include',
-        mode: 'no-cors',
-    }
+  './scene.splinecode',
+  undefined,
+  {
+    credentials: 'include',
+    mode: 'no-cors',
+  }
 ).then(() => {
-    // Hide loading screen once the Spline scene is loaded
+  // Hide loading screen once the Spline scene is loaded
 
-    // END PERFORMANCE TEST
-    const duration = performance.now() - start;
-      
-    // Update the text of the element with the duration
-    const element = document.getElementById("performance-log");
-    if (element) {
-      element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
-    }
-    /* setTimeout(() => {
-      // Code to execute after 5-second delay
-      spline.stop();
-    }, 3350); */
-    hideLoadingScreen();
+  // END PERFORMANCE TEST
+  const duration = performance.now() - start;
+
+  // Update the text of the element with the duration
+  const element = document.getElementById("performance-log");
+  if (element) {
+    element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
+  }
+  /* setTimeout(() => {
+    // Code to execute after 5-second delay
+    spline.stop();
+  }, 3350); */
+  hideLoadingScreen();
 }).catch(error => {
-    // Handle loading error
-    console.error("Spline scene loading failed:", error);
-    hideLoadingScreen();
+  // Handle loading error
+  console.error("Spline scene loading failed:", error);
+  hideLoadingScreen();
 });
 /* hideLoadingScreen(); //DEBUG */
 
@@ -1048,3 +1025,30 @@ const observer = new IntersectionObserver(handleIntersection);
 // Start observing the `spline-canvas` element
 observer.observe(splineCanvas);
 
+
+// FULLSCREEN TOGGLE
+let fullscreenToggle = document.querySelector('#gameboy-fullscreen-toggle');
+
+function toggleFullScreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    let gameboy = document.querySelector('#hero-gameboy');
+    if (gameboy) {
+      gameboy.requestFullscreen().catch(err => {
+        // Handle the error for fullscreen request here.
+        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+      spline.setVariable('Power', true);
+    }
+  }
+}
+
+// Listen for click and touchend events
+if (fullscreenToggle) {
+  fullscreenToggle.addEventListener('click', toggleFullScreen);
+  fullscreenToggle.addEventListener('touchend', function (e) {
+    e.preventDefault(); // Prevent the mouse event from firing as well
+    toggleFullScreen();
+  });
+}

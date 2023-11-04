@@ -8597,29 +8597,6 @@ window.onload = function () {
   }, 500);
 };
 
-// FULLSCREEN TOGGLE
-let fullscreenToggle = document.querySelector('#gameboy-fullscreen-toggle');
-function toggleFullScreen() {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
-  } else {
-    let gameboy = document.querySelector('#hero-gameboy');
-    if (gameboy) gameboy.requestFullscreen().catch(err => {
-      // Handle the error for fullscreen request here.
-      console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-    });
-  }
-}
-
-// Listen for click and touchend events
-if (fullscreenToggle) {
-  fullscreenToggle.addEventListener('click', toggleFullScreen);
-  fullscreenToggle.addEventListener('touchend', function (e) {
-    e.preventDefault(); // Prevent the mouse event from firing as well
-    toggleFullScreen();
-  });
-}
-
 // TOUCH 
 let isTouch = false;
 const mediaQuery = window.matchMedia("(max-width: 768px)");
@@ -9487,5 +9464,33 @@ const observer = new IntersectionObserver(handleIntersection);
 
 // Start observing the `spline-canvas` element
 observer.observe(splineCanvas);
+
+// FULLSCREEN TOGGLE
+let fullscreenToggle = document.querySelector('#gameboy-fullscreen-toggle');
+function toggleFullScreen() {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    let gameboy = document.querySelector('#hero-gameboy');
+    if (gameboy) {
+      gameboy.requestFullscreen().catch(err => {
+        // Handle the error for fullscreen request here.
+        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+      });
+      console.log(spline.getVariable('Power'));
+      spline.setVariable('Power', true);
+      console.log(spline.getVariable('Power'));
+    }
+  }
+}
+
+// Listen for click and touchend events
+if (fullscreenToggle) {
+  fullscreenToggle.addEventListener('click', toggleFullScreen);
+  fullscreenToggle.addEventListener('touchend', function (e) {
+    e.preventDefault(); // Prevent the mouse event from firing as well
+    toggleFullScreen();
+  });
+}
 
 },{"@splinetool/runtime":5,"glslify":6}]},{},[7]);
