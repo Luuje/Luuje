@@ -999,10 +999,10 @@ spline.load(
     if (element) {
       element.textContent = 'Loaded in ' + duration.toFixed(2) + 'ms.';
     }
-    setTimeout(() => {
+    /* setTimeout(() => {
       // Code to execute after 5-second delay
       spline.stop();
-    }, 3350);
+    }, 3350); */
     hideLoadingScreen();
 }).catch(error => {
     // Handle loading error
@@ -1010,4 +1010,24 @@ spline.load(
     hideLoadingScreen();
 });
 /* hideLoadingScreen(); //DEBUG */
+
+
+// Intersection Observer callback
+const handleIntersection = (entries, observer) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // Play Spline animation when the canvas is visible
+      spline.play();
+    } else {
+      // Stop Spline animation when the canvas is not visible
+      spline.stop();
+    }
+  });
+};
+
+// Create the Intersection Observer
+const observer = new IntersectionObserver(handleIntersection);
+
+// Start observing the `spline-canvas` element
+observer.observe(splineCanvas);
 

@@ -821,7 +821,7 @@ footer h4 {
     position: fixed;
     top: 0px;
     display: none;
-    padding: 5rem 3.5vw;
+    padding: 3rem 3.5vw;
     justify-content: center;
     align-items: start;
     overflow: auto;
@@ -829,7 +829,7 @@ footer h4 {
     height: 100%;
     z-index: 10;
 
-    /* backdrop-filter: blur(30px); */
+    backdrop-filter: blur(20px);
     /* transform: translateY(20px); */
     transition: opacity 300ms ease, transform 300ms ease;
 }
@@ -847,10 +847,10 @@ footer h4 {
 
     color: white;
     border-radius: 30px;
-    background-color: #141414b2;
+    background-color: #141414;
     /*     background-color: rgba(211, 183, 255, 0.418);
  */
-    filter: drop-shadow(0px 0px 20px #00000057);
+    filter: drop-shadow(0px 0px 40px #000000a1);
 }
 
 #overlay-close {
@@ -905,7 +905,7 @@ footer h4 {
 .project-info-title h2 {
     flex-grow: 1;
 
-    font-size: calc(1.5rem + 1.5vw);
+    font-size: calc(1.2rem + 1.2vw);
 }
 
 .project-info-tag-list {
