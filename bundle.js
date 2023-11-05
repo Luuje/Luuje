@@ -9278,7 +9278,7 @@ document.addEventListener('mousemove', function (e) {
 
 // CREATE REGL
 const glsl = require('glslify');
-const fragShader = glsl(["// Simple gradient shader\n\nprecision mediump float;\n#define GLSLIFY 1\n\nuniform vec2 uResolution;\n\nvoid main() {\n    // Normalized pixel coordinates (from 0 to 1)\n    vec2 uv = gl_FragCoord.xy / uResolution.xy;\n\n    // Simple gradient - mix between two colors based on the x coordinate\n    vec3 color = mix(vec3(1.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0), uv.x);\n\n    // Output to screen\n    gl_FragColor = vec4(color, 1.0);\n}\n"]);
+const fragShader = glsl(["// Wave pattern shader\n\nprecision mediump float;\n#define GLSLIFY 1\n\nuniform vec2 uResolution;\nuniform float uTime;\n\nvoid main() {\n    // Normalized pixel coordinates (from 0 to 1)\n    vec2 uv = gl_FragCoord.xy / uResolution.xy;\n\n    // Time varying parameter\n    float time = uTime * 0.5;\n\n    // Create a wave pattern using sin function\n    float wave = sin(uv.x * 10.0 + time) * 0.5 + 0.5;\n\n    // Apply the wave pattern to the gradient\n    vec3 color = mix(vec3(1.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0), wave);\n\n    // Output to screen\n    gl_FragColor = vec4(color, 1.0);\n}\n"]);
 const vertShader = glsl(["#define GLSLIFY 1\nattribute vec2 position;\nvoid main() {\n    gl_Position = vec4(position, 0, 1);\n}"]);
 const DEV = false;
 const regl1 = createREGL("#canvas1");
