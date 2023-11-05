@@ -1,4 +1,4 @@
-// Fork from http://glslsandbox.com/e#8143.0
+// Inspired by http://glslsandbox.com/e#8143.0
 #define PI 3.14159
 #define color_filter mat3(0.3, 0.3, 0.1, 0.0, 0.0, 0.0, 0.7, 0.4, 0.3)
 
@@ -121,7 +121,8 @@ void main() {
     //blendColor = mix(blendColor, color, pow(response, 0.5));
 
     // Output to screen
-    gl_FragColor = vec4(blendColor, 1.0);
+    //gl_FragColor = vec4(blendColor, 1.0); //DDEBUG
+    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
     //gl_FragColor = vec4(vec3(grain(st.xy, noiseSTime)), 1.0);
 
 }
