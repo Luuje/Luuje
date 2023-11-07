@@ -2,7 +2,7 @@
 #define PI 3.14159
 #define color_filter mat3(0.3, 0.3, 0.1, 0.0, 0.0, 0.0, 0.7, 0.4, 0.3)
 
-precision highp float;
+precision mediump float;
 
 uniform float uRandomSeed;
 uniform vec2 uResolution;
@@ -81,8 +81,8 @@ void main() {
     vec2 p = (2.0 * gl_FragCoord.xy - uResolution) / min(uResolution.x, uResolution.y);
     float t = uTime * fluidSpeed; // + uMorph;
     float noiseTime = noise(t);
-    float noiseSTime = noiseS(t);
-    float noiseSTime1 = noiseS(t + 1.0);
+    float noiseSTime = 1.0 //noiseS(t);
+    float noiseSTime1 = 1.0 //noiseS(t + 1.0);
     float ratio = uGrid.x;
 
     // adjust complexity according to viewport width
