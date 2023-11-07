@@ -11,12 +11,12 @@ uniform vec2 uMouse;
 uniform float uMorph;
 uniform vec2 uGrid;
 
-const int maxComplexity = 10; // 10 complexity of curls/computation 
+const int maxComplexity = 13; // 10 complexity of curls/computation 
 const float mouseSpeed = 0.1;  // 0.1 control the color changing
 const float fixedOffset = 0.7;  // 0.7 Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
 const float fluidSpeed = 0.01; // 0.01 Drives speed, smaller number will make it slower.
 const float baseColor = 0.0; // 0.0
-const float BLUR = 0.97; // 0.97
+const float BLUR = 0.87; // 0.97
 const float brightness = 1.0; // 1.0
 
 float map(float value, float min1, float max1, float min2, float max2) {
