@@ -2,7 +2,7 @@
 #define PI 3.14159
 #define color_filter mat3(0.3, 0.3, 0.1, 0.0, 0.0, 0.0, 0.7, 0.4, 0.3)
 
-precision mediump float;
+precision highp float;
 
 uniform float uRandomSeed;
 uniform vec2 uResolution;
@@ -11,7 +11,7 @@ uniform vec2 uMouse;
 uniform float uMorph;
 uniform vec2 uGrid;
 
-const int maxComplexity = 1O; // 10 complexity of curls/computation 
+const int maxComplexity = 10; // 10 complexity of curls/computation 
 const float mouseSpeed = 0.1;  // 0.1 control the color changing
 const float fixedOffset = 0.7;  // 0.7 Drives complexity in the amount of curls/cuves.  Zero is a single whirlpool.
 const float fluidSpeed = 0.01; // 0.01 Drives speed, smaller number will make it slower.
@@ -81,8 +81,8 @@ void main() {
     vec2 p = (2.0 * gl_FragCoord.xy - uResolution) / min(uResolution.x, uResolution.y);
     float t = uTime * fluidSpeed; // + uMorph;
     float noiseTime = noise(t);
-    float noiseSTime = 1.0 //noiseS(t);
-    float noiseSTime1 = 1.0 //noiseS(t + 1.0);
+    float noiseSTime = 1.0;//noiseS(t);
+    float noiseSTime1 = 1.0;//noiseS(t + 1.0);
     float ratio = uGrid.x;
 
     // adjust complexity according to viewport width
