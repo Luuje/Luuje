@@ -1,3 +1,5 @@
+// browserify -p esmify script.js -t glslify -o bundle.js
+
 
 // START PERFORMANCE TEST
 
@@ -1020,6 +1022,7 @@ const handleIntersection = (entries, observer) => {
     } else {
       // Stop Spline animation when the canvas is not visible
       spline.stop();
+      spline.setVariable('Power', false);
     }
   });
 };
@@ -1032,22 +1035,64 @@ observer.observe(splineCanvas);
 
 
 // FULLSCREEN TOGGLE
+let isFullscreen = false;
 let fullscreenToggle = document.querySelector('#gameboy-fullscreen-toggle');
+let originalStyles = {};
+
+function saveOriginalStyles(element) {
+  originalStyles = {
+    position: element.style.position,
+    width: element.style.width,
+    height: element.style.height,
+    top: element.style.top,
+    left: element.style.left,
+    backgroundColor: element.style.zIndex,
+    zIndex: element.style.zIndex
+  };
+}
+
+function applyOriginalStyles(element) {
+  element.style.position = originalStyles.position;
+  element.style.width = originalStyles.width;
+  element.style.height = originalStyles.height;
+  element.style.top = originalStyles.top;
+  element.style.left = originalStyles.left;
+  element.style.backgroundColor = originalStyles.backgroundColor;
+  element.style.zIndex = originalStyles.zIndex;
+}
 
 function toggleFullScreen() {
-  if (document.fullscreenElement) {
-    document.exitFullscreen();
+  let gameboy = document.querySelector('#hero-gameboy');
+
+  if (isFullscreen) {
+    // Exit fullscreen mode
+    applyOriginalStyles(gameboy);
+    gameboy.style.transformStyle = '';
+    gameboy.style.perspective = '';
+    isFullscreen = false;
   } else {
-    let gameboy = document.querySelector('#hero-gameboy');
-    if (gameboy) {
-      gameboy.requestFullscreen().catch(err => {
-        // Handle the error for fullscreen request here.
-        console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
-      });
-      spline.setVariable('Power', true);
-    }
+    // Save original styles before entering fullscreen mode
+    saveOriginalStyles(gameboy);
+
+    // Enter fullscreen mode
+    gameboy.style.position = 'fixed';
+    gameboy.style.width = '100%';
+    gameboy.style.height = '100%';
+    gameboy.style.top = '0';
+    gameboy.style.left = '0';
+    gameboy.style.backgroundColor = 'black';
+    gameboy.style.zIndex = '9999';
+    gameboy.style.transformStyle = 'preserve-3d'; // Preserve 3D for children elements
+    gameboy.style.perspective = '1000px'; // Adjust the perspective as needed
+    isFullscreen = true;
+  }
+
+  // Toggle additional state or features
+  if (spline && isFullscreen) {
+    spline.setVariable('Power', isFullscreen);
   }
 }
+
 
 // Listen for click and touchend events
 if (fullscreenToggle) {

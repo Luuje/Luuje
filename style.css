@@ -564,8 +564,8 @@ footer h4 {
     flex-direction: column;
     justify-content: right;
     align-items: center;
-    border-radius: 10px;
-    border: solid 1px rgba(255, 255, 255, 0);
+    background-color: rgba(0, 0, 0, 0);
+    border: solid 2px rgba(255, 255, 255, 0);
 }
 
 #spline-canvas {
@@ -636,7 +636,6 @@ footer h4 {
     flex-direction: column;
     flex-wrap: nowrap;
     gap: 1rem;
-    z-index: 2;
     margin-top: 0;
 }
 
