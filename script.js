@@ -1063,13 +1063,17 @@ function applyOriginalStyles(element) {
 
 function toggleFullScreen() {
   let gameboy = document.querySelector('#hero-gameboy');
+  let body = document.body;
 
   if (isFullscreen) {
     // Exit fullscreen mode
     applyOriginalStyles(gameboy);
+
     gameboy.style.transformStyle = '';
     gameboy.style.perspective = '';
     isFullscreen = false;
+
+    body.style.overflow = ''; // Re-enable scrolling
   } else {
     // Save original styles before entering fullscreen mode
     saveOriginalStyles(gameboy);
@@ -1085,6 +1089,9 @@ function toggleFullScreen() {
     gameboy.style.transformStyle = 'preserve-3d'; // Preserve 3D for children elements
     gameboy.style.perspective = '1000px'; // Adjust the perspective as needed
     isFullscreen = true;
+    
+    body.style.overflow = 'hidden'; // Disable scrolling
+    
   }
 
   // Toggle additional state or features
