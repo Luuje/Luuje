@@ -1022,8 +1022,10 @@ footer h4 {
     position: relative;
     width: 100%;
     padding: 6rem 4rem;
+    gap: 2rem;
 
     justify-content: center;
+    align-items: center;
 }
 
 #about-header {
@@ -1066,7 +1068,6 @@ footer h4 {
 
 }
 
-
 #about-bio h4 {
     height: fit-content;
     margin: 0;
@@ -1082,6 +1083,29 @@ footer h4 {
 
 #about-bio.column {
     gap: 0rem;
+}
+
+#about-resume {
+    z-index: 1;
+}
+
+#about-resume h3 {
+    color: white;
+    margin: 1rem;
+}
+
+#about-resume a {
+    width: fit-content;
+    height:400px;
+    overflow: hidden;
+    border: 0px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px #00000071;
+}
+
+#about-resume img {
+    height: 400px;
+    object-fit: cover;
 }
 
 /* EDUCATION */
