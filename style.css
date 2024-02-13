@@ -230,7 +230,7 @@ footer h4 {
     align-items: center;
     gap: 1rem;
 
-    width: 100%;
+    width: 80%;
     margin-top: 0;
     padding: 1rem 3rem 0rem 3rem;
     background-size: cover;
@@ -1422,6 +1422,14 @@ footer h4 {
 /* ******************************** */
 /* ********** RESPONSIVE ********** */
 /* ******************************** */
+
+@media screen and (max-width: 1300px) {
+
+    #main-content {
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 1000px) {
 
     #main-content {
