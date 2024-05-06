@@ -72,18 +72,61 @@ p {
     justify-content: center;
     gap: 1rem;
 
+    background-color: rgb(168, 167, 197);
     z-index: 9999;
 
     transition: opacity 1000ms ease;
 }
 
 #loading-screen h3 {
-    color: white;
+    color: rgb(0, 0, 0);
     font-size: 0.9rem;
 }
 
 #loading-screen img {
     width: 200px;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+@-webkit-keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+.loading-animation {
+    width: 60px;
+    height: 60px;
+    margin: 10px auto 0;
+    border: solid 6px #000000;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    -webkit-transition: all 0.5s ease-in;
+    -webkit-animation-name: rotate;
+    -webkit-animation-duration: 1.0s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+
+    transition: all 0.5s ease-in;
+    animation-name: rotate;
+    animation-duration: 1.0s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 }
 
 #main {
@@ -526,12 +569,6 @@ footer h4 {
     width: 40%;
     align-items: start;
     align-self: flex-end;
-    margin: 3rem 0 3rem 0;
-}
-
-#hero-headline h1 {
-
-    font-size: calc(3rem + 3vw);
 }
 
 #hero-headline>h1 {
@@ -551,6 +588,12 @@ footer h4 {
 #hero-headline h1>.txt-rotate {
     border-right: 0.4rem solid #000000;
     animation: caret-blink 1s steps(2, jump-both) infinite;
+}
+
+#hero-headline>h1.hero-headline-sub {
+    font-size: calc(1.2rem + 1.2vw);
+    line-height: calc(1.5rem + 2vw);
+
 }
 
 /* GAMEBOY */
@@ -725,7 +768,6 @@ footer h4 {
     flex-direction: column;
     justify-content: start;
     gap: 1rem;
-    padding: 1rem 0;
     flex: 1;
     max-width: 600px;
 }
@@ -1096,7 +1138,7 @@ footer h4 {
 
 #about-resume a {
     width: fit-content;
-    height:400px;
+    height: 400px;
     overflow: hidden;
     border: 0px;
     border-radius: 20px;
@@ -1717,7 +1759,7 @@ footer h4 {
 
     #website-logo img {
         height: 24px;
-      }
+    }
 
     #website-title-text {
         font-size: 0.8rem;
