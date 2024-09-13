@@ -612,6 +612,7 @@ footer h4 {
 }
 
 #spline-canvas {
+    cursor: grab;
     padding: calc(1vw + 4rem) calc(1vw + 3rem) calc(1vw + 3rem) calc(1vw + 3rem);
     z-index: 9;
 
